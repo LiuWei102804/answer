@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="renderer" content="webkit" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+		<meta name="format-detection" content="telephone=no,email=no,url=no" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/style.css" rel="stylesheet" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<nav class="mui-bar mui-bar-tab">
+			<a class="mui-tab-item mui-active" data-page="./pages/home.html">
+				<span class="mui-icon mui-icon-home"></span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a class="mui-tab-item" data-page="./pages/task.html">
+				<span class="mui-icon mui-icon-phone"></span>
+				<span class="mui-tab-label">任务中心</span>
+			</a>
+			<a class="mui-tab-item" data-page="./pages/my.html">
+				<span class="mui-icon mui-icon-gear"></span>
+				<span class="mui-tab-label">我的</span>
+			</a>
+		</nav>
+		<script type="text/javascript" src="./js/mui.min.js"></script>
+		<script type="text/javascript" src="js/common.js" ></script>
+		<script type="text/javascript">
+			var subpages = ["./pages/home.html","./pages/task.html","./pages/my.html"];
+			mui.init({ 
+// 				preloadPages : [{
+// 					url : "./pages/home.html" ,
+// 					id : "./pages/home.html"
+// 				}]
+				statusBarBackground: '#f7f7f7'
+			});
+			
+			(function($, doc) {
+				$.plusReady(function () {
+					for( var i = 0; i < subpages.length; i ++ ) {
+						$.openWindow({
+							url: subpages[i],
+							id: subpages[i],
+							styles:{
+								top:"0px" , //新页面顶部位置
+								bottom:"52px" , //新页面底部位置
+								width : "100%"
+							},
+							createNew:false ,
+							show : {
+								autoShow : i == 0 ? true : false ,
+								aniShow  : "slide-in-right" 
+							} ,
+							waiting:{
+							    autoShow:true,		//自动显示等待框，默认为true
+							    title:'正在加载...',//等待对话框上显示的提示内容
+							}
+						});
+ 					}
+					$(".mui-bar-tab").on("tap",".mui-tab-item",function () {
+						var current = this.dataset.page;
+
+						var page = plus.webview.getWebviewById( current );
+						page.show("slide-in-right",200,function () {
+							var loginPage = plus.webview.getLaunchWebview();
+							hideSubPage( current );
+														
+							loginPage.hide();
+						});
+					});
+				});
+			})(mui,document);
+			
+		</script>
+	</body>
+
+</html>

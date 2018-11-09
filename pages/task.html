@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="renderer" content="webkit" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+		<meta name="format-detection" content="telephone=no,email=no,url=no" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+	</head>
+	<style type="text/css">
+		.mui-slider img{ width: 100%; height: 180px; }
+		.my-funs{ width: 100%; height: auto; padding: 0 2%; overflow: hidden; background: #fff; }
+		.my-funs .flex{ font-size: 12px;}
+		.my-funs .flex div{ height: 50px; margin: 5px 0; flex-direction: column; -webkit-flex-direction: column; flex: 1; -webkit-flex: 1;}
+	</style>
+	<body>
+		<div class="mui-content">
+			<div class="mui-slider">
+				<div class="mui-slider-group mui-slider-loop">
+						<!--支持循环，需要重复图片节点-->
+						<div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="../images/4.jpg" /></a></div>
+						<div class="mui-slider-item"><a href="#"><img src="../images/1.jpg" /></a></div>
+						<div class="mui-slider-item"><a href="#"><img src="../images/2.jpg" /></a></div>
+						<div class="mui-slider-item"><a href="#"><img src="../images/4.jpg" /></a></div>
+						<!--支持循环，需要重复图片节点-->
+						<div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="../images/1.jpg" /></a></div>
+				</div>
+			</div>
+			<div class="my-funs">
+				<div class="flex">
+					<div class="flex flex-align flex-just task" data-page="./taskhall.html">
+						<i class="mui-icon mui-icon-flag"></i>
+						任务大厅
+					</div>
+					<div class="flex flex-align flex-just task" data-page="./tasksubmit.html">
+						<i class="mui-icon mui-icon-redo"></i>
+						 提交任务
+					</div>
+					<div class="flex flex-align flex-just task" data-page="./taskrecord.html">
+						<i class="mui-icon mui-icon-paperplane"></i>
+						 任务记录
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/common.js"></script>
+		<script type="text/javascript">
+			mui.init({});
+			mui.plusReady(function () {
+				var gallery = mui('.mui-slider');
+				gallery.slider({
+					interval:2000//自动轮播周期，若为0则不自动播放，默认为0；
+				});
+				
+				mui(".my-funs").on("tap" , ".task" , function () {
+					var page = this.dataset.page;
+					openPage( page );
+				});
+			});
+		</script>
+	</body>
+</html>

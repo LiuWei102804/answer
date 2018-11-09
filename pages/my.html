@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="renderer" content="webkit" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+		<meta name="format-detection" content="telephone=no,email=no,url=no" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+	</head>
+	<style type="text/css">
+		.head{ padding-top: 30px; width: 100%; height: auto; background: #007AFF; flex-direction: column; -webkit-flex-direction: column; color: #fff; position: relative; }
+		.head #user-logo{ position: relative; width: 60px; height: 60px; overflow: hidden; }
+		.head #user-logo input[type=file]{ width: 100%; height: 100%; opacity: 0; position: absolute; top:0; left: 0; }
+		.head #user-logo img{ width: 60px; height: 60px; border-radius: 50%; }
+		.head .profit{ width: 100%; height: 50px; font-size: 12px; border-top:1px solid #fff; }
+		.head .profit div{ flex: 1; -webkit-flex: 1; flex-direction: column; -webkit-flex-direction: column; border-right: 1px solid #fff; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; -webkit-text-overflow:ellipsis; }
+		.head .profit div:last-child{ border-right: none;}
+		.funs-list{ width: 100%; height: auto; overflow: hidden; font-size: 12px; margin-top: 10px; }
+		.funs-list div{ width: 100%; height: 40px; line-height: 40px; background: #fff; border-top: 1px solid #ddd; text-indent: 5px; }
+		.funs-list div i:nth-child(2){ float: right; margin: 11px 5px 0 0; font-size: 18px; }
+	</style>
+	<body>
+		<div class="mui-content">
+			<div class="flex flex-align head">
+				<div id="user-logo">
+					<img src="../images/qq.png" id="user-pic" alt="" />
+					<input type="file" />
+				</div>
+				
+				<p style="color: #fff;">13857102804</p>
+				<div class="flex profit">
+					<div class="flex flex-align flex-just">
+						<span>0</span>
+						总收入
+					</div>
+					<div class="flex flex-align flex-just">
+						<span>0</span>
+						今日收入
+					</div>
+					<div class="flex flex-align flex-just">
+						<span>0</span>
+						已提现
+					</div>
+				</div>
+			</div>
+			<div class="funs-list">
+				<div data-page="./user.html" class="newpage-div">
+					<i class="mui-icon mui-icon-person"></i>
+					个人资料
+					<i class="mui-icon mui-icon-arrowright"></i>
+				</div>
+				<div style="margin-bottom: 10px;" data-page="./myteam.html" class="newpage-div">
+					<i class="mui-icon mui-icon-personadd"></i>
+					我的团队
+					<i class="mui-icon mui-icon-arrowright"></i>
+				</div>
+				<div style="margin-bottom: 10px;" data-page="./bindbank.html" class="newpage-div">
+					<i class="mui-icon mui-icon-compose"></i>
+					绑定银行卡
+					<i class="mui-icon mui-icon-arrowright"></i>
+				</div>
+				<div data-page="./wallet.html" class="newpage-div">
+					<i class="mui-icon mui-icon-home"></i>
+					钱包
+					<i class="mui-icon mui-icon-arrowright"></i>
+				</div>
+				<div style="margin-bottom: 10px;" class="newpage-div">
+					<i class="mui-icon mui-icon-navigate"></i>
+					提现
+					<i class="mui-icon mui-icon-arrowright"></i>
+				</div>
+				<div class="func-div" data-func="checkNew">
+					<i class="mui-icon mui-icon-info"></i>
+					检查更新
+					<i class="mui-icon mui-icon-arrowright"></i>
+				</div>
+				<div style="margin-bottom: 10px;" class="func-div" data-func="changeAccount">
+					<i class="mui-icon mui-icon-undo"></i>
+					切换账号
+					<i class="mui-icon mui-icon-arrowright"></i>
+				</div>
+			</div>
+			<div class="mui-content-padded">
+				<button class="mui-btn mui-btn-block mui-btn-danger quit-btn">退出APP</button>
+			</div>
+		</div>
+		<script type="text/javascript" src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/common.js"></script>
+		<script type="text/javascript">
+			
+			mui.init();
+			mui.plusReady(function () {
+				mui(".funs-list").on("tap",".newpage-div",function () {
+					var page = this.dataset.page;
+					openPage( page );
+				});
+				
+				/*
+				 	检查更新
+				 	切换账号
+				 * */
+				mui(".funs-list").on("tap",".func-div",function () {
+					var func = this.dataset.func;
+					changeAccount(func);
+				});
+				/*
+				 	退出APP
+				 * */
+				mui(".mui-content-padded").on("tap",".quit-btn",function () {
+					mui.alert("此平台不支持直接退出应用，请手动切换","提示");
+				});
+				
+				/*
+				 	选择头像
+				 * */
+				mui(".head").on("change","input",function () {
+					var fileRender = new FileReader();
+					fileRender.readAsDataURL(this.files[0]);
+					fileRender.onload = function() {
+			            //console.log(this.result);  // 上传的图片的编码
+ 						mui("#user-pic")[0].setAttribute("src" , this.result );
+ 						//console.log( e.target.src )
+			        };
+				});
+			});
+			
+			/*
+			 	切换账号
+			 * */
+			function changeAccount( func ){
+				if( func == "changeAccount" ) {
+					mui.confirm("确定要切换账号吗?","提示","确定",function ( btn ) {
+						if( btn.index == 0  ) {
+							var loginPage = plus.webview.getLaunchWebview();
+							loginPage.show("pop-in",200,function () {
+								plus.webview.getWebviewById( "./index.html" ).close("pop-out",0);
+								closeSubPage();
+							});
+						}
+					})
+				}
+			};
+		</script>
+	</body>
+
+</html>

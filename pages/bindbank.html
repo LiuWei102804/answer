@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="renderer" content="webkit" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+		<meta name="format-detection" content="telephone=no,email=no,url=no" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+	</head>
+	<style type="text/css">
+		label{ font-size: 16px; }
+	</style>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">绑定银行卡</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-input-group">
+				<div class="mui-input-row">
+					<label>持卡人姓名：</label>
+					<input type="text" class="mui-input-clear" placeholder="请输入持卡人姓名" />
+				</div>
+				<div class="mui-input-row">
+					<label>银行卡名称：</label>
+					<select class="mui-input-clear" name="" id="">
+						<option value="">请选择</option>
+						<option value="1">上海</option>
+						<option value="2">北京</option>
+					</select>
+				</div>
+				<div class="mui-input-row">
+					<label>开户支行：</label>
+					<input type="text" class="mui-input-clear" placeholder="请输入开户支行" />
+				</div>
+				<div class="mui-input-row">
+					<label>银行卡号：</label>
+					<input type="text" class="mui-input-clear" placeholder="请输入银行卡号" />
+				</div>
+				<div class="mui-input-row">
+					<label>短信验证：</label>
+					<input type="text" class="mui-input-clear" style="float: left; width: 45%;" placeholder="13857102804" />
+					<button style="margin-top: 3px;">获取</button>
+				</div>
+			</div>
+			<div class="mui-content-padded">
+				<button class="mui-btn mui-btn-block mui-btn-primary">确定</button>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/common.js"></script>
+		<script type="text/javascript">
+			mui.init({});
+			mui.plusReady(function () {
+
+			});
+			
+		</script>
+	</body>
+</html>
