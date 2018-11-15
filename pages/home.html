@@ -43,11 +43,11 @@
 						</div>
 						<div class="flex flex-align flex-just newpage-div" data-page="./advertisement.html">
 							<i class="mui-icon mui-icon-paperplane"></i>
-							广告投放
+							广告投放 
 						</div>
 					</div>
 					<div class="flex">
-						<div class="flex flex-align flex-just">
+						<div class="flex flex-align flex-just newpage-div" data-page="./joinEnterprise.html">
 							<i class="mui-icon mui-icon-chatboxes"></i>
 							企业合作
 						</div>
@@ -82,13 +82,14 @@
 		<script>
 
 			mui.plusReady(function () {
-				var gallery = mui('.mui-slider');
+				var gallery = mui('.mui-slider'); 
 				gallery.slider({
 					  interval:2000//自动轮播周期，若为0则不自动播放，默认为0；
 				});
 				
-				mui(".funs-list").on("tap",".newpage-div",function () {
+				mui(".my-funs").on("tap",".newpage-div",function () {
 					var page = this.dataset.page;
+					console.log( page )
 					openPage( page );
 				});
 			}); 

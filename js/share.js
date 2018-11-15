@@ -44,7 +44,7 @@ function share(srv, msg, button){
     button && (msg.extra = button.extra);
 	// 发送分享
 	if( srv.authenticated ){
-		console.log("已授权");
+		//console.log("已授权");
 		doShare(srv, msg);
 	}else{
 		//申请授权
