@@ -75,22 +75,24 @@
 						</div>
 					</div>
 			</div>
+			<!--<button type="button" onclick="shareWeb()">分享</button>-->
 		</div>
 		<script src="../js/mui.min.js" type="text/javascript"></script>
 		<script src="../js/common.js" type="text/javascript"></script>
 		<script>
+
 			mui.plusReady(function () {
 				var gallery = mui('.mui-slider');
 				gallery.slider({
 					  interval:2000//自动轮播周期，若为0则不自动播放，默认为0；
 				});
 				
-				
 				mui(".funs-list").on("tap",".newpage-div",function () {
 					var page = this.dataset.page;
 					openPage( page );
 				});
-			});
+			}); 
+
 		</script>
 	</body>
 </html>
