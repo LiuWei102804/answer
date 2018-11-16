@@ -11,22 +11,36 @@
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/style.css" rel="stylesheet" />
 	</head>
+	<style type="text/css">
+		.codebox{ width: 100%; height: auto; display: flex; display: -webkit-flex; justify-content: center; -webkit-justify-content: center; flex-direction: column; -webkit-flex-direction: column; align-items: center; -webkit-align-items: center; margin-top: 20px; }
+		.codebox #qrcode{ border: 10px solid #fff; margin-bottom: 20px; }
+	</style>
 	<body>
 		<header class="mui-bar mui-bar-nav">
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 		    <h1 class="mui-title">推广二维码</h1>
 		</header>
 		<div class="mui-content">
-		    	推广二维码
+			<div class="codebox">
+				<div id="qrcode"></div>
+				<span>我的二维码</span>
+			</div>
+
 		</div>
 		<script src="../js/mui.min.js" type="text/javascript"></script>
+		<script src="../js/qrcode.min.js" type="text/javascript"></script>
 		<script src="../js/common.js" type="text/javascript"></script>
 		<script>
 			mui.init({
 				
 			});
 			mui.plusReady(function () {
-
+				var qr = mui("#qrcode")[0];
+				var code = new QRCode( qr , { 
+					text : "http://www.runoob.com" ,
+					width : 128 ,
+					height : 128
+				})
 			});
 		</script>
 	</body>

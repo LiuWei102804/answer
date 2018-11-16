@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="renderer" content="webkit" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+		<meta name="format-detection" content="telephone=no,email=no,url=no" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+	</head>
+	<style type="text/css">
+		.qs-title{ text-align: center; height: 40px; font-size: 22px; line-height: 40px; background: #007aff; color: #fff; }
+		.qs-box{ width: 92%; height: auto; overflow: hidden; border:2px solid #007aff; border-radius: 5px; margin: 10px auto 0; padding: 20px; box-sizing: border-box; }
+		.qs-box .label{ width: 100%; height: auto; margin-bottom: 10px; font-size: 16px; }
+		.qs-box .label span:first-child{ margin-right: 20%; }
+		.qs-box .qs-content{ margin-top: 10px;  overflow: hidden; }
+		.qs-box .qs-content .content{ margin-bottom: 20px; font-size: 16px; }
+		/*.qs-box .qs-content label{ display: block;  height: 40px; width: 100%; line-height: 40px; }
+		.qs-box .qs-content label input[type=radio]{ float: left; margin: 12px 5px 0 0; }*/
+		.mui-checkbox.mui-left input[type=checkbox], .mui-radio.mui-left input[type=radio]{ left: 0; }
+		.mui-checkbox.mui-left label, .mui-radio.mui-left label{ padding-left: 38px; }
+		..mui-btn-block{ padding: 10px 0; }
+	</style>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">在线答题</h1>
+		</header>
+		<div class="mui-content">
+		    <h3 class="qs-title">欢迎进入答题系统</h3>
+		    <div class="qs-box">
+		    	<p class="label">
+		    		<span>您好：111</span>
+		    		<span>得分：0</span>
+		    	</p>
+		    	<div class="qs-content">
+		    		<b>题目：</b>
+		    		<p class="content">西安邮电大学学生公寓管理细则规定学生擅自留他人住宿，除收取住宿费外，每人罚款十元</p>
+					<div class="mui-input-row mui-radio mui-left">
+						<label>A,YES</label>
+						<input name="radio" type="radio" checked="" />
+					</div> 
+					<div class="mui-input-row mui-radio mui-left">
+						<label>B,NO</label>
+						<input name="radio" type="radio" />
+					</div> 
+		    	</div>
+		    </div>
+		    <div class="mui-content-padded">
+		    	<button class="mui-btn mui-btn-block mui-btn-primary">下一题</button>
+		    	
+		    </div>
+		    <div class="mui-content-padded">
+		    	<button class="mui-btn mui-btn-block  mui-btn-danger">退出答题</button>
+		    </div>
+		</div>
+		<script src="../js/mui.min.js" type="text/javascript"></script>
+		<script src="../js/common.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			mui.init({});
+			mui.plusReady(function () {
+				
+			});
+		</script>
+	</body>
+</html>

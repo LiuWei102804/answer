@@ -51,9 +51,9 @@
 							<i class="mui-icon mui-icon-chatboxes"></i>
 							企业合作
 						</div>
-						<div class="flex flex-align flex-just">
-							<i class="mui-icon mui-icon-close"></i>
-							暂未开放
+						<div class="flex flex-align flex-just newpage-div" data-page="./question.html">
+							<i class="mui-icon mui-icon-compose"></i>
+							在线答题
 						</div>
 						<div class="flex flex-align flex-just">
 							<i class="mui-icon mui-icon-close"></i>
@@ -84,12 +84,12 @@
 			mui.plusReady(function () {
 				var gallery = mui('.mui-slider'); 
 				gallery.slider({
-					  interval:2000//自动轮播周期，若为0则不自动播放，默认为0；
+					interval:2000//自动轮播周期，若为0则不自动播放，默认为0；
 				});
 				
 				mui(".my-funs").on("tap",".newpage-div",function () {
 					var page = this.dataset.page;
-					console.log( page )
+
 					openPage( page );
 				});
 			}); 
