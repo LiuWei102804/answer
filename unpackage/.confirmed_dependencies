@@ -1,1 +1,14 @@
-null
+{
+  "index.html": {
+    "refer": [
+      "pages/task.html",
+      "pages/my.html",
+      "pages/home.html"
+    ]
+  },
+  "login.html": {
+    "refer": [
+      "index.html"
+    ]
+  }
+}

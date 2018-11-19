@@ -145,14 +145,34 @@
 					statusBarBackground: '#f7f7f7'
 				});
 				$.plusReady(function() {
-					$(".mui-content-padded").on("tap","#login",function () {
-						var index = plus.webview.getWebviewById("./index.html");
-						if( index ) {
-							index.show("pop-in");
+					var isFirstLogin = plus.storage.getItem("username") == null;
+					if( !isFirstLogin ) {
+						if( plus.fingerprint.isSupport() && 
+							plus.fingerprint.isKeyguardSecure() && 							plus.fingerprint.isEnrolledFingerprints() ) {
+							//指纹识别	
+							plus.fingerprint.authenticate(function () {
+								openPage("./index.html");
+							},function ( err ) {
+								mui.toast("指纹识别失败,请重试");
+							},{ message : "请使用指纹识别" })
+							console.log("已有指纹识别");
 						} else {
-							index = openPage("./index.html");
+							console.log("未设置指纹识别")
 						}
-					});	
+					} else {
+						console.log("使用账号密码登录");
+					}
+
+
+
+					//账号密码登录
+					mui(".mui-content-padded").on("tap","#login",function () {
+						var account = document.querySelector("#account");
+						var password = document.querySelector("#password");
+						plus.storage.setItem("username" , account.value );
+						
+						openPage("./index.html");
+					});
 					
 					$(".mui-content-padded").on("tap",".link-area",function () {
 						openPage("./reg.html");
