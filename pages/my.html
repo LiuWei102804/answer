@@ -12,7 +12,8 @@
 		<link href="../css/style.css" rel="stylesheet" />
 	</head>
 	<style type="text/css">
-		.head{ padding-top: 30px; width: 100%; height: auto; background: #007AFF; flex-direction: column; -webkit-flex-direction: column; color: #fff; position: relative; }
+		body,.mui-content{ background: #fff; }
+		.head{ padding-top: 30px; width: 100%; height: auto; min-height: 150px; background: #007AFF; flex-direction: column; -webkit-flex-direction: column; color: #fff; position: relative; }
 		.head #user-logo{ position: relative; width: 60px; height: 60px; overflow: hidden; }
 		.head #user-logo input[type=file]{ width: 100%; height: 100%; opacity: 0; position: absolute; top:0; left: 0; }
 		.head #user-logo img{ width: 60px; height: 60px; border-radius: 50%; }
@@ -22,11 +23,18 @@
 		.funs-list{ width: 100%; height: auto; overflow: hidden; font-size: 12px; margin-top: 10px; }
 		.funs-list div{ width: 100%; height: 40px; line-height: 40px; background: #fff; border-top: 1px solid #ddd; text-indent: 5px; }
 		.funs-list div i:nth-child(2){ float: right; margin: 11px 5px 0 0; font-size: 18px; }
+		.account-class{  margin-top: 10px; }
+		.account-class p{ padding: 0 3%; border-bottom: 1px solid #ddd; height: 35px; line-height: 35px; }
+		.account-class p i{ margin-right: 5px; }
+		.account-data{ color: #666; font-size: 14px; padding-top: 5px; }
+		.account-data div{ flex: 1; -webkit-flex: 1; flex-direction: column; -webkit-flex-direction: column; height: auto; min-height: 50px; border-right: 1px solid #ddd;}
+		.account-data div:last-child{ border-right: none; }
+		.account-type div{ border-right: none; }
 	</style>
 	<body>
 		<div class="mui-content">
 			<div class="flex flex-align head">
-				<div id="user-logo">
+				<!--<div id="user-logo">
 					<img src="../images/qq.png" id="user-pic" alt="" />
 					<input type="file" />
 				</div>
@@ -45,9 +53,81 @@
 						<span>0</span>
 						已提现
 					</div>
+				</div>-->
+			</div>
+			<div class="account-class">
+				<p><i class="mui-icon mui-icon-person"></i>普通账号</p>
+				<div class="account-data flex">
+					<div class="flex flex-just flex-align">
+						<span>1321.2</span>
+						今日收入
+					</div>
+					<div class="flex flex-just flex-align">
+						<span>1321.2</span>
+						总收入
+					</div>
+					<div class="flex flex-just flex-align">
+						<span>1321.2</span>
+						累计提现
+					</div>
 				</div>
 			</div>
-			<div class="funs-list">
+			<div class="account-class">
+				<p><i class="mui-icon mui-icon-contact"></i>精英账户</p>
+				<div class="account-data flex">
+					<div class="flex flex-just flex-align">
+						<span>1321.2</span>
+						今日收入
+					</div>
+					<div class="flex flex-just flex-align">
+						<span>1321.2</span>
+						总收入
+					</div>
+					<div class="flex flex-just flex-align">
+						<span>1321.2</span>
+						累计提现
+					</div>
+				</div>
+			</div>
+			<div class="flex account-data account-type" style="margin-top: 10px;">
+				<div class="flex flex-align flex-just">
+					<i class="mui-icon mui-icon-person"></i>
+					个人资料
+				</div>
+				<div class="flex flex-align flex-just">
+					<i class="mui-icon mui-icon-personadd"></i>
+					我的团队
+				</div>
+				<div class="flex flex-align flex-just">
+					<i class="mui-icon mui-icon-compose"></i>
+					绑定银行卡
+				</div>
+			</div>
+			<div class="flex account-data account-type">
+				<div class="flex flex-align flex-just">
+					<i class="mui-icon mui-icon-navigate"></i>
+					提现
+				</div>
+				<div class="flex flex-align flex-just">
+					<i class="mui-icon mui-icon-info"></i>
+					检查更新
+				</div>
+				<div class="flex flex-align flex-just">
+					<i class="mui-icon mui-icon-undo"></i>
+					切换账号
+				</div>
+			</div>
+			<div class="flex account-data account-type">
+				<div class="flex flex-align flex-just">
+					<i class="mui-icon mui-icon-arrowthinup"></i>
+					升级VIP
+				</div>
+				<div class="flex flex-align flex-just">
+					<i class="mui-icon mui-icon-locked"></i>
+					退出
+				</div>
+			</div>
+			<!--<div class="funs-list">
 				<div data-page="./user.html" class="newpage-div">
 					<i class="mui-icon mui-icon-person"></i>
 					个人资料
@@ -83,10 +163,10 @@
 					切换账号
 					<i class="mui-icon mui-icon-arrowright"></i>
 				</div>
-			</div>
-			<div class="mui-content-padded">
+			</div>-->
+			<!--<div class="mui-content-padded">
 				<button class="mui-btn mui-btn-block mui-btn-danger quit-btn">退出APP</button>
-			</div>
+			</div>-->
 		</div>
 		<script type="text/javascript" src="../js/mui.min.js"></script>
 		<script type="text/javascript" src="../js/common.js"></script>
