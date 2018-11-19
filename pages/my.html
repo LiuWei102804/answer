@@ -90,15 +90,15 @@
 				</div>
 			</div>
 			<div class="flex account-data account-type" style="margin-top: 10px;">
-				<div class="flex flex-align flex-just">
+				<div class="flex flex-align flex-just newpage-div"  data-page="./user.html">
 					<i class="mui-icon mui-icon-person"></i>
 					个人资料
 				</div>
-				<div class="flex flex-align flex-just">
+				<div class="flex flex-align flex-just newpage-div" data-page="./myteam.html">
 					<i class="mui-icon mui-icon-personadd"></i>
 					我的团队
 				</div>
-				<div class="flex flex-align flex-just">
+				<div class="flex flex-align flex-just newpage-div" data-page="./bindbank.html">
 					<i class="mui-icon mui-icon-compose"></i>
 					绑定银行卡
 				</div>
@@ -108,11 +108,11 @@
 					<i class="mui-icon mui-icon-navigate"></i>
 					提现
 				</div>
-				<div class="flex flex-align flex-just">
+				<div class="flex flex-align flex-just func-div"  data-func="checkNew">
 					<i class="mui-icon mui-icon-info"></i>
 					检查更新
 				</div>
-				<div class="flex flex-align flex-just">
+				<div class="flex flex-align flex-just func-div" data-func="changeAccount">
 					<i class="mui-icon mui-icon-undo"></i>
 					切换账号
 				</div>
@@ -174,7 +174,7 @@
 			
 			mui.init();
 			mui.plusReady(function () {
-				mui(".funs-list").on("tap",".newpage-div",function () {
+				mui(".account-data").on("tap",".newpage-div",function () {
 					var page = this.dataset.page;
 					openPage( page );
 				});
@@ -183,7 +183,7 @@
 				 	检查更新
 				 	切换账号
 				 * */
-				mui(".funs-list").on("tap",".func-div",function () {
+				mui(".account-data").on("tap",".func-div",function () {
 					var func = this.dataset.func;
 					changeAccount(func);
 				});
@@ -197,15 +197,15 @@
 				/*
 				 	选择头像
 				 * */
-				mui(".head").on("change","input",function () {
-					var fileRender = new FileReader();
-					fileRender.readAsDataURL(this.files[0]);
-					fileRender.onload = function() {
-			            //console.log(this.result);  // 上传的图片的编码
- 						mui("#user-pic")[0].setAttribute("src" , this.result );
- 						//console.log( e.target.src )
-			        };
-				});
+//				mui(".head").on("change","input",function () {
+//					var fileRender = new FileReader();
+//					fileRender.readAsDataURL(this.files[0]);
+//					fileRender.onload = function() {
+//			            //console.log(this.result);  // 上传的图片的编码
+// 						mui("#user-pic")[0].setAttribute("src" , this.result );
+// 						//console.log( e.target.src )
+//			        };
+//				});
 			});
 			
 			/*
