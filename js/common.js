@@ -23,7 +23,7 @@
 	 	隐藏2级页面
 	 * */
 	w.hideSubPage = function ( current ) {
-		var subpages = ["./pages/home.html","./pages/task.html","./pages/my.html"];
+		var subpages = ["./pages/home.html","./pages/my.html"];
 		for( var i = 0; i < subpages.length; i ++ ) {
 			if( current && subpages[i] == current ) {
 				continue;
