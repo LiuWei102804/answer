@@ -12,16 +12,8 @@ mui.init({
 
 });
 mui.plusReady(function() {
-	var currentWebview = plus.webview.currentWebview();
-	
-	/*
-	 	隐藏登录页面
-	 * */
-//	currentWebview.addEventListener("show",function () {
-//		var opener = currentWebview.opener();
-//		opener.hide();
-//		console.log("登录页隐藏")
-//	},false)
+	var loginPage = plus.webview.getLaunchWebview();
+	loginPage.hide();
 	
 	
 	getServices();
@@ -29,12 +21,11 @@ mui.plusReady(function() {
 		shareWeb( msg );
 	})
 	
-	
 	/*
 		切换登录页 
 	 * */
 	mui(".mui-content-padded").on("tap","#login",function () {
-		mui.back();
+		loginPage.show("pop-in",200);
 	});
 
 });
