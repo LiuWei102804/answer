@@ -1,3 +1,6 @@
+var reqUrl = {
+	reg : "" 					//注册接口
+};	
 /**
  * 演示程序当前的 “注册/登录” 等操作，是基于 “本地存储” 完成的
  * 当您要参考这个演示程序进行相关 app 的开发时，
@@ -42,18 +45,8 @@
 	 **/
 	owner.reg = function(regInfo, callback) {
 		callback = callback || $.noop;
-		regInfo = regInfo || {};
-		regInfo.account = regInfo.account || '';
-		regInfo.password = regInfo.password || '';
-		if (regInfo.account.length < 5) {
-			return callback('用户名最短需要 5 个字符');
-		}
-		if (regInfo.password.length < 6) {
-			return callback('密码最短需要 6 个字符');
-		}
-		if (!checkEmail(regInfo.email)) {
-			return callback('邮箱地址不合法');
-		}
+		
+		
 		var users = JSON.parse(localStorage.getItem('$users') || '[]');
 		users.push(regInfo);
 		localStorage.setItem('$users', JSON.stringify(users));
