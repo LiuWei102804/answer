@@ -35,9 +35,9 @@ mui.plusReady(function () {
 		});
 	});
 	
-	plus.geolocation.getCurrentPosition(function ( pos ) {
-		console.log( JSON.stringify( pos ) )
-	},function () {
-		
-	},{ provider : "baidu" , enableHighAccuracy : true , geocode : true })
+//	plus.geolocation.getCurrentPosition(function ( pos ) {
+//		//console.log( JSON.stringify( pos ) )
+//	},function () {
+//		
+//	},{ provider : "baidu" , enableHighAccuracy : true , geocode : true })
 });

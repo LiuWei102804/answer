@@ -196,7 +196,14 @@
 				mui(".account-data").on("tap",".quit-btn",function () {
 					if( mui.os.ios ) {
 						mui.alert("此平台不支持直接退出应用，请手动切换","提示");
-					}	
+					} else {
+						mui.confirm("确认退出应用？","提示",function ( btn ) {
+							if( btn.index == 1 ) {
+								plus.runtime.quit();
+							}
+						})
+						
+					}
 				});
 				
 				/*
