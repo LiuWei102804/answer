@@ -21,28 +21,27 @@
 		<div class="mui-content">
 			<div class="mui-input-group">
 				<div class="mui-input-row">
-					<label>持卡人姓名：</label>
-					<input type="text" class="mui-input-clear" placeholder="请输入持卡人姓名" />
+					<label>姓名：</label>
+					<input type="text" placeholder="请输入姓名" />
 				</div>
 				<div class="mui-input-row">
-					<label>银行卡名称：</label>
-					<select class="mui-input-clear" name="" id="">
-						<option value="">请选择</option>
-						<option value="1">上海</option>
-						<option value="2">北京</option>
+					<label>收款方：</label>
+					<select name="" id="">
+						<option value="wechat">微信</option>
+						<option value="alipay">支付宝</option>
 					</select>
 				</div>
 				<div class="mui-input-row">
-					<label>开户支行：</label>
-					<input type="text" class="mui-input-clear" placeholder="请输入开户支行" />
+					<label>账号：</label>
+					<input type="text" placeholder="请输入账号" />
 				</div>
-				<div class="mui-input-row">
+				<!--<div class="mui-input-row">
 					<label>银行卡号：</label>
-					<input type="text" class="mui-input-clear" placeholder="请输入银行卡号" />
-				</div>
+					<input type="text" placeholder="请输入银行卡号" />
+				</div>-->
 				<div class="mui-input-row">
 					<label>短信验证：</label>
-					<input type="text" class="mui-input-clear" style="float: left; width: 45%;" placeholder="13857102804" />
+					<input type="text" style="float: left; width: 45%;" placeholder="13857102804" />
 					<button style="margin-top: 3px;">获取</button>
 				</div>
 			</div>
@@ -50,14 +49,11 @@
 				<button class="mui-btn mui-btn-block mui-btn-primary">确定</button>
 			</div>
 		</div>
-		<script src="../js/mui.min.js"></script>
-		<script src="../js/common.js"></script>
-		<script type="text/javascript">
-			mui.init({});
-			mui.plusReady(function () {
-
-			});
-			
-		</script>
+		<script type="text/javascript" src="../js/common/mui.min.js"></script>
+		<script type="text/javascript" src="../js/common/common.js"></script>
+		<script type="text/javascript" src="../js/common/share.js"></script>
+		<script type="text/javascript" src="../js/common/Request.js"></script>
+		<script type="text/javascript" src="../js/common/app.js"></script>
+		<script type="text/javascript" src="../js/bindbank.js"></script>
 	</body>
 </html>

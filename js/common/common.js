@@ -23,7 +23,7 @@
 	 	隐藏2级页面
 	 * */
 	w.hideSubPage = function ( current ) {
-		var subpages = ["./pages/home.html","./pages/my.html"];
+		var subpages = ["./pages/home.html","./pages/userCenter.html"];
 		for( var i = 0; i < subpages.length; i ++ ) {
 			if( current && subpages[i] == current ) {
 				continue;
@@ -36,7 +36,7 @@
 	 	关闭二级页面
 	 * */
 	w.closeSubPage = function () {
-		var subpages = ["./pages/home.html","./pages/task.html","./pages/my.html"];
+		var subpages = ["./pages/home.html","./pages/userCenter.html"];
 		for( var i = 0; i < subpages.length; i ++ ) {
 			var sub = plus.webview.getWebviewById( subpages[i] );
 			sub.close();

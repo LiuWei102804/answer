@@ -59,15 +59,15 @@
 				<p><i class="mui-icon mui-icon-person"></i>普通账号</p>
 				<div class="account-data flex">
 					<div class="flex flex-just flex-align">
-						<span>1321.2</span>
+						<span>0.00</span>
 						今日收入
 					</div>
 					<div class="flex flex-just flex-align">
-						<span>1321.2</span>
+						<span>0.00</span>
 						总收入
 					</div>
 					<div class="flex flex-just flex-align">
-						<span>1321.2</span>
+						<span>0.00</span>
 						累计提现
 					</div>
 				</div>
@@ -76,15 +76,15 @@
 				<p><i class="mui-icon mui-icon-contact"></i>精英账户</p>
 				<div class="account-data flex">
 					<div class="flex flex-just flex-align">
-						<span>1321.2</span>
+						<span>0.00</span>
 						今日收入
 					</div>
 					<div class="flex flex-just flex-align">
-						<span>1321.2</span>
+						<span>0.00</span>
 						总收入
 					</div>
 					<div class="flex flex-just flex-align">
-						<span>1321.2</span>
+						<span>0.00</span>
 						累计提现
 					</div>
 				</div>
@@ -122,7 +122,7 @@
 					<i class="mui-icon mui-icon-arrowthinup"></i>
 					升级VIP
 				</div>
-				<div class="flex flex-align flex-just">
+				<div class="flex flex-align flex-just quit-btn">
 					<i class="mui-icon mui-icon-locked"></i>
 					退出
 				</div>
@@ -168,8 +168,11 @@
 				<button class="mui-btn mui-btn-block mui-btn-danger quit-btn">退出APP</button>
 			</div>-->
 		</div>
-		<script type="text/javascript" src="../js/mui.min.js"></script>
-		<script type="text/javascript" src="../js/common.js"></script>
+		<script type="text/javascript" src="../js/common/mui.min.js"></script>
+		<script type="text/javascript" src="../js/common/common.js"></script>
+		<script type="text/javascript" src="../js/common/share.js"></script>
+		<script type="text/javascript" src="../js/common/Request.js"></script>
+		<script type="text/javascript" src="../js/common/app.js"></script>
 		<script type="text/javascript">
 			
 			mui.init();
@@ -190,8 +193,17 @@
 				/*
 				 	退出APP
 				 * */
-				mui(".mui-content-padded").on("tap",".quit-btn",function () {
-					mui.alert("此平台不支持直接退出应用，请手动切换","提示");
+				mui(".account-data").on("tap",".quit-btn",function () {
+					if( mui.os.ios ) {
+						mui.alert("此平台不支持直接退出应用，请手动切换","提示");
+					} else {
+						mui.confirm("确认退出应用？","提示",function ( btn ) {
+							if( btn.index == 1 ) {
+								plus.runtime.quit();
+							}
+						})
+						
+					}
 				});
 				
 				/*
@@ -222,6 +234,12 @@
 							});
 						}
 					})
+				} else {
+					plus.nativeUI.showWaiting();
+					mui.later(function () {
+						mui.toast("已经是最新版本");
+						plus.nativeUI.closeWaiting();
+					},2000)
 				}
 			};
 		</script>
