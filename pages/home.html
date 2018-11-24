@@ -12,39 +12,65 @@
 		<link href="../css/style.css" rel="stylesheet" />
 	</head>
 	<style type="text/css">
-		body,.mui-content{ background: #fff; }
+		.mui-content{ background: #FAFAFA; height: 100%; }
+		.mui-bar{ background: url(../images/userdata_bg.png) no-repeat; box-shadow: none;}
+		.mui-bar h1{ flex: 3; -webkit-flex: 3; position: relative; }
+		.mui-bar h1 input[type=search]{ width: 80%; height: 14px; background: #fff; border-radius:7px; line-height: 14px; font-size: 12px; text-align: left; position: relative; }
+		.mui-bar h1 .search{ display: block; position: absolute;  right: 13%; top: 30%; width: 12px; height: 12px; background: url(../images/search.png) no-repeat; background-size: 100% 100%; }
+		.mui-bar img{ width: 20px;  }
+		.mui-bar a.mui-pull-right{ flex-direction: column; -webkit-flex-direction: column; color: #fff; font-size: 12px; line-height: 1; }
+		.mui-bar a.mui-pull-right img{ width: 20px; margin: 0; }
+		.mui-bar a.mui-pull-right small{ transform: scale(.7); -webkit-transform: scale(.7); }
 		.mui-slider img{ width: 100%; height: 180px; }
 		.my-funs{ width: 100%; height: auto; padding: 0 2%; overflow: hidden; background: #fff; }
 		.my-funs .flex{ font-size: 12px;}
 		.my-funs .flex div{ height: 50px; margin: 5px 0; flex-direction: column; -webkit-flex-direction: column; flex: 1; -webkit-flex: 1;}
 		
 		
-		.account-class{ margin-top: 10px; }
-		.account-class p{ padding: 0 3%; border-bottom: 1px solid #ddd; height: 35px; line-height: 35px; }
-		.account-class p i{ margin-right: 5px; }
+		.account-class{ margin-top: 10px; background: #fff; }
+		.account-class p{ padding: 0 3%; border-bottom: 1px solid #ddd; height: 35px; line-height: 35px; color: #000; }
 		.account-data{ color: #666; font-size: 14px; padding-top: 5px; }
-		.account-data div:not(.account-type){ flex: 1; -webkit-flex: 1; flex-direction: column; -webkit-flex-direction: column; height: auto; min-height: 50px; border-right: 1px solid #ddd;}
+		.account-data div:not(.account-type){ flex: 1; -webkit-flex: 1; flex-direction: column; -webkit-flex-direction: column; height: auto; min-height: 50px; border-right: 1px solid #ddd; color: #000;}
+		.account-data div img{ width: 20px; margin-bottom: 8px; }
 		.account-data div:last-child{ border-right: none; }
+		.account-data .account-type{ border-bottom: 1px solid #ddd; }
+		.account-data .account-type:last-child{ border-bottom: none; }
 		.account-data .account-type div{ border-right: none; height: 70px; }
-		.news{ width: 100%; height: 30px; line-height: 30px; margin-top: 10px; padding: 0 3%; font-size: 16px; font-weight: normal; color: rgb(46,110,154); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; -webkit-text-overflow : ellipsis; }
-		.news small{ color: #666; font-size: 12px; margin-left: 10%; }
+		.news{ width: 100%; height: 30px; line-height: 30px; margin-top: 10px; padding: 0 3%; font-size: 16px; font-weight: normal; color: #ff4504; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; -webkit-text-overflow : ellipsis; background: #fff; }
+		.news small{ color: #000; font-size: 12px; margin-left: 10%; }
 	</style>
 	<body>
-
+		<header class="mui-bar mui-bar-nav flex flex-align">
+			<a class="mui-pull-left">
+				<img src="../images/logo.png" alt="" />
+			</a>
+			<h1 class="flex flex-align flex-just">
+				
+				<input type="search" placeholder="搜索" />
+				<i class="search"></i>
+			</h1>
+			<a class="mui-pull-right flex flex-align flex-just">
+				<img src="../images/sancode.png" alt="" />
+				<small>扫一扫</small>
+			</a>
+		</header>
 		<div class="mui-content">
-			<div class="mui-slider">
+<!-- 		<div class="mui-slider">
 				<div class="mui-slider-group mui-slider-loop">
-						<!--支持循环，需要重复图片节点-->
-						<div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="../images/4.jpg" /></a></div>
-						<div class="mui-slider-item"><a href="#"><img src="../images/1.jpg" /></a></div>
-						<div class="mui-slider-item"><a href="#"><img src="../images/2.jpg" /></a></div>
-						<div class="mui-slider-item"><a href="#"><img src="../images/4.jpg" /></a></div>
-						<!--支持循环，需要重复图片节点-->
-						<div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="../images/1.jpg" /></a></div>
+					
+					<div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="../images/4.jpg" /></a></div>
+					<div class="mui-slider-item"><a href="#"><img src="../images/1.jpg" /></a></div>
+					<div class="mui-slider-item"><a href="#"><img src="../images/2.jpg" /></a></div>
+					<div class="mui-slider-item"><a href="#"><img src="../images/4.jpg" /></a></div>
+					
+					<div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="../images/1.jpg" /></a></div>
 				</div>
+			</div> -->
+			<div>
+				<img src="../images/banner.png" alt="" />
 			</div>
 			<div class="account-class">
-				<p style="border: none;">初识趣任务</p>
+				<p>初识趣任务</p>
 				<div class="account-data flex">
 					<div class="flex flex-just flex-align">
 						任务流程
@@ -75,41 +101,41 @@
 				</div>
 			</div>
 			<h3 class="news">新闻资讯<small>新闻资讯资讯资讯资讯新闻资讯资讯资讯资讯新闻资讯资讯资讯资讯新闻资讯资讯资讯资讯新闻资讯资讯资讯资讯...</small></h3>
-			<div class="account-data" style="margin-top: 20px; padding: 0 3%;">
-				<p style="border-bottom: none;">待开通任务</p>
+			<div class="account-data account-class" style="margin-top: 20px;">
+				<p>待开通任务</p>
 				<div class="flex account-type">
 					<div class="flex flex-align flex-just">
-						<i class="mui-icon mui-icon-person"></i>
+						<img src="../images/shop.png" alt="" />
 						趣商城
 					</div>
 					<div class="flex flex-align flex-just">
-						<i class="mui-icon mui-icon-personadd"></i>
+						<img src="../images/lock.png" alt="" />
 						锁屏任务
 					</div>
 					<div class="flex flex-align flex-just">
-						<i class="mui-icon mui-icon-compose"></i>
-						截屏任务
+						<img src="../images/skill.png" alt="" />
+						技能任务
 					</div>
 					<div class="flex flex-align flex-just">
-						<i class="mui-icon mui-icon-weibo"></i>
+						<img src="../images/media.png" alt="" />
 						自媒体任务
 					</div>
 				</div>
 				<div class="flex account-type">
 					<div class="flex flex-align flex-just">
-						<i class="mui-icon mui-icon-person"></i>
+						<img src="../images/read.png" alt="" />
 						阅读任务
 					</div>
 					<div class="flex flex-align flex-just">
-						<i class="mui-icon mui-icon-personadd"></i>
+						<img src="../images/register.png" alt="" />
 						注册任务
 					</div>
 					<div class="flex flex-align flex-just">
-						<i class="mui-icon mui-icon-compose"></i>
+						<img src="../images/download.png" alt="" />
 						下载任务
 					</div>
 					<div class="flex flex-align flex-just">
-						<i class="mui-icon mui-icon-image"></i>
+						<img src="../images/game.png" alt="" />
 						游戏任务
 					</div>
 				</div>
@@ -169,12 +195,16 @@
 		<script>
 
 			mui.plusReady(function () {
-				var gallery = mui('.mui-slider'); 
-				gallery.slider({
-					interval:2000//自动轮播周期，若为0则不自动播放，默认为0；
-				});
+// 				var gallery = mui('.mui-slider'); 
+// 				gallery.slider({
+// 					interval:2000//自动轮播周期，若为0则不自动播放，默认为0；
+// 				});
 				 
-				plus.nativeUI.closeWaiting();
+				if( mui.os.ios ) {
+					plus.nativeUI.closeWaiting();
+
+				}
+	
 
 
 				
@@ -183,8 +213,69 @@
 
 					openPage( page );
 				});
+				
+				
+				
 			
 			}); 
+
+// var channel=null;
+// // 1. 获取支付通道
+// function plusReady(){
+//     // 获取支付通道
+//     plus.payment.getChannels(function(channels){
+// 		
+//         channel=channels[1];  
+// 		pay( channel.id ); 
+//     },function(e){
+//         alert("获取支付通道失败："+e.message);
+//     });
+// }
+// document.addEventListener('plusready',plusReady,false);
+// 
+// var ALIPAYSERVER='http://demo.dcloud.net.cn/helloh5/payment/alipay.php?total=0.01';
+// var WXPAYSERVER='http://demo.dcloud.net.cn/helloh5/payment/wxpay.php?total=1'; 
+// 
+// // 2. 发起支付请求
+// function pay(id){
+// 	//console.log( JSON.stringify( id ) )
+//     // 从服务器请求支付订单
+//     var PAYSERVER='';
+//     if(id=='alipay'){
+//         PAYSERVER=ALIPAYSERVER;
+//     }else if(id=='wxpay'){
+//         PAYSERVER=WXPAYSERVER;
+//     }else{
+//         plus.nativeUI.alert("不支持此支付通道！",null,"捐赠");
+//         return;
+//     }
+// 
+//     var xhr=new XMLHttpRequest();
+//     xhr.onreadystatechange=function(){
+//         switch(xhr.readyState){
+//             case 4:
+//             if(xhr.status==200){
+// 				console.log( xhr.responseText )
+//                 plus.payment.request(channel,xhr.responseText,function(result){
+// 					
+//                     plus.nativeUI.alert("支付成功！",function(){
+//                         back();
+//                     });
+//                 },function(error){
+//                     console.log("支付失败：" + JSON.stringify( error ));
+//                 });
+//             }else{
+//                 alert("获取订单信息失败！");
+//             }
+//             break;
+//             default:
+//             break;
+//         }
+//     }
+//     xhr.open('GET',PAYSERVER,true);
+//     xhr.send();
+// }
+
 
 		</script>
 	</body>

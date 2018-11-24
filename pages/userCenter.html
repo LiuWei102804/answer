@@ -12,8 +12,13 @@
 		<link href="../css/style.css" rel="stylesheet" />
 	</head>
 	<style type="text/css">
-		body,.mui-content{ background: #fff; }
-		.head{ padding-top: 30px; width: 100%; height: auto; min-height: 150px; background: #007AFF; flex-direction: column; -webkit-flex-direction: column; color: #fff; position: relative; }
+		.mui-content{ background: #FAFAFA; height: 100%;  }
+		.head{ padding:30px 3%; width: 100%; height: auto; min-height: 150px; background: url(../images/userdata_bg.png) no-repeat; color: #fff; position: relative; color: #fff; }
+		.head .userphoto{ width: 70px; height: 70px; background: url(../images/round_shadow.png) no-repeat; background-size: 100% 100%; padding: 6px; }
+		.head p{ color: #fff; } 
+		.head div:nth-child(2){ margin-left: 5px; flex: 3; -webkit-flex: 3; }
+		.head div:nth-child(2) p:first-child small{ color: #fdf573;  }
+#qrcode{ border: 2px solid #fff; }
 		.head #user-logo{ position: relative; width: 60px; height: 60px; overflow: hidden; }
 		.head #user-logo input[type=file]{ width: 100%; height: 100%; opacity: 0; position: absolute; top:0; left: 0; }
 		.head #user-logo img{ width: 60px; height: 60px; border-radius: 50%; }
@@ -23,40 +28,35 @@
 		.funs-list{ width: 100%; height: auto; overflow: hidden; font-size: 12px; margin-top: 10px; }
 		.funs-list div{ width: 100%; height: 40px; line-height: 40px; background: #fff; border-top: 1px solid #ddd; text-indent: 5px; }
 		.funs-list div i:nth-child(2){ float: right; margin: 11px 5px 0 0; font-size: 18px; }
-		.account-class{  margin-top: 10px; }
-		.account-class p{ padding: 0 3%; border-bottom: 1px solid #ddd; height: 35px; line-height: 35px; }
-		.account-class p i{ margin-right: 5px; }
-		.account-data{ color: #666; font-size: 14px; padding-top: 5px; }
-		.account-data div{ flex: 1; -webkit-flex: 1; flex-direction: column; -webkit-flex-direction: column; height: auto; min-height: 50px; border-right: 1px solid #ddd;}
+		.account-class{  margin-top: 10px; background: #fff; }
+		.account-class p{ padding: 0 3%; border-bottom: 1px solid #ddd; height: 35px; color: #000; }
+		.account-class p img{ width: 20px; margin-right: 10px; }
+		.account-data{ font-size: 14px; padding-top: 5px; background: #fff; }
+		.account-data div{ flex: 1; -webkit-flex: 1; flex-direction: column; -webkit-flex-direction: column; height: auto; min-height: 60px; border-right: 1px solid #ddd;}
+		.account-data div span{ color: #ff4504; }
+		.account-data div img{ width: 20px; margin-bottom: 5px; }
 		.account-data div:last-child{ border-right: none; }
+		.account-type{ border-bottom: 1px solid #ddd; }
 		.account-type div{ border-right: none; }
 	</style>
 	<body>
 		<div class="mui-content">
-			<div class="flex flex-align head">
-				<!--<div id="user-logo">
-					<img src="../images/qq.png" id="user-pic" alt="" />
-					<input type="file" />
-				</div>
-				
-				<p style="color: #fff;">13857102804</p>
-				<div class="flex profit">
-					<div class="flex flex-align flex-just">
-						<span>0</span>
-						总收入
+			<div class="flex flex-align flex-just head">
+					<div class="userphoto flex">
+							<img src="../images/userphoto.png" alt="">
 					</div>
-					<div class="flex flex-align flex-just">
-						<span>0</span>
-						今日收入
+					<div>
+							<p><big>趣味园</big><small style="margin-left: 5px;">(普通账户)</small></p>
+							<p><small>ID：765757657</small></p>
 					</div>
-					<div class="flex flex-align flex-just">
-						<span>0</span>
-						已提现
+					<div>
+							<div id="qrcode"></div>
+							<p><small>推广二维码</small></p>
 					</div>
-				</div>-->
+
 			</div>
 			<div class="account-class">
-				<p><i class="mui-icon mui-icon-person"></i>普通账号</p>
+				<p class="flex flex-align"><img src="../images/account.png" alt="" />普通账号</p>
 				<div class="account-data flex">
 					<div class="flex flex-just flex-align">
 						<span>0.00</span>
@@ -73,7 +73,7 @@
 				</div>
 			</div>
 			<div class="account-class">
-				<p><i class="mui-icon mui-icon-contact"></i>精英账户</p>
+				<p class="flex flex-align"><img src="../images/account.png" alt="" />精英账户</p>
 				<div class="account-data flex">
 					<div class="flex flex-just flex-align">
 						<span>0.00</span>
@@ -91,84 +91,45 @@
 			</div>
 			<div class="flex account-data account-type" style="margin-top: 10px;">
 				<div class="flex flex-align flex-just newpage-div"  data-page="./user.html">
-					<i class="mui-icon mui-icon-person"></i>
-					个人资料
+						<img src="../images/data.png" alt="" />
+						个人资料
 				</div>
 				<div class="flex flex-align flex-just newpage-div" data-page="./myteam.html">
-					<i class="mui-icon mui-icon-personadd"></i>
-					我的团队
+						<img src="../images/team.png" alt="" />
+						我的团队
 				</div>
 				<div class="flex flex-align flex-just newpage-div" data-page="./bindbank.html">
-					<i class="mui-icon mui-icon-compose"></i>
-					绑定银行卡
+						<img src="../images/bankcard.png" alt="" />
+						绑定银行卡
 				</div>
 			</div>
 			<div class="flex account-data account-type">
 				<div class="flex flex-align flex-just">
-					<i class="mui-icon mui-icon-navigate"></i>
-					提现
+						<img src="../images/money.png" alt="" />
+						提现
 				</div>
 				<div class="flex flex-align flex-just func-div"  data-func="checkNew">
-					<i class="mui-icon mui-icon-info"></i>
-					检查更新
+						<img src="../images/update.png" alt="" />
+						检查更新
 				</div>
 				<div class="flex flex-align flex-just func-div" data-func="changeAccount">
-					<i class="mui-icon mui-icon-undo"></i>
-					切换账号
-				</div>
+						<img src="../images/change.png" alt="" />
+						切换账号
+				</div> 
 			</div>
-			<div class="flex account-data account-type">
+			<div class="flex account-data account-type no-b-border">
 				<div class="flex flex-align flex-just">
-					<i class="mui-icon mui-icon-arrowthinup"></i>
-					升级VIP
+						<img src="../images/uplevel.png" alt="" />
+						升级VIP
 				</div>
 				<div class="flex flex-align flex-just quit-btn">
-					<i class="mui-icon mui-icon-locked"></i>
-					退出
+						<img src="../images/quit.png" alt="" />
+						退出
 				</div>
 			</div>
-			<!--<div class="funs-list">
-				<div data-page="./user.html" class="newpage-div">
-					<i class="mui-icon mui-icon-person"></i>
-					个人资料
-					<i class="mui-icon mui-icon-arrowright"></i>
-				</div>
-				<div style="margin-bottom: 10px;" data-page="./myteam.html" class="newpage-div">
-					<i class="mui-icon mui-icon-personadd"></i>
-					我的团队
-					<i class="mui-icon mui-icon-arrowright"></i>
-				</div>
-				<div style="margin-bottom: 10px;" data-page="./bindbank.html" class="newpage-div">
-					<i class="mui-icon mui-icon-compose"></i>
-					绑定银行卡
-					<i class="mui-icon mui-icon-arrowright"></i>
-				</div>
-				<div data-page="./wallet.html" class="newpage-div">
-					<i class="mui-icon mui-icon-home"></i>
-					钱包
-					<i class="mui-icon mui-icon-arrowright"></i>
-				</div>
-				<div style="margin-bottom: 10px;" class="newpage-div">
-					<i class="mui-icon mui-icon-navigate"></i>
-					提现
-					<i class="mui-icon mui-icon-arrowright"></i>
-				</div>
-				<div class="func-div" data-func="checkNew">
-					<i class="mui-icon mui-icon-info"></i>
-					检查更新
-					<i class="mui-icon mui-icon-arrowright"></i>
-				</div>
-				<div style="margin-bottom: 10px;" class="func-div" data-func="changeAccount">
-					<i class="mui-icon mui-icon-undo"></i>
-					切换账号
-					<i class="mui-icon mui-icon-arrowright"></i>
-				</div>
-			</div>-->
-			<!--<div class="mui-content-padded">
-				<button class="mui-btn mui-btn-block mui-btn-danger quit-btn">退出APP</button>
-			</div>-->
 		</div>
 		<script type="text/javascript" src="../js/common/mui.min.js"></script>
+		<script type="text/javascript" src="../js/common/qrcode.min.js"></script>
 		<script type="text/javascript" src="../js/common/common.js"></script>
 		<script type="text/javascript" src="../js/common/share.js"></script>
 		<script type="text/javascript" src="../js/common/Request.js"></script>
@@ -182,6 +143,13 @@
 					openPage( page );
 				});
 				
+				
+				var qr = mui("#qrcode")[0];
+				var code = new QRCode( qr , { 
+						text : "http://www.runoob.com" ,
+						width : 25 ,
+						height : 25
+				})
 				/*
 				 	检查更新
 				 	切换账号
