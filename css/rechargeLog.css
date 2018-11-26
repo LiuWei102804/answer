@@ -1,0 +1,5 @@
+.logs{ width: 100%; height: auto; }
+.logs li{ display: flex; display: -webkit-flex; height: 30px; line-height: 30px; padding: 0 2%; width: 100%; }
+.logs li b{ flex: 1; -webkit-flex: 1; justify-content: center; align-items: center; -webkit-justify-content: center; -webkit-align-items: center; text-align: center;  font-weight: normal; font-size: 14px; color: #666; }
+.logs li b:nth-child(2){ flex: 3; -webkit-flex: 3; }
+.logs li:first-child b{ color: #007aff; font-size: 16px; }

@@ -1,55 +1,47 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8">
-		<title></title>
+		<meta charset="utf-8" />
 		<meta name="renderer" content="webkit" />
 		<meta name="msapplication-tap-highlight" content="no" />
-		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
 		<meta name="format-detection" content="telephone=no,email=no,url=no" />
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/style.css" rel="stylesheet" />
 	</head>
 	<style type="text/css">
 		.funs-list{ width: 100%; height: auto; overflow: hidden; font-size: 12px; margin-top: 10px; }
 		.funs-list div{ width: 100%; height: 40px; line-height: 40px; background: #fff; text-indent: 5px; margin: 5px 0; }
-		.funs-list div span{ float: right; margin-right: 10px; font-size: 16px; color: red; }
-		.funs-list div span i{ color: #333; font-size: 18px; }
+		.funs-list div i:nth-child(2){ float: right; margin: 11px 5px 0 0; font-size: 18px; }
 	</style>
 	<body>
 		<header class="mui-bar mui-bar-nav">
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-		    <h1 class="mui-title"></h1>
+		    <h1 class="mui-title">提现</h1>
 		</header>
 		<div class="mui-content">
 		    <div class="funs-list">
-				<div class="newpage-div" data-page="./highlevelmember.html">
+				<div class="newpage-div" data-page="./drawLog.html" data-title="申请提现">
 					<i class="mui-icon mui-icon-person"></i>
-					高级VIP
-					<span>
-						0人
-						<i class="mui-icon mui-icon-arrowright"></i>
-					</span>
-					
+					申请提现
+					<i class="mui-icon mui-icon-arrowright"></i>
 				</div>
-				<div class="newpage-div" data-page="./ordinarylevelmember.html">
+				<div class="newpage-div" data-page="./drawLog.html" data-title="审核成功">
 					<i class="mui-icon mui-icon-personadd"></i>
-					普通VIP
-					<span>
-						0人
-						<i class="mui-icon mui-icon-arrowright"></i>
-					</span>
-					
+					审核成功
+					<i class="mui-icon mui-icon-arrowright"></i>
 				</div>
-				<div class="newpage-div" data-page="./ordinarymember.html">
+				<div class="newpage-div" data-page="./drawLog.html" data-title="提现成功">
 					<i class="mui-icon mui-icon-personadd"></i>
-					普通会员
-					<span>
-						0人
-						<i class="mui-icon mui-icon-arrowright"></i>
-					</span>
-					
+					提现成功
+					<i class="mui-icon mui-icon-arrowright"></i>
+				</div>
+				<div class="newpage-div" data-page="./drawLog.html" data-title="提现失败">
+					<i class="mui-icon mui-icon-personadd"></i>
+					提现失败
+					<i class="mui-icon mui-icon-arrowright"></i>
 				</div>
 			</div>
 		</div>
@@ -58,6 +50,6 @@
 		<script type="text/javascript" src="../js/common/share.js"></script>
 		<script type="text/javascript" src="../js/common/Request.js"></script>
 		<script type="text/javascript" src="../js/common/app.js"></script>
-		<script type="text/javascript" src="../js/member.js"></script>
+		<script type="text/javascript" src="../js/draw.js"></script>
 	</body>
 </html>
