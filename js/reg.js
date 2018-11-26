@@ -12,20 +12,13 @@ mui.init({
 
 });
 mui.plusReady(function() {
-	var loginPage = plus.webview.getLaunchWebview();
-	loginPage.hide();
+	//var loginPage = plus.webview.getLaunchWebview();
+	//loginPage.hide();
 	
 	
 	getServices();
 	mui(".mui-bar-nav").on("tap",".share",function ( evt ) {
 		shareWeb( msg );
 	})
-	
-	/*
-		切换登录页 
-	 * */
-	mui(".mui-content-padded").on("tap","#login",function () {
-		loginPage.show("pop-in",200);
-	});
 
 });

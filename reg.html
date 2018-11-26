@@ -37,7 +37,8 @@
 				margin-top: 25px;
 				text-align: center;
 			}
-			
+			.mui-input-row{ position: relative; }
+			.mui-input-row button{ position: absolute; right: 3%; padding: 4px 6px; top: 4px;}
 		</style>
 	</head>
 
@@ -56,7 +57,7 @@
 				<div class="mui-input-row">
 					<label>验证码</label>
 					<input id='code' type="text" class="mui-input" style="float: left; width: 47%;" placeholder="请输入验证码" />
-					<button style="margin-top: 3px;">获取</button>
+					<button>获取</button>
 				</div>
 				<div class="mui-input-row">
 					<label>登录密码</label>
@@ -73,12 +74,6 @@
 			</form>
 			<div class="mui-content-padded">
 				<button id='reg' class="mui-btn mui-btn-block mui-btn-primary">注册</button>
-				<div class="link-area">
-					已有账号？前去
-					<a id='login' href="javascript:void(0)">登录</a> 
-<!-- 					<span class="spliter">|</span> 
-					<a id='forgetPassword'>忘记密码</a> -->
-				</div>
 			</div>
 		</div>
 		<script type="text/javascript" src="./js/common/mui.min.js"></script>
