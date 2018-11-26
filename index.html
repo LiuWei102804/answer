@@ -11,15 +11,22 @@
 		<link href="css/style.css" rel="stylesheet" />
 		<link href="css/mui.min.css" rel="stylesheet" />
 	</head>
+	<style type="text/css">
+		.mui-bar{ background-color: #fff; }
+		.mui-bar-tab .mui-tab-item{ width: 50%; line-height: 70px; font-size: 12px; float: left; text-align: center; background-position: center 5px; background-size: 20px; background-repeat: no-repeat; }
+		.mui-bar-tab .home{ background-image: url(images/home.png);  }
+		.mui-bar-tab .user{ background-image: url(images/user.png);  }
 
+		.mui-bar-tab .mui-tab-item.home.mui-active{ color: #ff4504; background-image: url(images/home_a.png);}
+		.mui-bar-tab .mui-tab-item.user.mui-active{ color: #ff4504; background-image: url(images/user_a.png);}
+
+	</style>
 	<body>
 		<nav class="mui-bar mui-bar-tab">
-			<a class="mui-tab-item mui-active" data-page="./pages/home.html">
-				<span class="mui-icon mui-icon-home"></span>
+			<a class="mui-tab-item mui-active home" data-page="./pages/home.html">
 				<span class="mui-tab-label">首页</span>
 			</a>
-			<a class="mui-tab-item" data-page="./pages/userCenter.html">
-				<span class="mui-icon mui-icon-contact"></span>
+			<a class="mui-tab-item user" data-page="./pages/userCenter.html">
 				<span class="mui-tab-label">我的</span>
 			</a>
 		</nav>

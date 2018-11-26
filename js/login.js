@@ -43,11 +43,11 @@ mui.plusReady(function() {
 		mui.each(mui("input"),function ( index , item ){
 			item.blur();
 		})
-		plus.nativeUI.showWaiting();
-		setTimeout(function () {
+		//plus.nativeUI.showWaiting();
+		//setTimeout(function () {
 			openPage("./index.html");
-			plus.nativeUI.closeWaiting();
-		},2000)
+		//	plus.nativeUI.closeWaiting();
+		//},2000)
 		
 	});
 	
