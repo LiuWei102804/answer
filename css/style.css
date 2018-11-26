@@ -1,9 +1,17 @@
-.ui-page-login,
-html,body{ min-height: 100%; }
-img{ width: 100%; border: 0; } 
-ul,li{ list-style: none; margin: 0; padding: 0; }
-p,h1,h2,h3,h4,h5,h6,div { margin: 0; padding: 0; }
-.mui-content{height: 100%;}
+*{ box-sizing: border-box; -webkit-box-sizing: border-box; }
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td, article, aside, footer, header, group, main, nav, section, menu {  margin: 0;  padding: 0;  list-style: none; }
+html,body{ width:100%; font-family: "Microsoft YaHei", "宋体" , sans-serif; min-height: 100%; }
+input,textarea,button,select{ outline: none; }
+input::-webkit-input-placeholder{  color:#686869; }
+input:-moz-placeholder { color:#686869; }
+input:placeholder { color:#686869; }
+input:-ms-input-placeholder{ color:#686869; }
+
+
+a { text-decoration: none; }
+a:hover, a:focus { text-decoration: none;  }
+img{ border: 0; } 
+.mui-content{ min-height: 100%;}
 .flex{ display: flex !important; display: -webkit-flex !important; }
 .flex-align{ align-items: center; -webkit-align-items: center; }
 .flex-just{ justify-content: center; -webkit-justify-content: center; }
@@ -15,3 +23,4 @@ p,h1,h2,h3,h4,h5,h6,div { margin: 0; padding: 0; }
 .no-l-border{ border-left: none !important; }
 .no-r-border{ border-right: none !important; }
 .no-b{ border: none; }
+.mui-btn-blue, .mui-btn-primary, input[type=submit]{ background-color: #ff4504; border-color: #ff4504; }

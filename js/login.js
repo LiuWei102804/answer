@@ -36,13 +36,13 @@ mui.plusReady(function() {
 
 	//账号密码登录
 	mui(".mui-content-padded").on("tap","#login",function () {
-		var account = document.querySelector("#account");
-		var password = document.querySelector("#password");
-		//plus.storage.setItem("username" , account.value );
-		plus.storage.clear();
-		mui.each(mui("input"),function ( index , item ){
-			item.blur();
-		})
+//		var account = document.querySelector("#account");
+//		var password = document.querySelector("#password");
+//		//plus.storage.setItem("username" , account.value );
+//		plus.storage.clear();
+//		mui.each(mui("input"),function ( index , item ){
+//			item.blur();
+//		})
 		//plus.nativeUI.showWaiting();
 		//setTimeout(function () {
 			openPage("./index.html");
@@ -54,7 +54,27 @@ mui.plusReady(function() {
 	/*
 	 	切换注册
 	 * */
-	mui(".mui-content-padded").on("tap",".link-area",function () {
+	mui(".mui-content-padded").on("tap","#reg",function () {
 		openPage("./reg.html");
+	});
+	/*
+	 	验证码登录
+	 * */
+	mui(".mui-content-padded").on("tap","#loginByCode",function () {
+		var forms = document.forms;
+		if( forms[1].classList ) {
+			if( forms[1].classList.contains("mui-hidden") ) {
+				forms[1].classList.remove("mui-hidden");
+				forms[0].classList.add("mui-hidden");
+				mui("#loginByCode")[0].innerHTML = "账号登录";
+			} else {
+				forms[0].classList.remove("mui-hidden");
+				forms[1].classList.add("mui-hidden");
+				mui("#loginByCode")[0].innerHTML = "验证码登录";
+			}
+		} else {
+			
+		}
+
 	});
 });

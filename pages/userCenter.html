@@ -38,6 +38,7 @@
 		.account-data div:last-child{ border-right: none; }
 		.account-type{ border-bottom: 1px solid #ddd; }
 		.account-type div{ border-right: none; }
+		#code{ position: absolute; top: 0px;  left: 0px;}
 	</style>
 	<body>
 		<div class="mui-content">
@@ -58,7 +59,7 @@
 			<div class="account-class">
 				<p class="flex flex-align"><img src="../images/account.png" alt="" />普通账号</p>
 				<div class="account-data flex">
-					<div class="flex flex-just flex-align">
+					<div class="flex flex-just flex-align newpage-div" data-page="./rechargeLog.html">
 						<span>0.00</span>
 						今日收入
 					</div>
@@ -83,7 +84,7 @@
 						<span>0.00</span>
 						总收入
 					</div>
-					<div class="flex flex-just flex-align">
+					<div class="flex flex-just flex-align newpage-div" data-page="./draw.html">
 						<span>0.00</span>
 						累计提现
 					</div>
@@ -118,7 +119,7 @@
 				</div> 
 			</div>
 			<div class="flex account-data account-type no-b-border">
-				<div class="flex flex-align flex-just">
+				<div class="flex flex-align flex-just newpage-div" data-page="./upLevel.html">
 						<img src="../images/uplevel.png" alt="" />
 						升级VIP
 				</div>
@@ -126,6 +127,7 @@
 						<img src="../images/quit.png" alt="" />
 						退出
 				</div>
+				
 			</div>
 		</div>
 		<script type="text/javascript" src="../js/common/mui.min.js"></script>
@@ -134,83 +136,6 @@
 		<script type="text/javascript" src="../js/common/share.js"></script>
 		<script type="text/javascript" src="../js/common/Request.js"></script>
 		<script type="text/javascript" src="../js/common/app.js"></script>
-		<script type="text/javascript">
-			
-			mui.init();
-			mui.plusReady(function () {
-				mui(".account-data").on("tap",".newpage-div",function () {
-					var page = this.dataset.page;
-					openPage( page );
-				});
-				
-				
-				var qr = mui("#qrcode")[0];
-				var code = new QRCode( qr , { 
-						text : "http://www.runoob.com" ,
-						width : 25 ,
-						height : 25
-				})
-				/*
-				 	检查更新
-				 	切换账号
-				 * */
-				mui(".account-data").on("tap",".func-div",function () {
-					var func = this.dataset.func;
-					changeAccount(func);
-				});
-				/*
-				 	退出APP
-				 * */
-				mui(".account-data").on("tap",".quit-btn",function () {
-					if( mui.os.ios ) {
-						mui.alert("此平台不支持直接退出应用，请手动切换","提示");
-					} else {
-						mui.confirm("确认退出应用？","提示",function ( btn ) {
-							if( btn.index == 1 ) {
-								plus.runtime.quit();
-							}
-						})
-						
-					}
-				});
-				
-				/*
-				 	选择头像
-				 * */
-//				mui(".head").on("change","input",function () {
-//					var fileRender = new FileReader();
-//					fileRender.readAsDataURL(this.files[0]);
-//					fileRender.onload = function() {
-//			            //console.log(this.result);  // 上传的图片的编码
-// 						mui("#user-pic")[0].setAttribute("src" , this.result );
-// 						//console.log( e.target.src )
-//			        };
-//				});
-			});
-			
-			/*
-			 	切换账号
-			 * */
-			function changeAccount( func ){
-				if( func == "changeAccount" ) {
-					mui.confirm("确定要切换账号吗?","提示","确定",function ( btn ) {
-						if( btn.index == 0  ) {
-							var loginPage = plus.webview.getLaunchWebview();
-							loginPage.show("pop-in",200,function () {
-								plus.webview.getWebviewById( "./index.html" ).close("pop-out",0);
-								closeSubPage();
-							});
-						}
-					})
-				} else {
-					plus.nativeUI.showWaiting();
-					mui.later(function () {
-						mui.toast("已经是最新版本");
-						plus.nativeUI.closeWaiting();
-					},2000)
-				}
-			};
-		</script>
+		<script type="text/javascript" src="../js/userCenter.js"></script>
 	</body>
-
 </html>
