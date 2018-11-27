@@ -75,6 +75,11 @@ mui.plusReady(function() {
 		} else {
 			
 		}
-
 	});
+	/*
+		忘记密码
+	*/
+   mui(".mui-content-padded").on("tap","#forgetPwd",function () {
+	   openPage("./forgetPwd.html");
+   });
 });

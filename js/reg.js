@@ -40,8 +40,8 @@ var msg = {
 		})
 		
 		getServices();
-		mui(".mui-bar-nav").on("tap",".share",function ( evt ) {
-			shareWeb( msg );
-		});
+// 		mui(".mui-bar-nav").on("tap",".share",function ( evt ) {
+// 			shareWeb( msg );
+// 		});
 	})
 })( mui , document );

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="renderer" content="webkit" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+		<meta name="format-detection" content="telephone=no,email=no,url=no" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="css/mui.min.css" rel="stylesheet" type="text/css" />
+		<link href="css/style.css" rel="stylesheet"  type="text/css" />
+	</head>
+	<style type="text/css">
+		.mui-input-row{ position: relative; }
+		.mui-input-row button{ position: absolute; right: 3%; padding: 4px 6px; top: 4px;}
+	</style>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">找回密码</h1>
+		</header>
+		
+		<div class="mui-content">
+			<div class="mui-input-group">
+				<div class="mui-input-row">
+					<label>手机号</label>
+					<input type="tel" class="mui-input mui-input-clear" placeholder="请输入手机号" />
+				</div>
+				<div class="mui-input-row">
+					<label>验证码</label>
+					<input type="number" style="float: left; width: 47%;" class="mui-input mui-input-clear" placeholder="请输入验证码" />
+					<button>获取</button>
+				</div>
+			</div>
+			<div class="mui-input-group mui-hidden">
+				<div class="mui-input-row">
+					<label>新密码</label>
+					<input type="password" class="mui-input mui-input-clear" placeholder="请输入新密码" />
+				</div>
+				<div class="mui-input-row">
+					<label>确认密码</label>
+					<input type="password" class="mui-input mui-input-clear" placeholder="请输入确认密码" />
+				</div>
+			</div>
+			<div class="mui-content-padded">
+				<button class="mui-btn mui-btn-block mui-btn-primary">验证</button>
+			</div>
+		</div>
+		<script type="text/javascript" src="./js/common/mui.min.js"></script>
+		<script type="text/javascript" src="./js/common/common.js"></script>
+		<script type="text/javascript" src="./js/common/apis.js"></script>
+		<script type="text/javascript" src="./js/common/share.js"></script>
+		<script type="text/javascript" src="./js/common/Request.js"></script>
+		<script type="text/javascript" src="./js/common/app.js"></script>
+	</body>
+</html>
