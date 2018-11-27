@@ -49,6 +49,10 @@ mui.plusReady(function () {
 
 
 function setContent( ctx , qsIndex){
+	if( !QS[qsIndex] ) {
+		mui.alert("答题结束");
+		return;
+	}
 	var qs = QS[qsIndex];
 	var as = qs.a; 
 	ctx.innerHTML = qs.q;

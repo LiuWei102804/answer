@@ -21,7 +21,10 @@ img{ border: 0; width: 100%; }
 
 .no-b-border{ border-bottom: none !important; }
 .no-t-border{ border-top: none !important; }
-.no-l-border{ border-left: none !important; }
+.no-l-border{ border-left: none !important; } 
 .no-r-border{ border-right: none !important; }
 .no-b{ border: none; }
 .mui-btn-blue, .mui-btn-primary, input[type=submit]{ background-color: #ff4504; border-color: #ff4504; }
+.mui-btn-blue:-webkit-tap-highlight-color, .mui-btn-primary:-webkit-tap-highlight-color, input[type=submit]:-webkit-tap-highlight-color{ background-color: #ff4504; border-color: #ff4504; }
+.mui-btn-blue:active, .mui-btn-primary:active, input[type=submit]:active{ background-color: #ff4504; border-color: #ff4504; }
+
