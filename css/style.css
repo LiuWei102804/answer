@@ -10,7 +10,7 @@ input:-ms-input-placeholder{ color:#686869; }
 
 a { text-decoration: none; }
 a:hover, a:focus { text-decoration: none;  }
-img{ border: 0; } 
+img{ border: 0; width: 100%; } 
 .mui-content{ min-height: 100%;}
 .flex{ display: flex !important; display: -webkit-flex !important; }
 .flex-align{ align-items: center; -webkit-align-items: center; }
