@@ -1,4 +1,4 @@
-(function ( global ) {
+(function ( $ , win ) {
     "use strict"
     var PromisePlatform = typeof Promise === "undefined";
     if( PromisePlatform ) {
@@ -239,15 +239,15 @@
         }
         TimeoutError.prototype = Object.create(Error.prototype);
         TimeoutError.prototype.constructor = TimeoutError;
-        if(!global.TimeoutError) global.TimeoutError = TimeoutError;
+        if(!win.TimeoutError) win.TimeoutError = TimeoutError;
 
-        global.Promise = Promise;
+        win.Promise = Promise;
     }
 
 
 
     var Request;
-    var gFetch = typeof global.fetch === "undefined";
+    var gFetch = typeof win.fetch === "undefined";
 
     var stringJSON = function ( obj ) {
         var str = "";
@@ -256,162 +256,175 @@
         }
         return str.length > 0 ? str.substring(0,str.length - 1) : str;
     } ;
-    if( gFetch ) {
-        var promise = new Promise(function ( resolve, reject ) {
-            var xml = new XMLHttpRequest();
-            Request = function ( url , method , option ) {
-                if( !navigator.onLine ) {
-                    reject({ code : 401 , msg : "您的网络已断开，请检查网络连接。" });
-                }
-                var hashStr = "";
-                var type = Object.prototype.toString.call( option );
-                if( type === "[object Object]" ) {
-                    if( option instanceof FormData )
-                        hashStr = option;
-                    else
-                        hashStr += stringJSON( option );
-                } else if( type === "[object String]" ) {
-                    hashStr += option;
-                } else if( type === "[object Array]" ){
 
-                } else {                                //null , undefined , boolean , number
+	
+	
+	$.plusReady(function () {
+		    if( gFetch ) {
+		        var promise = new Promise(function ( resolve, reject ) {
+		            var xml = new XMLHttpRequest();
+		            Request = function ( url , method , option ) {
+		                if( !navigator.onLine ) {
+		                    reject({ code : 401 , msg : "您的网络已断开，请检查网络连接。" });
+		                }
+		                var hashStr = "";
+		                var type = Object.prototype.toString.call( option );
+		                if( type === "[object Object]" ) {
+		                    if( option instanceof FormData )
+		                        hashStr = option;
+		                    else
+		                        hashStr += stringJSON( option );
+		                } else if( type === "[object String]" ) {
+		                    hashStr += option;
+		                } else if( type === "[object Array]" ){
+		
+		                } else {                                //null , undefined , boolean , number
+		
+		                }
+		                if( method.toLowerCase() == "get" ) {
+		                    url = hashStr.length > 0 ? url + "?" + hashStr : url;
+		                    xml.open( method , url , true );
+		                    xml.timeout = 30000;
+		                    xml.setRequestHeader("If-Modified-Since","0");
+							xml.setRequestHeader("UUID", plus.device.uuid );
+		                    xml.send();
+		                } else {
+		                    xml.open( method , url , true );
+		                    xml.timeout = 30000;
+		                    if( !( hashStr instanceof FormData ) )
+		                    xml.setRequestHeader( "Content-type" , "application/x-www-form-urlencoded" );
+							xml.setRequestHeader("UUID", plus.device.uuid );
+		                    xml.send( hashStr );
+		                }
+		                xml.onload = function () {
+		                    try{
+		                        resolve( JSON.parse( xml.responseText ) );
+		                    } catch ( e ) {
+		                        reject( { code : 404 , msg : "指定资源不存在或者请求类型错误"} );
+		                    }
+		                }
+		                xml.ontimeout = function () {
+		                    reject( { code : xml.status  , msg : "请求超时，请重试" } );
+		                }
+		                xml.onerror = function () {
+		                    reject( { code : xml.status  , msg : "请求出错，请重试" } );
+		                }
+		                xml.onabort = function () {
+		                    reject( { code : xml.status  , msg : "请求被取消" } );
+		                }
+		                return promise;
+		            };
+		        })
+		    } else {
+		        var timeoutPromise = function ( promise, ms ) {
+		            var timeoutAction = null;
+		            var timerPromise = new Promise(function (resolve, reject) {
+		                timeoutAction = function () {
+		                    reject({ code : 504  , msg : "请求超时"  });
+		                }
+		            })
+		            var t = setTimeout(function () {
+		                timeoutAction();
+		                clearTimeout( t );
+		            }, ms )
+		            return Promise.race( [promise, timerPromise] );
+		        };
+		        var checkStatus = function( response ) {
+		            if ( response.status >= 200 && response.status < 300 ) {
+		                return response;
+		            }
+		            return { code : 100000 , msg : "十万个为什么" }
+		        };
+		        var parseJSON = function ( response ) {
+		            if( typeof response.json === "function" ) {
+		                return response.json();
+		            }
+		            return { code : 100000 , msg : "十万个为什么" }
+		        };
+		        Request = function ( url, options ) {
+		            //console.log( url , options )
+		            // if( !navigator.onLine ) {
+		            //     return { code : 401 , msg : "您的网络已断开，请检查网络连接。" };
+		            // }
+		            return timeoutPromise( fetch( url , options ) , 30000 )
+		                .then( checkStatus )
+		                .then( parseJSON )
+		                .then(function ( data ) {
+		                    return data;
+		                })
+		                .catch(function ( err ) {
+		                    return err;
+		                });
+		        };
+		    }
+			
+			
+		/* =====  GET  ====*/
+		if( typeof win.Get === "undefined" ) {
+			if( gFetch ) {
+				win.Get = function ( url , data ) {
+					return Request( url , "Get" , data );
+				}
+			} else {
+				win.Get = function ( url , data ) {
+					url = stringJSON( data ).length > 0 ? url + "?" + stringJSON( data ) : url;
+					var opt = {
+						method : "GET" ,
+						credentials : "include" ,
+						headers: {
+							"Content-Type" : "application/x-www-form-urlencoded" ,
+							"UUID" : plus.device.uuid
+						}
+					};
+					return Request( url , opt );
+				}
+			};
+		} else {
+			console.error( "Get命名冲突,请检查" )
+		}
+		
+		/* ====    POST   ==== */
+		if( typeof win.Post === "undefined" ) {
+			if( gFetch ) {
+				win.Post = function ( url , data ) {
+					return Request( url , "Post" , data );
+				}
+			} else {
+				win.Post = function ( url , data ) {
+					var header = data instanceof FormData ?
+						{} :
+						{ "Content-Type" : "application/x-www-form-urlencoded" , "UUID" : plus.device.uuid };
+					var opt = {
+						body : data instanceof FormData ? data : stringJSON( data ),
+						method : "POST" ,
+						credentials : "include" ,
+						headers: header
+					};
+					return Request( url , opt );
+				}
+			};
+		} else {
+			console.error( "Post命名冲突,请检查" )
+		}
+	})
 
-                }
-                if( method.toLowerCase() == "get" ) {
-                    url = hashStr.length > 0 ? url + "?" + hashStr : url;
-                    xml.open( method , url , true );
-                    xml.timeout = 30000;
-                    xml.setRequestHeader("If-Modified-Since","0");
-                    xml.send();
-                } else {
-                    xml.open( method , url , true );
-                    xml.timeout = 30000;
-                    if( !( hashStr instanceof FormData ) )
-                        xml.setRequestHeader( "Content-type" , "application/x-www-form-urlencoded" );
-                    xml.send( hashStr );
-                }
-                xml.onload = function () {
-                    try{
-                        resolve( JSON.parse( xml.responseText ) );
-                    } catch ( e ) {
-                        reject( { code : 404 , msg : "指定资源不存在或者请求类型错误"} );
-                    }
-                }
-                xml.ontimeout = function () {
-                    reject( { code : xml.status  , msg : "请求超时，请重试" } );
-                }
-                xml.onerror = function () {
-                    reject( { code : xml.status  , msg : "请求出错，请重试" } );
-                }
-                xml.onabort = function () {
-                    reject( { code : xml.status  , msg : "请求被取消" } );
-                }
-                return promise;
-            };
-        })
-    } else {
-        var timeoutPromise = function ( promise, ms ) {
-            var timeoutAction = null;
-            var timerPromise = new Promise(function (resolve, reject) {
-                timeoutAction = function () {
-                    reject({ code : 504  , msg : "请求超时"  });
-                }
-            })
-            var t = setTimeout(function () {
-                timeoutAction();
-                clearTimeout( t );
-            }, ms )
-            return Promise.race( [promise, timerPromise] );
-        };
-        var checkStatus = function( response ) {
-            if ( response.status >= 200 && response.status < 300 ) {
-                return response;
-            }
-            return { code : 100000 , msg : "十万个为什么" }
-        };
-        var parseJSON = function ( response ) {
-            if( typeof response.json === "function" ) {
-                return response.json();
-            }
-            return { code : 100000 , msg : "十万个为什么" }
-        };
-        Request = function ( url, options ) {
-            console.log( url , options )
-            // if( !navigator.onLine ) {
-            //     return { code : 401 , msg : "您的网络已断开，请检查网络连接。" };
-            // }
-            return timeoutPromise( fetch( url , options ) , 30000 )
-                .then( checkStatus )
-                .then( parseJSON )
-                .then(function ( data ) {
-                    return data;
-                })
-                .catch(function ( err ) {
-                    return err;
-                });
-        };
-    }
 
-    /* =====  GET  ====*/
-    if( typeof global.Get === "undefined" ) {
-        if( gFetch ) {
-            global.Get = function ( url , data ) {
-                return Request( url , "Get" , data );
-            }
-        } else {
-            global.Get = function ( url , data ) {
-                url = stringJSON( data ).length > 0 ? url + "?" + stringJSON( data ) : url;
-                var opt = {
-                    method : "GET" ,
-                    credentials : "include" ,
-                    headers: {
-                        "Content-Type" : "application/x-www-form-urlencoded"
-                    }
-                };
-                return Request( url , opt );
-            }
-        };
-    } else {
-        console.error( "Get命名冲突,请检查" )
-    }
 
-    /* ====    POST   ==== */
-    if( typeof global.Post === "undefined" ) {
-        if( gFetch ) {
-            global.Post = function ( url , data ) {
-                return Request( url , "Post" , data );
-            }
-        } else {
-            global.Post = function ( url , data ) {
-                var header = data instanceof FormData ?
-                    {} :
-                    { "Content-Type" : "application/x-www-form-urlencoded" };
-                var opt = {
-                    body : data instanceof FormData ? data : stringJSON( data ),
-                    method : "POST" ,
-                    credentials : "include" ,
-                    headers: header
-                };
-                return Request( url , opt );
-            }
-        };
-    } else {
-        console.error( "Post命名冲突,请检查" )
-    }
+
 
     /* ====  JSONP  ==== */
-    global.Jsonp = global.Jsonp || function ( url , data , callback ) {
+    win.Jsonp = win.Jsonp || function ( url , data , callback ) {
         var promise = new Promise(function ( resolve, reject ) {
             var fn = ( "cb" + Math.random() * 1000000 ).replace(/\./g,"");
 
-            global[fn] = function ( res ) {
+            win[fn] = function ( res ) {
                 console.log( res )
                 if( Boolean( res ) ) {
                     resolve( res );
                 } else {
                     reject( { code : 404 , msg : "指定资源不存在或者请求类型错误"} );
                 }
-                global[fn] && delete global[fn];
+                win[fn] && delete win[fn];
             };
 
             if( typeof data !== "undefined" ) {
@@ -425,7 +438,7 @@
                 }
                 url = hashStr.length > 0 ? url + "?" + hashStr + "&" + callback + "=" + fn : url + "?" + callback + "=" + fn;
             }
-            var head = global.document.head;
+            var head = win.document.head;
             var sc = document.createElement("script");
                 sc.type = "text/javascript";
                 sc.src = url;
@@ -440,7 +453,7 @@
     }
 
     /* ====  上传文件  ==== */
-    global.Upload = global.Upload || function ( el , url , filter ) {
+    win.Upload = win.Upload || function ( el , url , filter ) {
         //var isEl = typeof el === "string" ?
         el.onchange = function () {
             var files = Array.prototype.slice.call( this.files );
@@ -448,12 +461,12 @@
             files.forEach(function ( v , k ) {
                 fd.append( "file" + k , v )
             })
-            global.Post( url , fd ).then(function ( res ) {
+            win.Post( url , fd ).then(function ( res ) {
                 console.log( res )
             },function ( err ) {
                 console.log(err  )
             });
         }
     }
-})( window );
+})( mui , window );
 
