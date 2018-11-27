@@ -5,7 +5,7 @@ var msg = {
 	title : "测试分享" ,
 	content : "测试分享OK" ,
 	href : "https://www.baidu.com" ,
-	smallImg : "_www/iphone4.png"
+	smallImg : "_www/Icon-72.png"
 };
 
 (function ( $ , doc ) {
