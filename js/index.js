@@ -23,15 +23,18 @@ mui.plusReady(function () {
 			}
 		});
 	}
+	var loginPage = plus.webview.getLaunchWebview();
+	loginPage.hide();
+	
 	mui(".mui-bar-tab").on("tap",".mui-tab-item",function () {
 		var current = this.dataset.page;
 
 		var page = plus.webview.getWebviewById( current );
 		page.show("slide-in-right",200,function () {
-			var loginPage = plus.webview.getLaunchWebview();
+			
 			hideSubPage( current );
 										
-			loginPage.hide();
+			
 		});
 	});
 	
