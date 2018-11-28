@@ -15,11 +15,13 @@
 		html,body,.mui-content{ width: 100%; height: 100%; }
 		.codebox{ width: 100%; height: 100%; background: url(../images/mycode.jpg) no-repeat; background-size: 100% 100%; position: relative; }
 		.codebox #qrcode{ border: 10px solid #fff; margin-bottom: 20px; width: 128px;  height: 128px; position: absolute; left: 50%; margin-left: -64px; top:49%;}
+		.share{ color: #ff4507;; }
 	</style>
 	<body>
 		<header class="mui-bar mui-bar-nav">
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 		    <h1 class="mui-title">推广二维码</h1>
+			<span class="share mui-icon mui-icon-redo mui-pull-right"></span>
 		</header>
 		<div class="mui-content">
 			<div class="codebox">
@@ -34,6 +36,15 @@
 		<script type="text/javascript" src="../js/common/Request.js"></script>
 		<script type="text/javascript" src="../js/common/app.js"></script>
 		<script>
+			/*
+			 	分享参数
+			 * */
+			var msg = {
+				title : "测试分享" ,
+				content : "测试分享OK" ,
+				href : "https://www.baidu.com" ,
+				smallImg : "_www/Icon-72.png"
+			};
 			mui.init({
 				
 			});
@@ -43,7 +54,13 @@
 					text : "http://www.runoob.com" ,
 					width : 108 ,
 					height : 108
-				})
+				});
+				
+				getServices();
+				
+				mui(".mui-bar-nav").on("tap",".share",function ( evt ) {
+					shareWeb( msg );
+				});
 			});
 		</script>
 	</body>
