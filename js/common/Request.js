@@ -2,11 +2,12 @@
 	var uuid = null;
 	$.plusReady(function () {
 		uuid = plus.device.uuid;
-		
-		w.ajax = function (url , data , method ) {
-			
+		w.ajax = function (url , data , method ) { 
 			var promise = new Promise(function (resolve,reject) {
-				console.log( JSON.stringify( url ) )
+				if( !navigator.onLine ) {
+					reject({ code : 10086 , msg : "网络连接已断开" });
+					return;
+				}
 				$.ajax({
 					type: method ,
 					dataType:'json',				//服务器返回json格式数据
@@ -15,9 +16,9 @@
 					data : data ,
 					timeout : 3000 ,
 					crossDomain : true ,
-					headers : {
+					headers : { 
 						UUID : uuid
-					} ,
+					} , 
 					success : function ( res ) {
 						console.log( res )
 						resolve( res );
@@ -26,6 +27,9 @@
 						reject( err );
 					}
 				});
+			}).catch(function (e) {
+				console.error( e );
+				return e;
 			});
 			return promise;
 		}

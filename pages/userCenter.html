@@ -8,8 +8,8 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
 		<meta name="format-detection" content="telephone=no,email=no,url=no" />
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<link href="../css/mui.min.css" rel="stylesheet" />
-		<link href="../css/style.css" rel="stylesheet" />
+		<link href="../css/common/mui.min.css" rel="stylesheet" />
+		<link href="../css/common/style.css" rel="stylesheet" />
 	</head>
 	<style type="text/css">
 		.mui-content{ background: #FAFAFA; height: 100%;  }
@@ -41,93 +41,95 @@
 		#code{ position: absolute; top: 0px;  left: 0px;}
 	</style>
 	<body>
-		<div class="mui-content">
-			<div class="flex flex-align flex-just head">
-					<div class="userphoto flex">
-						<img src="../images/userphoto.png" alt="">
-					</div>
-					<div>
-						<p><big>趣味园</big><small style="margin-left: 5px;">(普通账户)</small></p>
-						<p><small>ID：765757657</small></p>
-					</div>
-					<div>
-						<div id="qrcode"></div>
-						<p><small>推广二维码</small></p>
-					</div>
-
-			</div>
-			<div class="account-class">
-				<p class="flex flex-align"><img src="../images/account.png" alt="" />普通账号</p>
-				<div class="account-data flex">
-					<div class="flex flex-just flex-align newpage-div" data-page="./rechargeLog.html">
-						<span>0.00</span>
-						今日收入
-					</div>
-					<div class="flex flex-just flex-align">
-						<span>0.00</span>
-						总收入
-					</div>
-					<div class="flex flex-just flex-align">
-						<span>0.00</span>
-						累计提现
-					</div>
+		<div class="mui-content mui-scroll-wrapper" id="refreshContainer">
+			<div class="mui-scroll">
+				<div class="flex flex-align flex-just head">
+						<div class="userphoto flex">
+							<img src="../images/userphoto.png" alt="">
+						</div>
+						<div>
+							<p><big>趣味园</big><small style="margin-left: 5px;">(普通账户)</small></p>
+							<p><small>ID：765757657</small></p>
+						</div>
+						<div>
+							<div id="qrcode"></div>
+							<p><small>推广二维码</small></p>
+						</div>
+	
 				</div>
-			</div>
-			<div class="account-class">
-				<p class="flex flex-align"><img src="../images/elite.png" alt="" />精英账户</p>
-				<div class="account-data flex">
-					<div class="flex flex-just flex-align">
-						<span>0.00</span>
-						今日收入
-					</div>
-					<div class="flex flex-just flex-align">
-						<span>0.00</span>
-						总收入
-					</div>
-					<div class="flex flex-just flex-align">
-						<span>0.00</span>
-						累计提现
+				<div class="account-class">
+					<p class="flex flex-align"><img src="../images/account.png" alt="" />普通账号</p>
+					<div class="account-data flex">
+						<div class="flex flex-just flex-align newpage-div" data-page="./rechargeLog.html">
+							<span>0.00</span>
+							今日收入
+						</div>
+						<div class="flex flex-just flex-align">
+							<span>0.00</span>
+							总收入
+						</div>
+						<div class="flex flex-just flex-align">
+							<span>0.00</span>
+							累计提现
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="flex account-data account-type" style="margin-top: 10px;">
-				<div class="flex flex-align flex-just newpage-div"  data-page="./user.html">
-						<img src="../images/data.png" alt="" />
-						个人资料
+				<div class="account-class">
+					<p class="flex flex-align"><img src="../images/elite.png" alt="" />精英账户</p>
+					<div class="account-data flex">
+						<div class="flex flex-just flex-align">
+							<span>0.00</span>
+							今日收入
+						</div>
+						<div class="flex flex-just flex-align">
+							<span>0.00</span>
+							总收入
+						</div>
+						<div class="flex flex-just flex-align">
+							<span>0.00</span>
+							累计提现
+						</div>
+					</div>
 				</div>
-				<div class="flex flex-align flex-just newpage-div" data-page="./myteam.html">
-						<img src="../images/team.png" alt="" />
-						我的团队
+				<div class="flex account-data account-type" style="margin-top: 10px;">
+					<div class="flex flex-align flex-just newpage-div"  data-page="./user.html">
+							<img src="../images/data.png" alt="" />
+							个人资料
+					</div>
+					<div class="flex flex-align flex-just newpage-div" data-page="./myteam.html">
+							<img src="../images/team.png" alt="" />
+							我的团队
+					</div>
+					<div class="flex flex-align flex-just newpage-div" data-page="./bindbank.html">
+							<img src="../images/bankcard.png" alt="" />
+							绑定银行卡
+					</div>
 				</div>
-				<div class="flex flex-align flex-just newpage-div" data-page="./bindbank.html">
-						<img src="../images/bankcard.png" alt="" />
-						绑定银行卡
+				<div class="flex account-data account-type">
+					<div class="flex flex-align flex-just newpage-div" data-page="./draw.html">
+							<img src="../images/money.png" alt="" />
+							提现
+					</div>
+					<div class="flex flex-align flex-just func-div"  data-func="checkNew">
+							<img src="../images/update.png" alt="" />
+							检查更新
+					</div>
+					<div class="flex flex-align flex-just func-div" data-func="changeAccount">
+							<img src="../images/change.png" alt="" />
+							切换账号
+					</div> 
 				</div>
-			</div>
-			<div class="flex account-data account-type">
-				<div class="flex flex-align flex-just newpage-div" data-page="./draw.html">
-						<img src="../images/money.png" alt="" />
-						提现
+				<div class="flex account-data account-type no-b-border">
+					<div class="flex flex-align flex-just newpage-div" data-page="./upLevel.html">
+							<img src="../images/uplevel.png" alt="" />
+							升级VIP
+					</div>
+					<div class="flex flex-align flex-just quit-btn">
+							<img src="../images/quit.png" alt="" />
+							退出
+					</div>
+					
 				</div>
-				<div class="flex flex-align flex-just func-div"  data-func="checkNew">
-						<img src="../images/update.png" alt="" />
-						检查更新
-				</div>
-				<div class="flex flex-align flex-just func-div" data-func="changeAccount">
-						<img src="../images/change.png" alt="" />
-						切换账号
-				</div> 
-			</div>
-			<div class="flex account-data account-type no-b-border">
-				<div class="flex flex-align flex-just newpage-div" data-page="./upLevel.html">
-						<img src="../images/uplevel.png" alt="" />
-						升级VIP
-				</div>
-				<div class="flex flex-align flex-just quit-btn">
-						<img src="../images/quit.png" alt="" />
-						退出
-				</div>
-				
 			</div>
 		</div>
 		<script type="text/javascript" src="../js/common/mui.min.js"></script>

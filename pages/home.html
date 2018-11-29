@@ -6,10 +6,10 @@
 		<meta name="msapplication-tap-highlight" content="no" />
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
 		<meta name="format-detection" content="telephone=no,email=no,url=no" />
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" /> 
 		<title></title>
-		<link href="../css/mui.min.css" rel="stylesheet" />
-		<link href="../css/style.css" rel="stylesheet" />
+		<link href="../css/common/mui.min.css" rel="stylesheet" />
+		<link href="../css/common/style.css" rel="stylesheet" />
 	</head>
 	<style type="text/css">
 		.mui-content{ background: #FAFAFA; height: 100%; }
@@ -78,10 +78,10 @@
 					<div class="flex flex-just flex-align newpage-div" data-page="./profit.html">
 						收益分析
 					</div>
-					<div class="flex flex-just flex-align">
+					<div class="flex flex-just flex-align newpage-div" data-page="./plan.html">
 						任务规划
 					</div>
-					<div class="flex flex-just flex-align">
+					<div class="flex flex-just flex-align newpage-div" data-page="./put.html">
 						任务投放
 					</div>
 				</div>
@@ -110,7 +110,7 @@
 					</div>
 					<div class="flex flex-align flex-just">
 						<img src="../images/lock.png" alt="" />
-						锁屏任务
+						红包任务
 					</div>
 					<div class="flex flex-align flex-just">
 						<img src="../images/skill.png" alt="" />
@@ -124,7 +124,7 @@
 				<div class="flex account-type">
 					<div class="flex flex-align flex-just">
 						<img src="../images/read.png" alt="" />
-						阅读任务
+						趣资讯
 					</div>
 					<div class="flex flex-align flex-just">
 						<img src="../images/register.png" alt="" />
@@ -140,141 +140,12 @@
 					</div>
 				</div>
 			</div>
-
-			<!--<div class="my-funs">
-					<div class="flex funs-list">
-						<div class="flex flex-align flex-just newpage-div" data-page="./helpcommission.html">
-							<i class="mui-icon mui-icon-flag"></i>
-							如何赚佣
-						</div>
-						<div class="flex flex-align flex-just newpage-div" data-page="./extension.html">
-							<i class="mui-icon mui-icon-redo"></i>
-							推广二维码
-						</div>
-						<div class="flex flex-align flex-just newpage-div" data-page="./advertisement.html">
-							<i class="mui-icon mui-icon-paperplane"></i>
-							广告投放 
-						</div>
-					</div>
-					<div class="flex">
-						<div class="flex flex-align flex-just newpage-div" data-page="./joinEnterprise.html">
-							<i class="mui-icon mui-icon-chatboxes"></i>
-							企业合作
-						</div>
-						<div class="flex flex-align flex-just newpage-div" data-page="./question.html">
-							<i class="mui-icon mui-icon-compose"></i>
-							在线答题
-						</div>
-						<div class="flex flex-align flex-just">
-							<i class="mui-icon mui-icon-close"></i>
-							暂未开放
-						</div>
-					</div>
-					<div class="flex">
-						<div class="flex flex-align flex-just">
-							<i class="mui-icon mui-icon-close"></i>
-							暂未开放
-						</div>
-						<div class="flex flex-align flex-just">
-							<i class="mui-icon mui-icon-close"></i>
-							暂未开放
-						</div>
-						<div class="flex flex-align flex-just">
-							<i class="mui-icon mui-icon-close"></i>
-							暂未开放
-						</div>
-					</div>
-			</div>-->
-			<!--<button type="button" onclick="shareWeb()">分享</button>-->
 		</div>
 		<script type="text/javascript" src="../js/common/mui.min.js"></script>
 		<script type="text/javascript" src="../js/common/common.js"></script>
 		<script type="text/javascript" src="../js/common/share.js"></script>
 		<script type="text/javascript" src="../js/common/Request.js"></script>
 		<script type="text/javascript" src="../js/common/app.js"></script>
-		<script>
-
-			mui.plusReady(function () {
-// 				var gallery = mui('.mui-slider'); 
-// 				gallery.slider({
-// 					interval:2000//自动轮播周期，若为0则不自动播放，默认为0；
-// 				});
-				 
-				if( mui.os.android ) {
-					plus.nativeUI.closeWaiting();
-				}
-	
-
-
-				
-				mui(".account-class").on("tap",".newpage-div",function () {
-					var page = this.dataset.page;
-					openPage( page );
-				});
-				
-				
-				console.log( JSON.stringify( plus.networkinfo ) )
-			
-			}); 
-
-// var channel=null;
-// // 1. 获取支付通道
-// function plusReady(){
-//     // 获取支付通道
-//     plus.payment.getChannels(function(channels){
-// 		
-//         channel=channels[1];  
-// 		pay( channel.id ); 
-//     },function(e){
-//         alert("获取支付通道失败："+e.message);
-//     });
-// }
-// document.addEventListener('plusready',plusReady,false);
-// 
-// var ALIPAYSERVER='http://demo.dcloud.net.cn/helloh5/payment/alipay.php?total=0.01';
-// var WXPAYSERVER='http://demo.dcloud.net.cn/helloh5/payment/wxpay.php?total=1'; 
-// 
-// // 2. 发起支付请求
-// function pay(id){
-// 	//console.log( JSON.stringify( id ) )
-//     // 从服务器请求支付订单
-//     var PAYSERVER='';
-//     if(id=='alipay'){
-//         PAYSERVER=ALIPAYSERVER;
-//     }else if(id=='wxpay'){
-//         PAYSERVER=WXPAYSERVER;
-//     }else{
-//         plus.nativeUI.alert("不支持此支付通道！",null,"捐赠");
-//         return;
-//     }
-// 
-//     var xhr=new XMLHttpRequest();
-//     xhr.onreadystatechange=function(){
-//         switch(xhr.readyState){
-//             case 4:
-//             if(xhr.status==200){
-// 				console.log( xhr.responseText )
-//                 plus.payment.request(channel,xhr.responseText,function(result){
-// 					
-//                     plus.nativeUI.alert("支付成功！",function(){
-//                         back();
-//                     });
-//                 },function(error){
-//                     console.log("支付失败：" + JSON.stringify( error ));
-//                 });
-//             }else{
-//                 alert("获取订单信息失败！");
-//             }
-//             break;
-//             default:
-//             break;
-//         }
-//     }
-//     xhr.open('GET',PAYSERVER,true);
-//     xhr.send();
-// }
-
-
-		</script>
+		<script type="text/javascript" src="../js/home.js"></script>
 	</body>
 </html>
