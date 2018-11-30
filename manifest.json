@@ -3,7 +3,7 @@
     "id" : "H5BE3FBA0", /*应用的标识，创建应用时自动生成，勿手动修改*/
     "name" : "趣答题", /*应用名称，程序桌面图标名称*/
     "version" : {
-        "name" : "1.0.16", /*应用版本名称*/
+        "name" : "1.0.21", /*应用版本名称*/
         "code" : "83"
     },
     "description" : "", /*应用描述信息*/
@@ -135,13 +135,13 @@
 
                         /*3.5英寸设备(iPhone4)启动图片，分辨率：640x960*/
                         "retina40" : "C:/Users/wei.liu/Desktop/启动图片/6p.png",
-                        "iphonex" : "",
+                        "iphonex" : "C:/Users/wei.liu/Desktop/启动图片/6p.png",
                         "retina47" : "C:/Users/wei.liu/Desktop/启动图片/6p.png",
                         "retina55" : "C:/Users/wei.liu/Desktop/启动图片/6p.png",
                         "retina35" : "C:/Users/wei.liu/Desktop/启动图片/6p.png"
                     },
                     "ipad" : {
-                        "portrait" : "", /*iPad竖屏启动图片，分辨率：768x1004*/
+                        "portrait" : "C:/Users/wei.liu/Desktop/启动图片/6p.png", /*iPad竖屏启动图片，分辨率：768x1004*/
                         "portrait-retina" : "", /*iPad高分屏竖屏图片，分辨率：1536x2008*/
                         "landscape" : "", /*iPad横屏启动图片，分辨率：1024x748*/
                         "landscape-retina" : "", /*iPad高分屏横屏启动图片，分辨率：2048x1496*/
@@ -154,9 +154,9 @@
                 "android" : {
                     "mdpi" : "", /*普通屏启动图片，分辨率：240x282*/
                     "ldpi" : "", /*大屏启动图片，分辨率：320x442*/
-                    "hdpi" : "", /*高分屏启动图片，分辨率：480x762*/
-                    "xhdpi" : "", /*720P高分屏启动图片，分辨率：720x1242*/
-                    "xxhdpi" : ""
+                    "hdpi" : "C:/Users/wei.liu/Desktop/启动图片/6p.png", /*高分屏启动图片，分辨率：480x762*/
+                    "xhdpi" : "C:/Users/wei.liu/Desktop/启动图片/6p.png", /*720P高分屏启动图片，分辨率：720x1242*/
+                    "xxhdpi" : "C:/Users/wei.liu/Desktop/启动图片/6p.png"
                 }
             }
         },
