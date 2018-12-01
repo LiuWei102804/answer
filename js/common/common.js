@@ -10,7 +10,8 @@
 			createNew : false ,
 			show : {
 				autoShow : true ,
-				aniShow : "pop-in"
+				aniShow : "pop-in" 
+				//duration : 0 
 			} ,
 			waiting : {
 				autoShow : true ,

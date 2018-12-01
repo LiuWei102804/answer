@@ -10,35 +10,8 @@
 		<title></title>
 		<link href="../css/common/mui.min.css" rel="stylesheet" />
 		<link href="../css/common/style.css" rel="stylesheet" />
+		<link href="../css/home.css" rel="stylesheet" type="text/css" />
 	</head>
-	<style type="text/css">
-		.mui-content{ background: #FAFAFA; height: 100%; }
-		.mui-bar{ background: url(../images/userdata_bg.png) no-repeat; box-shadow: none;}
-		.mui-bar h1{ flex: 3; -webkit-flex: 3; position: relative; }
-		.mui-bar h1 input[type=search]{ width: 80%; height: 26px; background: #fff;  border-radius:13px; line-height: 20px; font-size: 12px; text-align: left; position: relative; }
-		.mui-bar h1 .search{ display: block; position: absolute;  right: 13%; top: 30%; width: 15px; height: 15px; background: url(../images/search.png) no-repeat; background-size: 100% 100%; }
-		.mui-bar img{ width: 20px;  }
-		.mui-bar a.mui-pull-right{ flex-direction: column; -webkit-flex-direction: column; color: #fff; font-size: 12px; line-height: 1; }
-		.mui-bar a.mui-pull-right img{ width: 20px; margin: 0; }
-		.mui-bar a.mui-pull-right small{ transform: scale(.7); -webkit-transform: scale(.7); }
-		.mui-slider img{ width: 100%; height: 180px; }
-		.my-funs{ width: 100%; height: auto; padding: 0 2%; overflow: hidden; background: #fff; }
-		.my-funs .flex{ font-size: 12px;}
-		.my-funs .flex div{ height: 50px; margin: 5px 0; flex-direction: column; -webkit-flex-direction: column; flex: 1; -webkit-flex: 1;}
-		
-		
-		.account-class{ margin-top: 10px; background: #fff; }
-		.account-class p{ padding: 0 3%; border-bottom: 1px solid #ddd; height: 35px; line-height: 35px; color: #000; }
-		.account-data{ color: #666; font-size: 14px; padding-top: 5px; }
-		.account-data div:not(.account-type){ flex: 1; -webkit-flex: 1; flex-direction: column; -webkit-flex-direction: column; height: auto; min-height: 50px; border-right: 1px solid #ddd; color: #000;}
-		.account-data div img{ width: 20px; margin-bottom: 8px; }
-		.account-data div:last-child{ border-right: none; }
-		.account-data .account-type{ border-bottom: 1px solid #ddd; }
-		.account-data .account-type:last-child{ border-bottom: none; }
-		.account-data .account-type div{ border-right: none; height: 70px; }
-		.news{ width: 100%; height: 30px; line-height: 30px; margin-top: 10px; padding: 0 3%; font-size: 16px; font-weight: normal; color: #ff4504; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; -webkit-text-overflow : ellipsis; background: #fff; }
-		.news small{ color: #000; font-size: 12px; margin-left: 10%; }
-	</style>
 	<body>
 		<header class="mui-bar mui-bar-nav flex flex-align">
 			<a class="mui-pull-left">
@@ -70,6 +43,20 @@
 				<img src="../images/banner.png" alt="" />
 			</div>
 			<div class="account-class">
+				<p>任务榜</p>
+				<div class="account-data flex">
+					<div class="flex flex-just flex-align newpage-div" data-page="./question.html">
+						问卷调研
+					</div>
+					<div class="flex flex-just flex-align newpage-div" data-page="./joinEnterprise.html">
+						企业合作
+					</div>
+					<div class="flex flex-just flex-align newpage-div" data-page="./extension.html">
+						推广链接
+					</div>
+				</div>
+			</div>
+			<div class="account-class">
 				<p>初识趣任务</p>
 				<div class="account-data flex">
 					<div class="flex flex-just flex-align">
@@ -86,21 +73,16 @@
 					</div>
 				</div>
 			</div>
-			<div class="account-class">
-				<p>任务榜</p>
-				<div class="account-data flex">
-					<div class="flex flex-just flex-align newpage-div" data-page="./question.html">
-						问卷调研
-					</div>
-					<div class="flex flex-just flex-align newpage-div" data-page="./joinEnterprise.html">
-						企业合作
-					</div>
-					<div class="flex flex-just flex-align newpage-div" data-page="./extension.html">
-						推广链接
-					</div>
+
+			<h3 class="news">
+				新闻资讯
+				<div>
+<!-- 					<small>新闻资讯资讯资讯资讯新闻资讯资讯资讯资讯新闻资讯资讯资讯资讯新闻资讯资讯资讯资讯新闻资讯资讯资讯资讯...</small>
+					<small>新闻资讯资讯资讯资讯新闻资讯资讯资讯资讯新闻资讯资讯资讯资讯新闻资讯资讯资讯资讯新闻资讯资讯资讯资讯...</small>
+					<small>新闻资讯资讯资讯资讯新闻资讯资讯资讯资讯新闻资讯资讯资讯资讯新闻资讯资讯资讯资讯新闻资讯资讯资讯资讯...</small> -->
+
 				</div>
-			</div>
-			<h3 class="news">新闻资讯<small>新闻资讯资讯资讯资讯新闻资讯资讯资讯资讯新闻资讯资讯资讯资讯新闻资讯资讯资讯资讯新闻资讯资讯资讯资讯...</small></h3>
+			</h3>
 			<div class="account-data account-class" style="margin-top: 20px;">
 				<p>待开通任务</p>
 				<div class="flex account-type">
@@ -145,7 +127,8 @@
 		<script type="text/javascript" src="../js/common/common.js"></script>
 		<script type="text/javascript" src="../js/common/share.js"></script>
 		<script type="text/javascript" src="../js/common/Request.js"></script>
-		<script type="text/javascript" src="../js/common/app.js"></script>
+		<script type="text/javascript" src="../js/common/apis.js"></script>
+		<script type="text/javascript" src="../js/common/app.js"></script> 
 		<script type="text/javascript" src="../js/home.js"></script>
 	</body>
 </html>

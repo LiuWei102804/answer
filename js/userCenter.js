@@ -1,4 +1,11 @@
 (function ( $ , doc ) {
+// 	var old_back = mui.back;
+// 	$.back = function () {
+// 		var parent = plus.webview.getWebviewById("./index.html");
+// 		//console.log( JSON.stringify( parent ) )
+// 		$.fire( parent , "customBack" , { tab : "./pages/userCenter.html" } );
+// 		old_back();
+// 	}
 	$.init({
 		pullRefresh : {
 			container:"#refreshContainer",//下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
@@ -9,14 +16,14 @@
 	//	      range:'100px', //可选 默认100px,控件可下拉拖拽的范围
 	//	      offset:'0px', //可选 默认0px,下拉刷新控件的起始位置
 	//	      auto: false,//可选,默认false.首次加载自动上拉刷新一次
-		      callback : function () {				//必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
-		      	setTimeout(function () {
-		      		mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
-		      	},2000)
-		      } 
+		      callback : getUserInfo //function () {				//必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+// 		      	setTimeout(function () {
+// 		      		mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
+// 		      	},2000)
+		     // } 
 		    }
 		} ,
-		statusBarBackground: '#f7f7f7'
+		statusBarBackground: '#fd7d24'
 	});
 	$.plusReady(function () {
 		$(".account-data").on("tap",".newpage-div",function () {
@@ -57,7 +64,11 @@
 		
 		$(".account-data").on("tap",".uplevel",function () {
 			upLevel();
-		})
+		});
+		
+		
+
+		getUserInfo();
 	});
 	 /*
 	 	升级VIP
@@ -108,27 +119,44 @@
 	};
 	
 	
-	function launApp(){
-		plus.runtime.launchApplication({
-			pname : "com.tencent.mm" ,
-			action : "weixin://RnUbAwvEilb1rU9g9yBU" ,
-			//extra : { url : "https://www.baidu.com" } 
-		},function ( err ) { 
-			$.confirm("检测到您未安装\"微信\",是否前往下载","提示",function ( btn ) {	
-				if( btn.index == 1 ) {
-					if( plus.os.name.toLocaleLowerCase() == "ios" ) {
-						plus.runtime.openURL("https://itunes.apple.com/cn/app/wechat/id414478124?mt=8"); 
-						
-					} else {
-						plus.runtime.openURL("https://weixin.qq.com/cgi-bin/readtemplate?t=w_down");
-					}
-	
-				}  
-			})   
-		});  
+// 	function launApp(){
+// 		plus.runtime.launchApplication({
+// 			pname : "com.tencent.mm" ,
+// 			action : "weixin://RnUbAwvEilb1rU9g9yBU" ,
+// 			//extra : { url : "https://www.baidu.com" } 
+// 		},function ( err ) { 
+// 			$.confirm("检测到您未安装\"微信\",是否前往下载","提示",function ( btn ) {	
+// 				if( btn.index == 1 ) {
+// 					if( plus.os.name.toLocaleLowerCase() == "ios" ) {
+// 						plus.runtime.openURL("https://itunes.apple.com/cn/app/wechat/id414478124?mt=8"); 
+// 						
+// 					} else {
+// 						plus.runtime.openURL("https://weixin.qq.com/cgi-bin/readtemplate?t=w_down");
+// 					}
+// 	
+// 				}  
+// 			})   
+// 		});  
+// 	};
+	/*
+		查询个人信息
+	*/
+	function getUserInfo() {
+		//console.log( params )
+		app.getUserInfo({ phone : "18918455233" }).then(function ( res ) {
+				if( res.hasOwnProperty("success") && res.success ) {
+					var data = res.data; 
+						$(".realName")[0].innerHTML = data.realName;
+						$(".userId")[0].innerHTML = "ID:" + data.phone;
+				} else {
+						mui.toast( requestMsg.fail );
+				}
+				mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
+		},function ( err ) {
+				mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
+				mui.toast( requestMsg.fail );
+		})
 	}
-	
-
 }( mui , document ));
 
 

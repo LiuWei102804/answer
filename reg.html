@@ -10,40 +10,7 @@
 		<title></title>
 		<link href="./css/common/mui.min.css" rel="stylesheet" />
 		<link href="./css/common/style.css" rel="stylesheet" />
-		<style>
-			.area {
-				margin: 20px auto 0px auto;
-			}
-			.mui-input-group:first-child {
-				margin-top: 20px;
-			}
-			.mui-input-group label {
-				width: 35%;
-			}
-			.mui-input-row label~input,
-			.mui-input-row label~select,
-			.mui-input-row label~textarea {
-				width: 65%;
-			}
-			.mui-checkbox input[type=checkbox],
-			.mui-radio input[type=radio] {
-				top: 6px;
-			}
-			.mui-content-padded {
-				margin-top: 25px;
-			}
-			.mui-btn {
-				padding: 10px;
-			}
-			.share{ float: right; color: #007aff; }
-			.link-area {
-				display: block;
-				margin-top: 25px;
-				text-align: center;
-			}
-			.mui-input-row{ position: relative; }
-			.mui-input-row button{ position: absolute; right: 3%; padding: 4px 6px; top: 4px;}
-		</style>
+		<link href="css/reg.css" rel="stylesheet" />
 	</head>
 
 	<body>
@@ -60,17 +27,17 @@
 				</div>
 				<div class="mui-input-row">
 					<label>验证码</label>
-					<input id='code' type="number" class="mui-input mui-input-numbox" style="float: left; width: 47%;" placeholder="请输入验证码" />
-					<button>获取</button>
+					<input id='code' type="number" class="mui-input mui-input-numbox" style="float: left; width: 47%;" placeholder="请输入验证码" maxlength="6" />
+					<button id="getCode">获取</button>
 				</div>
 				<div class="mui-input-row">
 					<label>登录密码</label>
 					<input id='password' type="password" class="mui-input-clear mui-input" placeholder="6-20位数字加字母组合" maxlength="20" value="abc123" />
 				</div>
-				<div class="mui-input-row">
+<!-- 				<div class="mui-input-row">
 					<label>确认密码</label>
 					<input id='password_confirm' type="password" class="mui-input-clear mui-input" placeholder="6-20位数字加字母组合" maxlength="20" />
-				</div>
+				</div> -->
 				<div class="mui-input-row">
 					<label>邀请码</label>
 					<input type="text" class="mui-input-clear mui-input" placeholder="请输入邀请码" />

@@ -1,4 +1,5 @@
 var subpages = ["./pages/home.html","./pages/userCenter.html"];
+
 mui.init({ 
 	statusBarBackground: '#f7f7f7'
 });
@@ -15,7 +16,8 @@ mui.plusReady(function () {
 			createNew:false ,
 			show : {
 				autoShow : i == 0 ? true : false ,
-				aniShow  : "slide-in-right" 
+				aniShow  : "slide-in-right" ,
+				duration : 0
 			} ,
 			waiting:{
 			    autoShow:true,		//自动显示等待框，默认为true
@@ -30,13 +32,22 @@ mui.plusReady(function () {
 		var current = this.dataset.page;
 
 		var page = plus.webview.getWebviewById( current );
-		page.show("slide-in-right",200,function () {
-			
-			hideSubPage( current );
-										
-			
-		});
+		if( page ) {
+			page.show("slide-in-right",0,function () {
+				//hideSubPage( current );							
+			});
+		}
+		//console.log( JSON.stringify( page ) )
+
 	});
+	
+	/*
+		监听事件
+	*/
+   window.addEventListener("customBack",function (event) {
+	   mui(".mui-tab-item")[0].className = "mui-tab-item mui-active home";
+	   mui(".mui-tab-item")[1].className = "mui-tab-item user";
+   },false);
 	
 //	plus.geolocation.getCurrentPosition(function ( pos ) {
 //		//console.log( JSON.stringify( pos ) )

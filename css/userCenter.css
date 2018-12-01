@@ -1,0 +1,27 @@
+		.mui-content{ background: #FAFAFA; height: 100%;  }
+		.head{ padding:30px 3%; width: 100%; height: auto; min-height: 150px; background: url(../images/userdata_bg.png) no-repeat; color: #fff; position: relative; color: #fff; }
+		.head .userphoto{ width: 70px; height: 70px; background: url(../images/round_shadow.png) no-repeat; background-size: 100% 100%; padding: 6px; }
+		.head p{ color: #fff; } 
+		.head div:nth-child(2){ margin-left: 5px; flex: 3; -webkit-flex: 3; }
+		.head div:nth-child(2) p:first-child small{ color: #fdf573;  }
+#qrcode{ border: 2px solid #fff; }
+		.head #user-logo{ position: relative; width: 60px; height: 60px; overflow: hidden; }
+		.head #user-logo input[type=file]{ width: 100%; height: 100%; opacity: 0; position: absolute; top:0; left: 0; }
+		.head #user-logo img{ width: 60px; height: 60px; border-radius: 50%; }
+		.head .profit{ width: 100%; height: 50px; font-size: 12px; border-top:1px solid #fff; }
+		.head .profit div{ flex: 1; -webkit-flex: 1; flex-direction: column; -webkit-flex-direction: column; border-right: 1px solid #fff; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; -webkit-text-overflow:ellipsis; }
+		.head .profit div:last-child{ border-right: none;}
+		.funs-list{ width: 100%; height: auto; overflow: hidden; font-size: 12px; margin-top: 10px; }
+		.funs-list div{ width: 100%; height: 40px; line-height: 40px; background: #fff; border-top: 1px solid #ddd; text-indent: 5px; }
+		.funs-list div i:nth-child(2){ float: right; margin: 11px 5px 0 0; font-size: 18px; }
+		.account-class{  margin-top: 10px; background: #fff; }
+		.account-class p{ padding: 0 3%; border-bottom: 1px solid #ddd; height: 35px; color: #000; }
+		.account-class p img{ width: 20px; margin-right: 10px; }
+		.account-data{ font-size: 14px; padding-top: 5px; background: #fff; }
+		.account-data div{ flex: 1; -webkit-flex: 1; flex-direction: column; -webkit-flex-direction: column; height: auto; min-height: 60px; border-right: 1px solid #ddd;}
+		.account-data div span{ color: #ff4504; }
+		.account-data div img{ width: 20px; margin-bottom: 5px; }
+		.account-data div:last-child{ border-right: none; }
+		.account-type{ border-bottom: 1px solid #ddd; }
+		.account-type div{ border-right: none; }
+		#code{ position: absolute; top: 0px;  left: 0px;}

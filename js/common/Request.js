@@ -7,6 +7,12 @@
 				if( !navigator.onLine ) {
 					reject({ code : 10086 , msg : "网络连接已断开" });
 					return;
+				};
+				var headers = {
+					UUID : uuid 
+				};
+				if( plus.storage.getItem("userInfo") != null ) {
+					headers.token = JSON.parse( plus.storage.getItem("userInfo") ).token;
 				}
 				$.ajax({
 					type: method ,
@@ -16,20 +22,14 @@
 					data : data ,
 					timeout : 3000 ,
 					crossDomain : true ,
-					headers : { 
-						UUID : uuid
-					} , 
+					headers : headers , 
 					success : function ( res ) {
-						console.log( res )
 						resolve( res );
 					} ,
 					error : function ( err ) {
 						reject( err );
 					}
 				});
-			}).catch(function (e) {
-				console.error( e );
-				return e;
 			});
 			return promise;
 		}
