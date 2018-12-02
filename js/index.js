@@ -1,7 +1,7 @@
 var subpages = ["./pages/home.html","./pages/userCenter.html"];
 
 mui.init({ 
-	statusBarBackground: '#f7f7f7'
+	//statusBarBackground: '#f7f7f7'
 });
 mui.plusReady(function () {
 	for( var i = 0; i < subpages.length; i ++ ) {

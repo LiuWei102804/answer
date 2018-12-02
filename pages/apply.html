@@ -22,26 +22,26 @@
 		    <h1 class="mui-title">申请提现</h1>
 		</header>
 		<div class="mui-content">
-		    <input type="number" class="mui-input-clear" placeholder="请输入提现金额" />
-		    <h4>选择提现方式</h4>
-		    <div class="mui-input-row mui-radio">
-				<label>微信</label>
-				<input name="radio1" type="radio" checked />
+		    <input type="number" class="mui-input-clear drawNum" placeholder="请输入提现金额" value="" />
+		    <h4>选择提现钱包</h4>
+		    <div class="mui-input-row mui-radio mui-left">
+				<label>普通钱包<small class="mui-pull-right ordinary">可提现:0.00</small></label>
+				<input name="radio1" type="radio" checked value="0" />
 			</div>
-			<div class="mui-input-row mui-radio">
-				<label>支付宝</label>
-				<input name="radio1" type="radio" />
+			<div class="mui-input-row mui-radio mui-left">
+				<label>精英钱包<small class="mui-pull-right elite">可提现:0.00</small></label>
+				<input name="radio1" type="radio" value="1" />
 			</div>
 			<div class="mui-content-padded">
-				<button id='reg' class="mui-btn mui-btn-block mui-btn-primary">确定</button>
+				<button id='draw' class="mui-btn mui-btn-block mui-btn-primary">确定</button>
 			</div>
 		</div>
 		<script type="text/javascript" src="../js/common/mui.min.js"></script>
-		<script type="text/javascript" src="../js/common/apis.js"></script>
 		<script type="text/javascript" src="../js/common/Pattern.js"></script>
 		<script type="text/javascript" src="../js/common/common.js"></script>
-		<script type="text/javascript" src="../js/common/share.js"></script>
 		<script type="text/javascript" src="../js/common/Request.js"></script>
+		<script type="text/javascript" src="../js/common/apis.js"></script>
 		<script type="text/javascript" src="../js/common/app.js"></script>
+		<script type="text/javascript" src="../js/apply.js"></script>
 	</body>
 </html>

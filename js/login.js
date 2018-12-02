@@ -55,7 +55,7 @@
 									mui.toast( res.errorMessage );
 							 }
 							 //console.log( JSON.stringify( res ) )
-								plus.nativeUI.closeWaiting();
+							  plus.nativeUI.closeWaiting();
 						 },function ( err ) {
 									mui.toast( requestMsg.fail );
 									plus.nativeUI.closeWaiting();
@@ -64,8 +64,6 @@
 						//plus.nativeUI.showWaiting();
 					
 				});
-				
-				//console.log( plus.storage.getItem("userInfo") )
 		})
 })( mui , document );
 

@@ -23,15 +23,14 @@
 		     // } 
 		    }
 		} ,
-		statusBarBackground: '#fd7d24'
+		//statusBarBackground: '#fd7d24'
 	});
 	$.plusReady(function () {
 		$(".account-data").on("tap",".newpage-div",function () {
 			var page = this.dataset.page;
 			openPage( page );
 		});
-		
-		
+
 		var qr = $("#qrcode")[0];
 		var code = new QRCode( qr , { 
 				text : "http://www.runoob.com" ,
@@ -118,26 +117,6 @@
 		}
 	};
 	
-	
-// 	function launApp(){
-// 		plus.runtime.launchApplication({
-// 			pname : "com.tencent.mm" ,
-// 			action : "weixin://RnUbAwvEilb1rU9g9yBU" ,
-// 			//extra : { url : "https://www.baidu.com" } 
-// 		},function ( err ) { 
-// 			$.confirm("检测到您未安装\"微信\",是否前往下载","提示",function ( btn ) {	
-// 				if( btn.index == 1 ) {
-// 					if( plus.os.name.toLocaleLowerCase() == "ios" ) {
-// 						plus.runtime.openURL("https://itunes.apple.com/cn/app/wechat/id414478124?mt=8"); 
-// 						
-// 					} else {
-// 						plus.runtime.openURL("https://weixin.qq.com/cgi-bin/readtemplate?t=w_down");
-// 					}
-// 	
-// 				}  
-// 			})   
-// 		});  
-// 	};
 	/*
 		查询个人信息
 	*/
@@ -146,15 +125,16 @@
 		app.getUserInfo({ phone : "18918455233" }).then(function ( res ) {
 				if( res.hasOwnProperty("success") && res.success ) {
 					var data = res.data; 
+					//console.log( JSON.stringify( data ))
 						$(".realName")[0].innerHTML = data.realName;
 						$(".userId")[0].innerHTML = "ID:" + data.phone;
 				} else {
-						mui.toast( requestMsg.fail );
+						$.toast( requestMsg.fail );
 				}
-				mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
+				$('#refreshContainer').pullRefresh().endPulldownToRefresh();
 		},function ( err ) {
-				mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
-				mui.toast( requestMsg.fail );
+				$('#refreshContainer').pullRefresh().endPulldownToRefresh();
+				$.toast( requestMsg.fail );
 		})
 	}
 }( mui , document ));

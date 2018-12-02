@@ -43,13 +43,8 @@
         "signature" : "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==", /*可选，保留给应用签名，暂不使用*/
         "distribute" : {
             "plugins" : {
-                "maps" : {
-                    
-                },
-                "payment" : {
-                    
-                    
-                },
+                "maps" : {},
+                "payment" : {},
                 "share" : {
                     "weixin" : {
                         "appid" : "wxde66ed9e6259db5b",
@@ -71,7 +66,21 @@
                 "keystore" : "", /*Android应用打包使用的密钥库文件*/
                 "password" : "", /*Android应用打包使用密钥库中证书的密码*/
                 "aliasname" : "", /*Android应用打包使用密钥库中证书的别名*/
-                "permissions" : ["<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>","<uses-permission android:name=\"android.permission.INTERNET\"/>","<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>","<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>","<uses-feature android:name=\"android.hardware.camera.autofocus\"/>","<uses-feature android:name=\"android.hardware.camera\"/>","<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>","<uses-permission android:name=\"android.permission.USE_FINGERPRINT\"/>","<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>","<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.CAMERA\"/>"]
+                "permissions" : [
+                    "<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
+                    "<uses-permission android:name=\"android.permission.INTERNET\"/>",
+                    "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
+                    "<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
+                    "<uses-feature android:name=\"android.hardware.camera\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
+                    "<uses-permission android:name=\"android.permission.USE_FINGERPRINT\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.CAMERA\"/>"
+                ]
             },
             "orientation" : [ "portrait-primary", "portrait-secondary" ], /*应用支持的方向，portrait-primary：竖屏正方向；portrait-secondary：竖屏反方向；landscape-primary：横屏正方向；landscape-secondary：横屏反方向*/
             "icons" : {
@@ -134,14 +143,14 @@
                         "default" : "", /*iPhone3启动图片选，分辨率：320x480*/
 
                         /*3.5英寸设备(iPhone4)启动图片，分辨率：640x960*/
-                        "retina40" : "C:/Users/wei.liu/Desktop/启动图片/6p.png",
-                        "iphonex" : "C:/Users/wei.liu/Desktop/启动图片/6p.png",
-                        "retina47" : "C:/Users/wei.liu/Desktop/启动图片/6p.png",
-                        "retina55" : "C:/Users/wei.liu/Desktop/启动图片/6p.png",
-                        "retina35" : "C:/Users/wei.liu/Desktop/启动图片/6p.png"
+                        "retina40" : "/Users/q/Desktop/启动图片/6p.png",
+                        "iphonex" : "/Users/q/Desktop/启动图片/6p.png",
+                        "retina47" : "/Users/q/Desktop/启动图片/6p.png",
+                        "retina55" : "/Users/q/Desktop/启动图片/6p.png",
+                        "retina35" : "/Users/q/Desktop/启动图片/6p.png"
                     },
                     "ipad" : {
-                        "portrait" : "C:/Users/wei.liu/Desktop/启动图片/6p.png", /*iPad竖屏启动图片，分辨率：768x1004*/
+                        "portrait" : "/Users/q/Desktop/启动图片/6p.png", /*iPad竖屏启动图片，分辨率：768x1004*/
                         "portrait-retina" : "", /*iPad高分屏竖屏图片，分辨率：1536x2008*/
                         "landscape" : "", /*iPad横屏启动图片，分辨率：1024x748*/
                         "landscape-retina" : "", /*iPad高分屏横屏启动图片，分辨率：2048x1496*/
@@ -154,9 +163,9 @@
                 "android" : {
                     "mdpi" : "", /*普通屏启动图片，分辨率：240x282*/
                     "ldpi" : "", /*大屏启动图片，分辨率：320x442*/
-                    "hdpi" : "C:/Users/wei.liu/Desktop/启动图片/6p.png", /*高分屏启动图片，分辨率：480x762*/
-                    "xhdpi" : "C:/Users/wei.liu/Desktop/启动图片/6p.png", /*720P高分屏启动图片，分辨率：720x1242*/
-                    "xxhdpi" : "C:/Users/wei.liu/Desktop/启动图片/6p.png"
+                    "hdpi" : "/Users/q/Desktop/启动图片/6p.png", /*高分屏启动图片，分辨率：480x762*/
+                    "xhdpi" : "/Users/q/Desktop/启动图片/6p.png", /*720P高分屏启动图片，分辨率：720x1242*/
+                    "xxhdpi" : "/Users/q/Desktop/启动图片/6p.png"
                 }
             }
         },

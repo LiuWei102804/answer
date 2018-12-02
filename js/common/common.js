@@ -1,4 +1,11 @@
 !function( w ){
+	document.addEventListener('touchstart',shield,false);
+	// 空函数
+	function shield(){
+		return false;
+	}
+	//的样式在手机上正常生效
+	document.oncontextmenu=shield;//屏蔽选择函数
 	w.openPage = function ( url , extras ) {
 		return mui.openWindow({
 			url : url ,

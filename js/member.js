@@ -1,11 +1,23 @@
-mui.init({});
-mui.plusReady(function () {
-	var curr = plus.webview.currentWebview();
-	mui(".mui-title")[0].textContent = curr.title;
-
+(function ( $ , doc ) {
+	$.init({});
 	
-	mui(".funs-list").on("tap",".newpage-div",function () {
-		var page = this.dataset.page;
-		openPage( page );
-	});
-});
+	$.plusReady(function () {
+		var curr = plus.webview.currentWebview();
+		var data = curr.data;
+
+		
+		$(".l1Vip")[0].textContent = data["highVip"].length + "人";
+		$(".l2Vip")[0].textContent = data["commVip"].length + "人";
+		$(".l3Vip")[0].textContent = data["comm"].length + "人";
+		
+		$(".mui-title")[0].textContent = curr.title;
+	
+		
+		$(".funs-list").on("tap",".newpage-div",function () {
+			var page = this.dataset.page;
+			var title = this.dataset.title;
+			var level = this.dataset.level;
+			openPage( page , { data : data[level] , title : title });
+		});
+	})
+})( mui , document );

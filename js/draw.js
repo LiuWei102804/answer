@@ -4,6 +4,23 @@ mui.plusReady(function () {
 		var page = this.dataset.page;
 		var type = this.dataset.type;
 		var t = this.dataset.title;
-		openPage( page , { title : t , type : type });
+		if( page == "./apply.html" ) {
+			app.checkDrawStatu( { phone : "18918455233" } ).then(function ( res ) {
+				if( res.hasOwnProperty("success") && res.success ) {
+					if( res.data.vipAllow ) {
+						openPage( page , { title : t , data : res.data });
+					} else {
+						mui.toast("请先升级 VIP");
+					}
+				} else {
+					mui.toast( requestMsg.fail );
+				}
+			},function ( err ) {
+				mui.toast( requestMsg.fail );
+			})
+		} else {
+			openPage( page , { title : t , type : type });
+		}
+		
 	});
 });

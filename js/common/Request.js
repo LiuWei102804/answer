@@ -9,11 +9,13 @@
 					return;
 				};
 				var headers = {
-					UUID : uuid 
+					UUID : uuid ,
+					token : "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDYyNDAwMTgzODEsInBheWxvYWQiOiJcIjE4OTE4NDU1MjMzMkQ5MTI0QUItNTQ5NC00OEQ5LUFBRTgtMjFCMUMzRjYyRDg2XCIifQ.SVEmSvekJDoQOAy4nUB3bCythNWZa0YltOIbtl9KPGs"
 				};
-				if( plus.storage.getItem("userInfo") != null ) {
-					headers.token = JSON.parse( plus.storage.getItem("userInfo") ).token;
-				}
+				//data.phone = "18918455233";
+// 				if( plus.storage.getItem("userInfo") != null ) {
+// 					headers.token = JSON.parse( plus.storage.getItem("userInfo") ).token;
+// 				}
 				$.ajax({
 					type: method ,
 					dataType:'json',				//服务器返回json格式数据
@@ -34,6 +36,7 @@
 			return promise;
 		}
 		w.Post = function ( url , data ) {
+			url += "?phone=15259888000"
 			return w.ajax( url , data , "post" );
 		};
 		w.Get = function ( url , data ) {

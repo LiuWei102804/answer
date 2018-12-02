@@ -10,12 +10,8 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/common/mui.min.css" rel="stylesheet" />
 		<link href="../css/common/style.css" rel="stylesheet" />
+		<link href="../css/myteam.css" rel="stylesheet" />
 	</head>
-	<style type="text/css">
-		.funs-list{ width: 100%; height: auto; overflow: hidden; font-size: 12px; margin-top: 10px; }
-		.funs-list div{ width: 100%; height: 40px; line-height: 40px; background: #fff; text-indent: 5px; margin: 5px 0; }
-		.funs-list div i:nth-child(2){ float: right; margin: 11px 5px 0 0; font-size: 18px; }
-	</style>
 	<body>
 		<header class="mui-bar mui-bar-nav">
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
@@ -23,12 +19,12 @@
 		</header>
 		<div class="mui-content">
 		    <div class="funs-list">
-				<div class="newpage-div" data-page="./members.html" data-title="一级会员">
+				<div class="newpage-div" data-page="./members.html" data-title="一级会员" data-level="one">
 					<i class="mui-icon mui-icon-person"></i>
 					一级会员
 					<i class="mui-icon mui-icon-arrowright"></i>
 				</div>
-				<div class="newpage-div" data-page="./members.html" data-title="二级会员">
+				<div class="newpage-div" data-page="./members.html" data-title="二级会员" data-level="two">
 					<i class="mui-icon mui-icon-personadd"></i>
 					二级会员
 					<i class="mui-icon mui-icon-arrowright"></i>
@@ -37,19 +33,9 @@
 		</div>
 		<script type="text/javascript" src="../js/common/mui.min.js"></script>
 		<script type="text/javascript" src="../js/common/common.js"></script>
-		<script type="text/javascript" src="../js/common/share.js"></script>
 		<script type="text/javascript" src="../js/common/Request.js"></script>
+		<script type="text/javascript" src="../js/common/apis.js"></script>
 		<script type="text/javascript" src="../js/common/app.js"></script>
-		<script type="text/javascript">
-			mui.init({});
-			mui.plusReady(function () {
-				mui(".funs-list").on("tap",".newpage-div",function () {
-					var page = this.dataset.page;
-					var t = this.dataset.title;
-					openPage( page , { title : t });
-				});
-			});
-
-		</script>
+		<script type="text/javascript" src="../js/myteam.js"></script>
 	</body>
 </html>

@@ -1,14 +1,11 @@
 (function ( $ , doc ) {
 // 	var old_back = mui.back;
 // 	$.back = function () {
-// 		var opener = plus.webview.currentWebview().opener();
-// 		if( opener.id == "./index.html" ) {
-// 			plus.webview.getLaunchWebview().show("slide-in-right",200,function () {
-// 				
-// 			})
-// 		} else {
-// 			old_back();
-// 		}
+// 			if( history.length > 1 ) {
+// 					old_back();
+// 			} else {
+// 					//window.close();
+// 			}
 // 	}
 	$.init({
 		
@@ -23,6 +20,7 @@
 		getNews({ phone : "18918455233" } , newsDiv);
 
 		
+		//console.log( history.length  )
 		if( plus.os.name.toLocaleLowerCase() == "android" ) {
 			plus.nativeUI.closeWaiting();
 		}
@@ -33,7 +31,6 @@
 			openPage( page );
 		});
 		
-		//console.log( plus.storage.getItem("userInfo") )
 
 	/* 
 	 * 	  打开微信
@@ -64,7 +61,7 @@
 		   if( res.hasOwnProperty("success") && res.success ) {
 			   var data = res.data;
 			   if( data instanceof Array ) {
-				   console.log( JSON.stringify( data ) ) 
+				 
 				   var html = "";
 				   for( var i = 0; i < data.length; i ++ ) {
 					   html += "<small>"+ data[i].title +"</small>";
@@ -89,18 +86,18 @@
 		滚动咨询
    */
   function runNews( elem ) {
-	var maxLength = elem.children.length;
-	var height = elem.parentNode.offsetHeight;
-	var index = 0; 
+			var maxLength = elem.children.length;
+			var height = elem.parentNode.offsetHeight;
+			var index = 0; 
 
-	var t = setInterval(function () {
-		index ++;
-		if( index == maxLength ) {
-			index = 0;
-		}
-		var run = index * height;
-		elem.style.transform = "translate(0px,"+ -run +"px) translateZ(0px)";
-		elem.style.WebkiyTransform = "translate(0px,"+ -run +"px) translateZ(0px)";
-	},3000);
+			var t = setInterval(function () {
+				index ++;
+				if( index == maxLength ) {
+					index = 0;
+				}
+				var run = index * height;
+				elem.style.transform = "translate(0px,"+ -run +"px) translateZ(0px)";
+				elem.style.WebkiyTransform = "translate(0px,"+ -run +"px) translateZ(0px)";
+			},3000);
   }
 })( mui , document );
