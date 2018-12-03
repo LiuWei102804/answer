@@ -1,9 +1,9 @@
 {
     "@platforms" : [ "android", "iPhone", "iPad" ],
     "id" : "H5BE3FBA0", /*应用的标识，创建应用时自动生成，勿手动修改*/
-    "name" : "趣答题", /*应用名称，程序桌面图标名称*/
+    "name" : "趣任务", /*应用名称，程序桌面图标名称*/
     "version" : {
-        "name" : "1.0.21", /*应用版本名称*/
+        "name" : "1.0.22", /*应用版本名称*/
         "code" : "83"
     },
     "description" : "", /*应用描述信息*/
@@ -29,15 +29,15 @@
         "UI" : {},
         "Webview" : {},
         "NativeUI" : {},
-        "Navigator" : {},  
+        "Navigator" : {},
         "Share" : {},
         "Fingerprint" : {}
     },
-    "plus" : { 
-    	"statusbar" : {
-    		"immersed": true ,
-			"style" : "dark"
-    	} ,
+    "plus" : {
+        "statusbar" : {
+            "immersed" : true,
+            "style" : "dark"
+        },
         "splashscreen" : {
             "autoclose" : true, /*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
             "waiting" : true,

@@ -1,15 +1,15 @@
 (function ( $ , doc ) {
 		$.init({
-//			preloadPages : [{
-//				url:"./index.html" ,
-//			    id:"./index.html" ,
-//			    styles:{
-//			    	top : 0 ,
-//			    	bottom : 0
-//			    } //窗口参数
-//			    //extras:{},//自定义扩展参数
-//			    //subpages:[{},{}]//预加载页面的子页面
-//			}] ,
+// 			preloadPages : [{
+// 				url:"./index.html" ,
+// 			    id:"./index.html" ,
+// 			    styles:{
+// 			    	top : 0 ,
+// 			    	bottom : 0
+// 			    } //窗口参数
+// //			    //extras:{},//自定义扩展参数
+// //			    //subpages:[{},{}]//预加载页面的子页面
+// 			}] ,
 			//statusBarBackground: '#f7f7f7'
 		});
 		$.plusReady(function () {

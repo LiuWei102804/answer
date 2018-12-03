@@ -16,6 +16,8 @@
 	$.plusReady(function () {
 		plus.device.setWakelock( true );
 		var currentWebview = plus.webview.currentWebview();
+		
+		//alert(plus.navigator.isImmersedStatusbar());
 
 		currPage = $.openWindow({
 			url:'./pages/home.html',  
