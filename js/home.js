@@ -9,7 +9,7 @@
 	// 				});
 		
 		var newsDiv = $(".news div")[0];
-		getNews(newsDiv);
+		getNews(newsDiv);  
 
 		if( plus.os.name.toLocaleLowerCase() == "android" ) {
 			plus.nativeUI.closeWaiting();
@@ -19,34 +19,10 @@
 		$(".account-class").on("tap",".newpage-div",function () {
 			var page = this.dataset.page;
 			openPage( page );
-		});
+		}); 
 		
-		$(".mui-bar-tab").on("tap",".user",function () {
-			var page = this.dataset.page;
-//			var userPage = plus.webview.getWebviewById( page );
-//			if( Boolean( userPage ) ) {
-//				userPage.show("auto");
-//			} else {
-				$.openWindow({
-					url : page ,
-					id : page ,
-					createNew : false ,
-					style : {
-						top : "0px" ,
-						bottom : "0px"
-					} ,
-					show : {
-						autoShow : true ,
-						aniShow : "pop-in" ,
-						duration : 0 
-					} ,
-					waiting : {
-						autoShow : true ,
-						title : "正在加载...."
-					} 
-				})
-			//}
-		})
+		//console.log( plus.navigator.isImmersedStatusbar() )
+
 	}); 
 	/*
 		查询新闻咨询

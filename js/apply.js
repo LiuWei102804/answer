@@ -10,8 +10,8 @@
 		var amountType = 0;											//默认普通钱包
 		var radios = $("input[type=radio]");
 		
-		$(".ordinary")[0].textContent = data["commAvaible"];
-		$(".elite")[0].textContent = data["vipAvaible"];
+		$(".ordinary")[0].textContent = "余额:" + data["commAvaible"];
+		$(".elite")[0].textContent = "余额:" + data["vipAvaible"];
 
 		
 		$(".mui-content").on("tap","#draw",function () {

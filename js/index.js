@@ -1,16 +1,8 @@
 (function ( $ , doc ) {
-	var subpages = ["./pages/home.html","./pages/userCenter.html"];
+	var subpages = ["./pages/userCenter.html","./pages/home.html"];
 	var currPage = null;
+	var hasPage = {};
 	$.init({ 
-	//	subpages:[{  
-	//          url:'./pages/home.html',  
-	//          id:'./pages/home.html',  
-	//          styles:{  
-	//              top:'0px',  
-	//              bottom:'52px'  
-	//          }  
-	//      }  
-	//  ], 
 	    preloadPages : [{  
 		        url:'./pages/userCenter.html',  
 		        id:'./pages/userCenter.html',  
@@ -18,51 +10,42 @@
 			        top:'0px',
 			        bottom:'52px'  
 		        }  
-		    } , {  
-	            url:'./pages/home.html',  
-	            id:'./pages/home.html',  
-	            styles:{  
-	                top:'0px',  
-	                bottom:'52px'  
-	            }  
-	        } 
+		    }
 	    ]
 	});
 	$.plusReady(function () {
 		plus.device.setWakelock( true );
-		
-		for( var i = 0; i < subpages.length; i ++ ) {
-			var page = $.openWindow({
-				url : subpages[i] ,
-				id : subpages[i] ,
-				createNew : false ,
-				styles : {
-					top : "0px" ,  
-					bottom : "52px"
-				} ,
-				show : {
-					autoShow : i == 0 ? true : false ,
-					aniShow : "pop-in" ,
-					duration : 0 
-				} ,
-				waiting : {
-					autoShow : true ,
-					title : "正在加载...."
-				} ,
-			});
-			if( i == 0 ) {
-				currPage = page;
-			}
-			plus.webview.currentWebview().append( page );
-		};
-		
-		
-		var loginPage = plus.webview.getLaunchWebview();
-		loginPage.hide();
-		
-		$(".$-tab-item").each(function ( index , elem ) {
+		var currentWebview = plus.webview.currentWebview();
+
+		currPage = $.openWindow({
+			url:'./pages/home.html',  
+			id:'./pages/home.html',  
+			styles:{  
+				top:'0px',  
+				bottom:'52px'  
+			} ,
+			createNew : false ,
+			show : {
+				autoShow : true ,
+				aniShow : "pop-in" ,
+				duration : 0 
+			} ,
+			waiting : {
+				autoShow : true ,
+				title : "正在加载...."
+			} 
+		});
+		currentWebview.append( currPage );
+		hasPage[currPage.id] = currPage.id;
+
+		$(".mui-tab-item").each(function ( index , elem ) {
+
 			elem.addEventListener("tap",function () {
 				var dataPage = plus.webview.getWebviewById( this.dataset.page );
+				if( !hasPage[dataPage.id] ) {
+					hasPage[dataPage.id] = dataPage.id;
+					currentWebview.append( dataPage );
+				}
 				dataPage.show();
 				currPage.hide();
 				currPage = dataPage;

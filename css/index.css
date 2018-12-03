@@ -1,7 +1,7 @@
 .mui-bar{ background-color: #fff; padding-top: 0; height: 44px; }
 .mui-bar-tab .mui-tab-item{ width: 50%; line-height: 70px; font-size: 12px; float: left; text-align: center; background-position: center 5px; background-size: 20px; background-repeat: no-repeat; }
-.mui-bar-tab .home{ background-image: url(images/home.png);  }
-.mui-bar-tab .user{ background-image: url(images/user.png);  }
+.mui-bar-tab .home{ background-image: url(../images/home.png); background-repeat: no-repeat;  } 
+.mui-bar-tab .user{ background-image: url(../images/user.png);  background-repeat: no-repeat;  }
 
-.mui-bar-tab .mui-tab-item.home.mui-active{ color: #ff4504; background-image: url(images/home_a.png);}
-.mui-bar-tab .mui-tab-item.user.mui-active{ color: #ff4504; background-image: url(images/user_a.png);}
+.mui-bar-tab .mui-tab-item.home.mui-active{ color: #ff4504; background-image: url(../images/home_a.png);}
+.mui-bar-tab .mui-tab-item.user.mui-active{ color: #ff4504; background-image: url(../images/user_a.png);}
