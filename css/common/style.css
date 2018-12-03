@@ -1,18 +1,18 @@
 *{ box-sizing: border-box; -webkit-box-sizing: border-box; }
 body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td, article, aside, footer, header, group, main, nav, section, menu {  margin: 0;  padding: 0;  list-style: none; }
-html,body{ width:100%; font-family: "Microsoft YaHei", "宋体" , sans-serif; min-height: 100%; }
+html,body{ width:100%; font-family: "Microsoft YaHei", "宋体" , sans-serif; min-height: 100%;}
 input,textarea,button,select{ outline: none; }
 input::-webkit-input-placeholder{  color:#686869; }
 input:-moz-placeholder { color:#686869; }
 input:placeholder { color:#686869; }
 input:-ms-input-placeholder{ color:#686869; }
-
+.mui-bar{ height: 64px; padding-top: 20px; }
 
 a { text-decoration: none; }
 a:hover, a:focus { text-decoration: none;  }
 img{ border: 0; width: 100%; } 
-
-.mui-content{ min-height: 100%;}
+ 
+.mui-content{ min-height: 100%; margin-top: 20px;}
 .flex{ display: flex !important; display: -webkit-flex !important; }
 .flex-align{ align-items: center; -webkit-align-items: center; }
 .flex-just{ justify-content: center; -webkit-justify-content: center; }

@@ -24,5 +24,6 @@
 .account-data .account-type div{ border-right: none; height: 70px; }
 .news{ width: 100%; height: 30px; line-height: 30px; margin-top: 10px; padding: 0 3%; font-size: 16px; font-weight: normal; color: #ff4504; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; -webkit-text-overflow : ellipsis; background: #fff; }
 .news { padding-right: 3%; width: 100%; }
-.news div{ width: 70%; float: right; transform: translateZ(0px); -webkit-transform: translateZ(0px); transition: .3s all ease-in; -webkit-transition: .3s all ease-in;  }
+.news div{ width: 70%; float: right; transform: translateZ(0px); -webkit-transform: translateZ(0px); }
 .news div small{ color: #000; font-size: 12px; display: block; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+

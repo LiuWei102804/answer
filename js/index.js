@@ -1,57 +1,72 @@
-var subpages = ["./pages/home.html","./pages/userCenter.html"];
-
-mui.init({ 
-	//statusBarBackground: '#f7f7f7'
-});
-mui.plusReady(function () {
-	for( var i = 0; i < subpages.length; i ++ ) {
-		mui.openWindow({
-			url: subpages[i],
-			id: subpages[i],
-			styles:{
-				top:"0px" , //新页面顶部位置
-				bottom:"52px" , //新页面底部位置
-				width : "100%"
-			},
-			createNew:false ,
-			show : {
-				autoShow : i == 0 ? true : false ,
-				aniShow  : "slide-in-right" ,
-				duration : 0
-			} ,
-			waiting:{
-			    autoShow:true,		//自动显示等待框，默认为true
-			    title:'正在加载...',//等待对话框上显示的提示内容
-			}
-		});
-	}
-	var loginPage = plus.webview.getLaunchWebview();
-	loginPage.hide();
-	
-	mui(".mui-bar-tab").on("tap",".mui-tab-item",function () {
-		var current = this.dataset.page;
-
-		var page = plus.webview.getWebviewById( current );
-		if( page ) {
-			page.show("slide-in-right",0,function () {
-				//hideSubPage( current );							
-			});
-		}
-		//console.log( JSON.stringify( page ) )
-
+(function ( $ , doc ) {
+	var subpages = ["./pages/home.html","./pages/userCenter.html"];
+	var currPage = null;
+	$.init({ 
+	//	subpages:[{  
+	//          url:'./pages/home.html',  
+	//          id:'./pages/home.html',  
+	//          styles:{  
+	//              top:'0px',  
+	//              bottom:'52px'  
+	//          }  
+	//      }  
+	//  ], 
+	    preloadPages : [{  
+		        url:'./pages/userCenter.html',  
+		        id:'./pages/userCenter.html',  
+		        styles:{
+			        top:'0px',
+			        bottom:'52px'  
+		        }  
+		    } , {  
+	            url:'./pages/home.html',  
+	            id:'./pages/home.html',  
+	            styles:{  
+	                top:'0px',  
+	                bottom:'52px'  
+	            }  
+	        } 
+	    ]
 	});
-	
-	/*
-		监听事件
-	*/
-   window.addEventListener("customBack",function (event) {
-	   mui(".mui-tab-item")[0].className = "mui-tab-item mui-active home";
-	   mui(".mui-tab-item")[1].className = "mui-tab-item user";
-   },false);
-	
-//	plus.geolocation.getCurrentPosition(function ( pos ) {
-//		//console.log( JSON.stringify( pos ) )
-//	},function () {
-//		
-//	},{ provider : "baidu" , enableHighAccuracy : true , geocode : true })
-});
+	$.plusReady(function () {
+		plus.device.setWakelock( true );
+		
+		for( var i = 0; i < subpages.length; i ++ ) {
+			var page = $.openWindow({
+				url : subpages[i] ,
+				id : subpages[i] ,
+				createNew : false ,
+				styles : {
+					top : "0px" ,  
+					bottom : "52px"
+				} ,
+				show : {
+					autoShow : i == 0 ? true : false ,
+					aniShow : "pop-in" ,
+					duration : 0 
+				} ,
+				waiting : {
+					autoShow : true ,
+					title : "正在加载...."
+				} ,
+			});
+			if( i == 0 ) {
+				currPage = page;
+			}
+			plus.webview.currentWebview().append( page );
+		};
+		
+		
+		var loginPage = plus.webview.getLaunchWebview();
+		loginPage.hide();
+		
+		$(".$-tab-item").each(function ( index , elem ) {
+			elem.addEventListener("tap",function () {
+				var dataPage = plus.webview.getWebviewById( this.dataset.page );
+				dataPage.show();
+				currPage.hide();
+				currPage = dataPage;
+			})
+		});
+	});
+})( mui , document );

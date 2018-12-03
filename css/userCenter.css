@@ -1,5 +1,5 @@
 		.mui-content{ background: #FAFAFA; height: 100%;  }
-		.head{ padding:30px 3%; width: 100%; height: auto; min-height: 150px; background: url(../images/userdata_bg.png) no-repeat; color: #fff; position: relative; color: #fff; }
+		.head{ padding:30px 3%; width: 100%; height: auto; min-height: 150px; background: url(../images/userdata_bg.png) no-repeat; color: #fff; position: relative; color: #fff; background-size: 100% 100%; }
 		.head .userphoto{ width: 70px; height: 70px; background: url(../images/round_shadow.png) no-repeat; background-size: 100% 100%; padding: 6px; }
 		.head p{ color: #fff; } 
 		.head div:nth-child(2){ margin-left: 5px; flex: 3; -webkit-flex: 3; }

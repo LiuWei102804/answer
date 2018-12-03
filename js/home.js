@@ -1,12 +1,4 @@
 (function ( $ , doc ) {
-// 	var old_back = mui.back;
-// 	$.back = function () {
-// 			if( history.length > 1 ) {
-// 					old_back();
-// 			} else {
-// 					//window.close();
-// 			}
-// 	}
 	$.init({
 		
 	})
@@ -17,10 +9,8 @@
 	// 				});
 		
 		var newsDiv = $(".news div")[0];
-		getNews({ phone : "18918455233" } , newsDiv);
+		getNews(newsDiv);
 
-		
-		//console.log( history.length  )
 		if( plus.os.name.toLocaleLowerCase() == "android" ) {
 			plus.nativeUI.closeWaiting();
 		}
@@ -31,46 +21,47 @@
 			openPage( page );
 		});
 		
-
-	/* 
-	 * 	  打开微信
-	 **/ 
-//		plus.runtime.launchApplication({   
-//			pname : "com.tencent.mm" ,    
-//			action : "weixin://dl/business/?ticket=te95c0ed54766d87903e7c9a073e1e849" ,  
-//			//extra : { url : "https://www.baidu.com" } 
-//		},function ( err ) { 
-//			$.confirm("检测到您未安装\"微信\",是否前往下载","提示",function ( btn ) {	
-//				if( btn.index == 1 ) {
-//					if( plus.os.name.toLocaleLowerCase() == "ios" ) {
-//						plus.runtime.openURL("https://itunes.apple.com/cn/app/wechat/id414478124?mt=8"); 
-//						 
-//					} else {
-//						plus.runtime.openURL("https://dldir1.qq.com/weixin/android/weixin673android1360.apk");
-//					}
-//
-//				}  
-//			})   
-//		});   			
+		$(".mui-bar-tab").on("tap",".user",function () {
+			var page = this.dataset.page;
+//			var userPage = plus.webview.getWebviewById( page );
+//			if( Boolean( userPage ) ) {
+//				userPage.show("auto");
+//			} else {
+				$.openWindow({
+					url : page ,
+					id : page ,
+					createNew : false ,
+					style : {
+						top : "0px" ,
+						bottom : "0px"
+					} ,
+					show : {
+						autoShow : true ,
+						aniShow : "pop-in" ,
+						duration : 0 
+					} ,
+					waiting : {
+						autoShow : true ,
+						title : "正在加载...."
+					} 
+				})
+			//}
+		})
 	}); 
 	/*
 		查询新闻咨询
 	*/
-   function getNews( params , obj ) {
-	   app.getNews( params ).then(function ( res ) {
+   function getNews( obj ) {
+	   app.getNews().then(function ( res ) {
 		   if( res.hasOwnProperty("success") && res.success ) {
 			   var data = res.data;
 			   if( data instanceof Array ) {
-				 
 				   var html = "";
 				   for( var i = 0; i < data.length; i ++ ) {
 					   html += "<small>"+ data[i].title +"</small>";
 				   }
 				   obj.innerHTML = html;
-				   //$.later(function () {
-					runNews( obj );  
-				   //});
-				   
+				   runNews( obj );  
 			   } else {
 				   $.toast( requestMsg.fail );
 			   }
@@ -86,18 +77,21 @@
 		滚动咨询
    */
   function runNews( elem ) {
-			var maxLength = elem.children.length;
-			var height = elem.parentNode.offsetHeight;
-			var index = 0; 
+		var maxLength = elem.children.length;
+		var height = elem.parentNode.offsetHeight;
+		var index = 0,run = 0; 
 
-			var t = setInterval(function () {
-				index ++;
-				if( index == maxLength ) {
-					index = 0;
-				}
-				var run = index * height;
-				elem.style.transform = "translate(0px,"+ -run +"px) translateZ(0px)";
-				elem.style.WebkiyTransform = "translate(0px,"+ -run +"px) translateZ(0px)";
-			},3000);
+		elem.innerHTML += elem.innerHTML;
+		var t = setInterval(function () { 
+			index ++;  
+			
+		    Animate.run( elem , { translate : [0, -( index * height ) ] },function () {
+		        if( index >= maxLength ) {
+		            index = 0;
+		            Animate.run( elem , { translate : [0, 0 ] } , 0 );
+		        }
+		    })
+
+		},3000);
   }
 })( mui , document );

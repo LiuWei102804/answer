@@ -20,8 +20,8 @@
 	/*
 		查询个人信息
 	*/
-   owner.getUserInfo = function ( params ) {
-	   return Get( ORIGIN + apis.getInfo , params );
+   owner.getUserInfo = function () {
+	   return Get( ORIGIN + apis.getInfo );
    };
 	 /*
 			查询提现记录
@@ -39,8 +39,8 @@
 	/*
 			查询新闻咨询
 	*/
-	owner.getNews = function ( params ) {
-			return Get( ORIGIN + apis.getNews , params );
+	owner.getNews = function () {
+			return Get( ORIGIN + apis.getNews );
 	};
 	/*
 			获取我的团队信息
@@ -58,7 +58,19 @@
 	 * 	申请提现
 	 * 
 	 */
-		owner.drawApply = function ( params ) {
-				return Post( ORIGIN + apis.drawApply , params );
-		}
+	owner.drawApply = function ( params ) {
+			return Post( ORIGIN + apis.drawApply , params );
+	}
+	/*
+	 	查询问卷
+	 * */
+	owner.getQuestions = function () {
+		return Post( ORIGIN + apis.getQuestion );
+	}
+	/**
+	 * 	查询可答题次数
+	 */
+	owner.canPartake = function ( params ) {
+		return Get( ORIGIN + apis.questionNum , params );
+	}
 }(mui, window.app = {}));

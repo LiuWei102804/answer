@@ -1,11 +1,4 @@
 (function ( $ , doc ) {
-// 	var old_back = mui.back;
-// 	$.back = function () {
-// 		var parent = plus.webview.getWebviewById("./index.html");
-// 		//console.log( JSON.stringify( parent ) )
-// 		$.fire( parent , "customBack" , { tab : "./pages/userCenter.html" } );
-// 		old_back();
-// 	}
 	$.init({
 		pullRefresh : {
 			container:"#refreshContainer",//下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
@@ -64,7 +57,35 @@
 		$(".account-data").on("tap",".uplevel",function () {
 			upLevel();
 		});
-		
+		/*
+		 	切换tab
+		 * */
+		$(".mui-bar-tab").on("tap",".home",function () {
+			var page = this.dataset.page;
+//			var homePage = plus.webview.getWebviewById( page );
+//			if( Boolean( homePage ) ) {
+//				homePage.show("none");
+//			} else {
+				$.openWindow({
+					url : page ,
+					id : page ,
+					createNew : false ,
+					style : {
+						top : "0px" ,
+						bottom : "0px"
+					} ,
+					show : {
+						autoShow : true ,
+						aniShow : "pop-in" ,
+						duration : 0 
+					} ,
+					waiting : {
+						autoShow : true ,
+						title : "正在加载...."
+					} 
+				})
+			//}
+		})
 		
 
 		getUserInfo();
@@ -121,20 +142,19 @@
 		查询个人信息
 	*/
 	function getUserInfo() {
-		//console.log( params )
-		app.getUserInfo({ phone : "18918455233" }).then(function ( res ) {
-				if( res.hasOwnProperty("success") && res.success ) {
-					var data = res.data; 
-					//console.log( JSON.stringify( data ))
-						$(".realName")[0].innerHTML = data.realName;
-						$(".userId")[0].innerHTML = "ID:" + data.phone;
-				} else {
-						$.toast( requestMsg.fail );
-				}
-				$('#refreshContainer').pullRefresh().endPulldownToRefresh();
-		},function ( err ) {
-				$('#refreshContainer').pullRefresh().endPulldownToRefresh();
+		app.getUserInfo().then(function ( res ) {
+			if( res.hasOwnProperty("success") && res.success ) {
+				var data = res.data; 
+				//console.log( JSON.stringify( data ))
+				$(".realName")[0].innerHTML = data.realName;
+				$(".userId")[0].innerHTML = "ID:" + data.phone;
+			} else {
 				$.toast( requestMsg.fail );
+			}
+			$('#refreshContainer').pullRefresh().endPulldownToRefresh();
+		},function ( err ) {
+			$('#refreshContainer').pullRefresh().endPulldownToRefresh();
+			$.toast( requestMsg.fail );
 		})
 	}
 }( mui , document ));

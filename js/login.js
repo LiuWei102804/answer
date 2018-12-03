@@ -1,6 +1,16 @@
 (function ( $ , doc ) {
 		$.init({
-			statusBarBackground: '#f7f7f7'
+//			preloadPages : [{
+//				url:"./index.html" ,
+//			    id:"./index.html" ,
+//			    styles:{
+//			    	top : 0 ,
+//			    	bottom : 0
+//			    } //窗口参数
+//			    //extras:{},//自定义扩展参数
+//			    //subpages:[{},{}]//预加载页面的子页面
+//			}] ,
+			//statusBarBackground: '#f7f7f7'
 		});
 		$.plusReady(function () {
 				var currentWebview = plus.webview.currentWebview();
@@ -12,7 +22,7 @@
 					var all = plus.webview.all();
 					for( var i = 0; i < all.length; i ++ ) {
 							if( all[i].id == currentWebview.id ) {
-									continue;
+								continue;
 							}
 							all[i].close("pop-out",0);
 					}
@@ -45,21 +55,23 @@
 								account : account.value ,
 								password : md5( password.value )
 						};
-						doc.activeElement.blur();
-						 plus.nativeUI.showWaiting("加载中...");
-						 app.login( params ).then(function ( res ) {
-							 if( res.hasOwnProperty("success") && res.success ) {
-									plus.storage.setItem( "userInfo" , JSON.stringify( res ) );
-									openPage("./index.html");
-							 } else {
-									mui.toast( res.errorMessage );
-							 }
-							 //console.log( JSON.stringify( res ) )
-							  plus.nativeUI.closeWaiting();
-						 },function ( err ) {
-									mui.toast( requestMsg.fail );
-									plus.nativeUI.closeWaiting();
-						 });
+						 doc.activeElement.blur();
+						 openPage("./index.html");
+//						 plus.nativeUI.showWaiting("加载中...");
+//						 app.login( params ).then(function ( res ) {
+//							 if( res.hasOwnProperty("success") && res.success ) {
+//									plus.storage.setItem( "userInfo" , JSON.stringify( res ) );
+//									openPage("./index.html");
+//							 } else {
+//									mui.toast( res.errorMessage );
+//							 } 
+//							 
+//							 //console.log( JSON.stringify( res ) )
+//							  plus.nativeUI.closeWaiting();
+//						 },function ( err ) {
+//									mui.toast( requestMsg.fail );
+//									plus.nativeUI.closeWaiting();
+//						 });
 						
 						//plus.nativeUI.showWaiting();
 					

@@ -36,11 +36,16 @@
 			return promise;
 		}
 		w.Post = function ( url , data ) {
-			url += "?phone=15259888000"
+			if( url != "http://47.104.139.205:8000/api/v1/reginit.api" && url != "http://47.104.139.205:8000/api/v1/login.api" ) {
+				url += "?phone=15259888000"
+			}
 			return w.ajax( url , data , "post" );
 		};
-		w.Get = function ( url , data ) {
-			return w.ajax( url , data , "get" );
+		w.Get = function ( url , data ) { 
+			var _data = data ? data : {}; 
+			_data.phone = "15259888000";
+
+			return w.ajax( url , _data , "get" );
 		};
 	});
 })(mui,window);

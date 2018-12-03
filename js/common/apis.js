@@ -15,6 +15,7 @@
 		getMyTeam : "/api/v1/myTeam" ,					//我的团队
 		reward : "/api/v1/question/callback" ,			//答题奖励
 		getQuestion : "/api/v1/survey/list" ,			//查询问卷列表
+		questionNum : "/api/v1/survey/checkNum" ,		//查询可答题次数
 		getNews : "/api/v1/notice/list" ,				//获取咨询信息
 		putTask : "/api/v1/company/add" ,				//任务投放,企业合作
 	};
