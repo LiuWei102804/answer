@@ -1,7 +1,10 @@
 (function ( $ , w ) {
-	var uuid = null;
+	var uuid = null,userInfo = null;
 	$.plusReady(function () {
+		userInfo = JSON.parse( plus.storage.getItem("userInfo") );
+		
 		uuid = plus.device.uuid;
+		
 		w.ajax = function (url , data , method ) { 
 			var promise = new Promise(function (resolve,reject) {
 				if( !navigator.onLine ) {
@@ -10,7 +13,8 @@
 				};
 				var headers = {
 					UUID : uuid ,
-					token : "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDYyNDAwMTgzODEsInBheWxvYWQiOiJcIjE4OTE4NDU1MjMzMkQ5MTI0QUItNTQ5NC00OEQ5LUFBRTgtMjFCMUMzRjYyRDg2XCIifQ.SVEmSvekJDoQOAy4nUB3bCythNWZa0YltOIbtl9KPGs"
+					token : userInfo.data
+					//token : "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDY0MTg5MzQ0NTIsInBheWxvYWQiOiJcIjE1MjU5ODg4MDAwYTY5YmNiYjMtOGI3ZC00ZTk4LWI4OTMtNmU5YzYyMTAzMTAyXCIifQ.8S3a9CISX7EBZH9XRlW2zKIJSGcNEYa9XLvuO4A2GGI"
 				};
 				//data.phone = "18918455233";
 // 				if( plus.storage.getItem("userInfo") != null ) {
@@ -28,7 +32,8 @@
 					success : function ( res ) {
 						resolve( res );
 					} ,
-					error : function ( err ) {
+					error : function ( err ) { 
+						console.error( "request call err " + err.message );
 						reject( err );
 					}
 				});
@@ -36,16 +41,35 @@
 			return promise;
 		}
 		w.Post = function ( url , data ) {
-			if( url != "http://47.104.139.205:8000/api/v1/reginit.api" && url != "http://47.104.139.205:8000/api/v1/login.api" ) {
-				url += "?phone=15259888000"
+			if( url.indexOf("/api/v1/reginit.api") > -1 && url.indexOf("/api/v1/login.api") > -1 ) {
+				url += "?phone=" + userInfo.phone;
 			}
 			return w.ajax( url , data , "post" );
 		};
 		w.Get = function ( url , data ) { 
 			var _data = data ? data : {}; 
-			_data.phone = "15259888000";
+			_data.phone = userInfo.phone;
 
 			return w.ajax( url , _data , "get" );
 		};
+		
+		
+		/**
+		 * 	监听网络断开
+		 * 
+		 */
+		document.addEventListener("netchange", function () {
+			var nt = plus.networkinfo.getCurrentType();
+			switch ( nt ) {
+				case plus.networkinfo.CONNECTION_CELL2G :
+				case plus.networkinfo.CONNECTION_CELL3G :
+					plus.nativeUI.toast("当前网络状态不佳",{ duration : "long" });
+					break;
+				case plus.networkinfo.CONNECTION_NONE :
+					plus.nativeUI.alert("当前网络连接已断开,请检查网络");
+					break;
+				default :
+			}
+		}, false );
 	});
 })(mui,window);

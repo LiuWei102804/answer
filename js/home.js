@@ -1,4 +1,5 @@
 (function ( $ , doc ) {
+	
 	$.init({
 		
 	})
@@ -22,6 +23,7 @@
 		}); 
 		
 		//console.log( plus.navigator.isImmersedStatusbar() )
+
 
 	}); 
 	/*

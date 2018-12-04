@@ -37,34 +37,6 @@
 		<script type="text/javascript" src="../js/common/share.js"></script>
 		<script type="text/javascript" src="../js/common/Request.js"></script>
 		<script type="text/javascript" src="../js/common/app.js"></script>
-		<script>
-			/*
-			 	分享参数
-			 * */
-			var msg = {
-				title : "趣任务" ,
-				content : "邀朋友一起趣任务，每天8元，更有无限红包等你来拿。" ,
-				href : "https://www.pgyer.com/alfd" ,
-				//href : "http://192.168.1.12:8000/index.html" ,
-				smallImg : "_www/Icon-72.png"
-			};
-			mui.init({
-				
-			});
-			mui.plusReady(function () {
-				var qr = mui("#qrcode")[0];
-				var code = new QRCode( qr , { 
-					text : "http://www.runoob.com" ,
-					width : 108 ,
-					height : 108
-				});
-				
-				getServices();
-				
-				mui(".mui-bar-nav").on("tap",".share",function ( evt ) {
-					shareWeb( msg );
-				});
-			});
-		</script>
+		<script type="text/javascript" src="../js/extension.js"></script>
 	</body>
 </html>

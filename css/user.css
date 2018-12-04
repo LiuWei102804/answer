@@ -1,0 +1,2 @@
+.info{ padding-left: 4%; margin: 15px 0; }
+.info:before{ content: "*"; color: red; }

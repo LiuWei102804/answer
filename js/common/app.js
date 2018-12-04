@@ -23,11 +23,17 @@
    owner.getUserInfo = function () {
 	   return Get( ORIGIN + apis.getInfo );
    };
+   /**
+    * 	修改个人信息
+    */
+   owner.updateInfo = function ( params ) {
+   		return Post( ORIGIN + apis.updateInfo , params );
+   }
 	 /*
 			查询提现记录
 	 */
 	owner.getDrawLog = function ( params ) {
-			return Get( ORIGIN + apis.drawHistory , params );
+		return Get( ORIGIN + apis.drawHistory , params );
 	};
 	/**
 	 * 	查询是否可以提现
@@ -65,12 +71,18 @@
 	 	查询问卷
 	 * */
 	owner.getQuestions = function () {
-		return Post( ORIGIN + apis.getQuestion );
+		return Get( ORIGIN + apis.getQuestion );
 	}
 	/**
 	 * 	查询可答题次数
 	 */
-	owner.canPartake = function ( params ) {
-		return Get( ORIGIN + apis.questionNum , params );
+	owner.canPartake = function () {
+		return Get( ORIGIN + apis.questionNum );
+	}
+	/**
+	 * 	提交答卷
+	 */
+	owner.questionReward = function () {
+		return Get( ORIGIN + apis.questionReward );
 	}
 }(mui, window.app = {}));

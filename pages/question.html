@@ -8,22 +8,10 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
 		<meta name="format-detection" content="telephone=no,email=no,url=no" />
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<link href="../css/common/mui.min.css" rel="stylesheet" />
-		<link href="../css/common/style.css" rel="stylesheet" />
+		<link href="../css/common/mui.min.css" rel="stylesheet" type="text/css" />
+		<link href="../css/common/style.css" rel="stylesheet" type="text/css" />
+		<link href="../css/question.css" rel="stylesheet" type="text/css" />
 	</head>
-	<style type="text/css">
-		.qs-title{ text-align: center; height: 40px; font-size: 22px; line-height: 40px; background: #ff4507; color: #fff; }
-		.qs-box{ width: 92%; height: auto; overflow: hidden; border:2px solid #ff4507; border-radius: 5px; margin: 10px auto 0; padding: 20px; box-sizing: border-box; }
-		.qs-box .label{ width: 100%; height: auto; margin-bottom: 10px; font-size: 16px; }
-		.qs-box .label span:first-child{ margin-right: 20%; }
-		.qs-box .qs-content{ margin-top: 10px;  overflow: hidden; }
-		.qs-box .qs-content .content{ margin-bottom: 20px; font-size: 16px; width: 100%; height: auto; }
-		/*.qs-box .qs-content label{ display: block;  height: 40px; width: 100%; line-height: 40px; }
-		.qs-box .qs-content label input[type=radio]{ float: left; margin: 12px 5px 0 0; }*/
-		.mui-checkbox.mui-left input[type=checkbox], .mui-radio.mui-left input[type=radio]{ left: 0; }
-		.mui-checkbox.mui-left label, .mui-radio.mui-left label{ padding-left: 38px; }
-		..mui-btn-block{ padding: 10px 0; }
-	</style>
 	<body>
 		<header class="mui-bar mui-bar-nav">
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
@@ -34,11 +22,21 @@
 		    <div class="qs-box">
 		    	<p class="label">
 		    		<span class="username">您好：</span>
-		    		<span>得分：0</span>
+		    		<span class="over">剩余次数：0</span>
 		    	</p>
 		    	<div class="qs-content">
 		    		<b>题目：</b>
 		    		<p class="content"></p>
+		    		<div class="ans">
+			    		<!--<div class="mui-input-row mui-radio mui-left">
+							<label>A,YES</label>
+							<input name="radio" type="radio" checked="" />
+						</div> 
+						<div class="mui-input-row mui-radio mui-left">
+							<label>B,NO</label>
+							<input name="radio" type="radio" />
+						</div>-->
+		    		</div>
 					<!--<div class="mui-input-row mui-radio mui-left">
 						<label>A,YES</label>
 						<input name="radio" type="radio" checked="" />
@@ -50,17 +48,16 @@
 		    	</div>
 		    </div>
 		    <div class="mui-content-padded">
-		    	<button class="mui-btn mui-btn-block mui-btn-primary qs-next">下一题</button> 
+		    	<button class="mui-btn mui-btn-block mui-btn-success qs-next">下一题</button> 
 		    </div>
 		    <div class="mui-content-padded">
-		    	<button class="mui-btn mui-btn-block  mui-btn-danger qs-quit">退出答题</button>
+		    	<button class="mui-btn mui-btn-block  mui-btn-danger qs-quit">退出调研</button>
 		    </div>
 		</div>
 		<script type="text/javascript" src="../js/common/mui.min.js"></script>
 		<script type="text/javascript" src="../js/common/common.js"></script>
-		<script type="text/javascript" src="../js/common/storageQs.js"></script>
-		<script type="text/javascript" src="../js/common/share.js"></script>
 		<script type="text/javascript" src="../js/common/Request.js"></script>
+		<script type="text/javascript" src="../js/common/apis.js"></script>
 		<script type="text/javascript" src="../js/common/app.js"></script>
 		<script type="text/javascript" src="../js/question.js"></script>
 	</body>

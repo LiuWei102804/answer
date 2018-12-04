@@ -17,7 +17,6 @@
 				var account = $("#account")[0];
 				var password = $("#password")[0];
 				
-				
 				currentWebview.addEventListener("show",function () {
 					var all = plus.webview.all();
 					for( var i = 0; i < all.length; i ++ ) {
@@ -42,39 +41,33 @@
 				
 					//账号密码登录
 				$(".mui-content-padded").on("tap","#login",function () {
-
-						if( !Pattern.isPhone( account.value ) ) {
-							$.toast("请输入正确的手机号");
-							return;
-						}
-						if( password.value == "" ) {
-							$.toast("请输密码");
-							return;
-						}
-						var params = {
-								account : account.value ,
-								password : md5( password.value )
-						};
-						 doc.activeElement.blur();
-						 openPage("./index.html");
-//						 plus.nativeUI.showWaiting("加载中...");
-//						 app.login( params ).then(function ( res ) {
-//							 if( res.hasOwnProperty("success") && res.success ) {
-//									plus.storage.setItem( "userInfo" , JSON.stringify( res ) );
-//									openPage("./index.html");
-//							 } else {
-//									mui.toast( res.errorMessage );
-//							 } 
-//							 
-//							 //console.log( JSON.stringify( res ) )
-//							  plus.nativeUI.closeWaiting();
-//						 },function ( err ) {
-//									mui.toast( requestMsg.fail );
-//									plus.nativeUI.closeWaiting();
-//						 });
-						
-						//plus.nativeUI.showWaiting();
-					
+					if( !Pattern.isPhone( account.value ) ) {
+						$.toast("请输入正确的手机号");
+						return;
+					}
+					if( password.value == "" ) {
+						$.toast("请输密码");
+						return;
+					}
+					var params = {
+							account : account.value ,
+							password : md5( password.value )
+					};
+					 doc.activeElement.blur();
+					 plus.nativeUI.showWaiting("加载中...");
+					 app.login( params ).then(function ( res ) {
+						 if( res.hasOwnProperty("success") && res.success ) {
+						 		res.phone = account.value;
+								plus.storage.setItem( "userInfo" , JSON.stringify( res ) );
+								openPage("./index.html");
+						 } else {
+								mui.toast( res.errorMessage );
+						 }  
+						  plus.nativeUI.closeWaiting();
+					 },function ( err ) {
+						mui.toast( requestMsg.fail );
+						plus.nativeUI.closeWaiting();
+					 });
 				});
 		})
 })( mui , document );

@@ -28,8 +28,8 @@ function shareWeb( obj ){
   	};
     if( sweixin ) {
     	plus.nativeUI.actionSheet({title:'分享',cancel:'取消',buttons:buttons}, function( e ){
-  		(e.index>0) && share(sweixin, msg, buttons[e.index-1]);
-    })
+  			(e.index>0) && share(sweixin, msg, buttons[e.index-1]);
+    	})
     } else { 
     	plus.nativeUI.alert('当前环境不支持微信分享操作!');
     }
