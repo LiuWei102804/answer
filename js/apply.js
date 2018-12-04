@@ -19,6 +19,22 @@
 				$.toast("请输入提现金额");
 				return;
 			};
+			doc.activeElement.blur(); 
+			/**
+			 * 如果普通钱包，检查普通钱包余额够不够提现，否则检查精英钱包
+			 */
+			if( amountType == 0 ) {
+				if( drawNum.value > data["commAvaible"] ) {
+					$.toast("可用余额不足");
+					return;
+				}
+			} else {
+				if( drawNum.value > data["vipAvaible"] ) {
+					$.toast("可用余额不足");
+					return;
+				}
+			} 
+
 			var params = {
 				amount : drawNum.value,
 				amountType : amountType
@@ -34,7 +50,7 @@
 				plus.nativeUI.closeWaiting();
 			},function ( err ) {
 				//console.log( JSON.stringify( err ) )
-				$.toast( requestMsg.fail );
+				$.toast( err.message );
 				plus.nativeUI.closeWaiting();
 			})
 		});

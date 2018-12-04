@@ -1,9 +1,24 @@
 (function ( $ , doc ) {
-	$.init({});
-	$.plusReady(function () {
-		var curr = plus.webview.currentWebview();
-		
-		$(".mui-title")[0].textContent = curr.title;
+	$.init({
+// 		subpages : [{
+// 			url : "./myMembersChild.html" ,
+// 			id : "./myMembersChild.html" ,
+// 			extras : {
+// 				data : plus.webview.currentWebview().data
+// 			}
+// 		}]
 	});
+	$.plusReady(function () {
+		var currentWebview = plus.webview.currentWebview();
+		var page = $.openWindow({
+			url : "./myMembersChild.html" ,
+			id : "./myMembersChild.html" ,
+			extras : {
+				data : currentWebview.data
+			}
+		})
+		currentWebview.append( page );
+	})
+
 })( mui , document );
 

@@ -6,26 +6,26 @@
 		uuid = plus.device.uuid;
 		
 		w.ajax = function (url , data , method ) { 
-			console.log( userInfo.data )
+			//console.log( uuid )
 			var promise = new Promise(function (resolve,reject) {
 				if( !navigator.onLine ) {
 					reject({ code : 10086 , msg : "网络连接已断开" });
 					return;
 				};
 				var headers = {
-					UUID : uuid ,
-					token : userInfo.data
+					UUID : uuid 
 					//token : "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDY0MTg5MzQ0NTIsInBheWxvYWQiOiJcIjE1MjU5ODg4MDAwYTY5YmNiYjMtOGI3ZC00ZTk4LWI4OTMtNmU5YzYyMTAzMTAyXCIifQ.8S3a9CISX7EBZH9XRlW2zKIJSGcNEYa9XLvuO4A2GGI"
 				};
 				//data.phone = "18918455233";
-// 				if( plus.storage.getItem("userInfo") != null ) {
-// 					headers.token = JSON.parse( plus.storage.getItem("userInfo") ).token;
-// 				}
+				//console.log( userInfo.hasOwnProperty("data") ) 
+				if( userInfo && userInfo.hasOwnProperty("data") ) {
+					headers.token = userInfo.data;
+				}
 				$.ajax({
 					type: method ,
 					dataType:'json',				//服务器返回json格式数据
 					url: url ,						//请求地址
-					async : false ,
+					async : true ,
 					data : data ,
 					timeout : 3000 ,
 					crossDomain : true ,

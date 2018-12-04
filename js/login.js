@@ -14,9 +14,13 @@
 		});
 		$.plusReady(function () {
 				var currentWebview = plus.webview.currentWebview();
+				var userInfo = plus.storage.getItem("userInfo");
 				var account = $("#account")[0];
 				var password = $("#password")[0];
 				
+				if( userInfo != null ) {
+						openPage("./index.html");
+				}
 				currentWebview.addEventListener("show",function () {
 					var all = plus.webview.all();
 					for( var i = 0; i < all.length; i ++ ) {
@@ -25,6 +29,8 @@
 							}
 							all[i].close("pop-out",0);
 					}
+
+					//console.log(1)
 				},false);
 				/*
 					切换注册
@@ -39,6 +45,7 @@
 						openPage("./forgetPwd.html");
 				});
 				
+				console.log("md5 密码 = " + md5("123456"))
 					//账号密码登录
 				$(".mui-content-padded").on("tap","#login",function () {
 					if( !Pattern.isPhone( account.value ) ) {
@@ -52,7 +59,7 @@
 					var params = {
 							account : account.value ,
 							password : md5( password.value )
-					};
+					}; 
 					 doc.activeElement.blur();
 					 plus.nativeUI.showWaiting("加载中...");
 					 app.login( params ).then(function ( res ) {
@@ -65,7 +72,7 @@
 						 }  
 						  plus.nativeUI.closeWaiting();
 					 },function ( err ) {
-						mui.toast( requestMsg.fail );
+						mui.toast( requestMsg.fail + "" + err.message );
 						plus.nativeUI.closeWaiting();
 					 });
 				});

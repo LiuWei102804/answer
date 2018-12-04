@@ -5,7 +5,7 @@ mui.plusReady(function () {
 		var type = this.dataset.type;
 		var t = this.dataset.title;
 		if( page == "./apply.html" ) {
-			app.checkDrawStatu( { phone : "18918455233" } ).then(function ( res ) {
+			app.checkDrawStatu().then(function ( res ) {
 				if( res.hasOwnProperty("success") && res.success ) {
 					if( res.data.vipAllow ) {
 						openPage( page , { title : t , data : res.data });

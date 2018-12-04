@@ -16,10 +16,12 @@
 		qusIndex = 0,		//问卷索引
 		typeIndex = 1,		//文件类型索引
 		toDayMaxPartake = 10,//剩余答题次数
-		end = false;
+		end = false,		//答题结束
+		isChoice = false;		// 是否有选中
 	var content = null,		//问卷标题
 		ans = null,			//选项列表
-		nextBtn = null;		//提交按钮	
+		nextBtn = null,		//提交按钮	
+		input = null;		
 	$.plusReady(function () {
 		var user = JSON.parse( plus.storage.getItem("userInfo") ).nickname || "游客";
 		content = $(".content")[0];
@@ -43,25 +45,44 @@
 			 * 答卷结束
 			 */
 			if( end ) {
-				
+				$.alert("提交答卷");
+				return;
 			};
 			if( typeof qus[typeIndex].question[qusIndex + 2] == "undefined" ) {
 				nextBtn.innerHTML = "提交";
 				end = true;
 				return;
 			}
-			var input = $("input[type]");
+			if( !isChoice ) {
+				$.alert("请至少选择一项");
+				return;
+			}
+			input = $("input[type]");
 			$.each( input , function ( index, item ) {
 				if( item.checked ) { 
 //					ans[qsIndex] = {
 //						q : QS[qusIndex].q ,
 //						a : item.value 
 //					};
+
 				}
 			});
 			qusIndex += 1;
 			setContent( qus[typeIndex].question[qusIndex] );
+			isChoice = false;
+			toDayMaxPartake -= 1;
+			$(".over")[0].innerHTML = "剩余次数：" + toDayMaxPartake;
 		});
+		/**
+		 * 	input 框选中
+		 */
+		$(".mui-content").on("change","input",function () {
+			if( this.checked ) {
+				isChoice = true;
+			} else {
+				isChoice = false;
+			}
+		})
 		/*
 		 	退出系统
 		 * */
@@ -134,7 +155,9 @@
 		},function ( err ) {
 			plus.nativeUI.closeWaiting();
 		})
-	}
+	};
+
+
 })( mui , document );
 
 

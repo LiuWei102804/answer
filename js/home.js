@@ -1,7 +1,13 @@
 (function ( $ , doc ) {
-	
 	$.init({
-		
+			preloadPages : [{
+					url : "./notOpen.html" ,
+					id : "./notOpen.html" ,
+					styles : {
+							top : "0px" ,
+							bottom : "0px"
+					}
+			}]
 	})
 	$.plusReady(function () {
 	// 				var gallery = $('.$-slider'); 

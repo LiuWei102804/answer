@@ -5,10 +5,9 @@
 		var curr = plus.webview.currentWebview();
 		var data = curr.data;
 
-		
-		$(".l1Vip")[0].textContent = data["highVip"].length + "人";
+
+		$(".l1Vip")[0].textContent = data["comm"].length + "人";
 		$(".l2Vip")[0].textContent = data["commVip"].length + "人";
-		$(".l3Vip")[0].textContent = data["comm"].length + "人";
 		
 		$(".mui-title")[0].textContent = curr.title;
 	
