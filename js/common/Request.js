@@ -6,6 +6,7 @@
 		uuid = plus.device.uuid;
 		
 		w.ajax = function (url , data , method ) { 
+			console.log( userInfo.data )
 			var promise = new Promise(function (resolve,reject) {
 				if( !navigator.onLine ) {
 					reject({ code : 10086 , msg : "网络连接已断开" });

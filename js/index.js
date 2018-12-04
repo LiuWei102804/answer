@@ -44,7 +44,6 @@
 
 			elem.addEventListener("tap",function () {
 				var dataPage = plus.webview.getWebviewById( this.dataset.page );
-				console.log( currPage.id , dataPage.id )
 				if( currPage.id == dataPage.id ) { 
 					return; 
 				}
