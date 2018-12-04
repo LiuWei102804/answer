@@ -19,7 +19,7 @@
 				var password = $("#password")[0];
 				
 				if( userInfo != null ) {
-						openPage("./index.html");
+						//openPage("./index.html");
 				}
 				currentWebview.addEventListener("show",function () {
 					var all = plus.webview.all();
