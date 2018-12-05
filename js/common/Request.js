@@ -5,7 +5,6 @@
 
 		uuid = plus.device.uuid; 
 		//plus.storage.clear();
-		console.log( userInfo.data )
 		w.ajax = function (url , data , method ) { 
 			var promise = new Promise(function (resolve,reject) {
 				if( !navigator.onLine ) {
