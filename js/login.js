@@ -21,7 +21,7 @@
 				if( userInfo != null ) {
 					//openPage("./index.html");
 				}
-				console.log( md5("abc123") )
+				console.log( md5(password.value || "") )
 				currentWebview.addEventListener("show",function () {
 					var all = plus.webview.all();
 					for( var i = 0; i < all.length; i ++ ) {
@@ -37,16 +37,15 @@
 					切换注册
 				* */
 				$(".mui-content-padded").on("tap","#reg",function () {
-						openPage("./reg.html");
+					openPage("./reg.html");
 				});
 				/*
 					忘记密码
 				*/
 				$(".mui-content-padded").on("tap","#forgetPwd",function () {
-						openPage("./forgetPwd.html");
+					openPage("./forgetPwd.html");
 				});
 				
-				console.log("md5 密码 = " + md5("123456"))
 					//账号密码登录
 				$(".mui-content-padded").on("tap","#login",function () {
 					if( !Pattern.isPhone( account.value ) ) {

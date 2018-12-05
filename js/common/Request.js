@@ -19,7 +19,7 @@
 					headers.token = userInfo.data;
 				};
 				if( method == "post" ) {
-					//headers["Content-Type"] = "application/json";
+					headers["Content-Type"] = "application/json";
 				};
 				//console.log( "headers = " , JSON.stringify( headers ) )
 				$.ajax({
@@ -28,7 +28,7 @@
 					url: url ,						//请求地址
 					async : true ,
 					data : data ,
-					timeout : 3000 ,
+					timeout : 30000 ,
 					crossDomain : true ,
 					headers : headers , 
 					success : function ( res ) {
@@ -73,7 +73,7 @@
 					plus.nativeUI.toast("当前网络状态不佳",{ duration : "long" });
 					break;
 				case plus.networkinfo.CONNECTION_NONE :
-					plus.nativeUI.alert("当前网络连接已断开,请检查网络");
+					plus.nativeUI.toast("当前网络连接已断开,请检查网络");
 					break;
 				default :
 			}
