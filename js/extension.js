@@ -4,6 +4,8 @@
 	 * */
 	var msg = {
 		title : "趣任务" ,
+		type : "web" ,
+		interface : "slient" ,
 		content : "邀朋友一起趣任务，每天8元，更有无限红包等你来拿。" ,
 		href : "https://www.pgyer.com/alfd" ,
 		pictures : ["_www/Icon-72.png"] ,
