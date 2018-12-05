@@ -3,13 +3,14 @@
 	 * 用户注册
 	 **/
 	 owner.reg = function ( params ) {
-			return Post( ORIGIN + apis.reg , params );
+	 	var _data = data ? data : {};
+		return Post( ORIGIN + apis.reg , params );
 	 };
 	 /*
 		用户登录
 	 */
 	owner.login = function ( params ) {
-			return Post( ORIGIN + apis.login , params );
+		return Post( ORIGIN + apis.login , params );
 	};
 	/**
 	 * 	更新密码

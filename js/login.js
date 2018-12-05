@@ -17,13 +17,12 @@
 				var userInfo = plus.storage.getItem("userInfo");
 				var account = $("#account")[0];
 				var password = $("#password")[0];
-				
 
-				
+
 				if( userInfo != null ) {
-					openPage("./index.html");
+					//openPage("./index.html");
 				}
-				console.log( md5(password.value || "") )
+				console.log( md5("123456") )
 				currentWebview.addEventListener("show",function () {
 					var all = plus.webview.all();
 					for( var i = 0; i < all.length; i ++ ) {
@@ -59,8 +58,8 @@
 						return;
 					}
 					var params = {
-							account : account.value ,
-							password : md5( password.value )
+						account : account.value ,
+						password : md5( password.value )
 					}; 
 					 doc.activeElement.blur();
 					 plus.nativeUI.showWaiting("加载中...");

@@ -37,7 +37,7 @@
 	 
 	function updateInfo( params ) {
 		plus.nativeUI.showWaiting("加载中...");
-		app.updateInfo( params ).then(function ( res ) {
+		app.updateInfo( {} , params ).then(function ( res ) {
 			if( res.hasOwnProperty("success") && res.success ) {
 				$.alert("保存成功");
 				plus.webview.currentWebview().reload();

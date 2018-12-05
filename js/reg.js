@@ -32,16 +32,16 @@
 			params.msg_id = msgId;
 			plus.nativeUI.showWaiting("加载中...");
 			app.reg( params ).then(function ( res ) {
-					if( res.hasOwnProperty("success") && res.success ) {
-							plus.storage.setItem("userInfo" , JSON.stringify( res ));
-							openPage("./index.html");
-					} else {
-							$.toast( requestMsg.fail );
-					}
-					plus.nativeUI.closeWaiting();
+				if( res.hasOwnProperty("success") && res.success ) {
+					plus.storage.setItem("userInfo" , JSON.stringify( res ));
+					openPage("./index.html");
+				} else {
+						$.toast( requestMsg.fail );
+				}
+				plus.nativeUI.closeWaiting();
 			},function ( err ) {
-					plus.nativeUI.closeWaiting();
-					$.toast( requestMsg.fail );
+				plus.nativeUI.closeWaiting();
+				$.toast( requestMsg.fail );
 			});
 		})
 		
@@ -58,28 +58,28 @@
 			}
 			 plus.nativeUI.showWaiting("加载中...");
 		   app.sendCode({ phone : account.value }).then(function ( res ) {
-					if( res.hasOwnProperty("success") && res.success ) {
-							msgId = res.data;
-							$.toast("发送成功");
-							isSend = true;
-							var time = 60;
-							$("#getCode")[0].innerHTML = time + "s";
-							var t = setInterval(function () {
-									time --;
-									if( time <= 0 ) {
-											clearInterval( t );
-											isSend = false;
-											$("#getCode")[0].innerHTML = "获取";
-									} else {
-											$("#getCode")[0].innerHTML = time + "s";
-									}
-									
-							},1000);
+				if( res.hasOwnProperty("success") && res.success ) {
+					msgId = res.data;
+					$.toast("发送成功");
+					isSend = true;
+					var time = 60;
+					$("#getCode")[0].innerHTML = time + "s";
+					var t = setInterval(function () {
+							time --;
+							if( time <= 0 ) {
+									clearInterval( t );
+									isSend = false;
+									$("#getCode")[0].innerHTML = "获取";
+							} else {
+									$("#getCode")[0].innerHTML = time + "s";
+							}
 							
-					} else {
-							$.toast( requestMsg.fail );
-					}
-					plus.nativeUI.closeWaiting();
+					},1000);
+						
+				} else {
+					$.toast( requestMsg.fail );
+				}
+				plus.nativeUI.closeWaiting();
 			   
 		   },function ( err ) {
 					$.toast( requestMsg.fail );

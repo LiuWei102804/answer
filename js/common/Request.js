@@ -5,7 +5,7 @@
 
 		uuid = plus.device.uuid; 
 		//plus.storage.clear();
-		
+		console.log( userInfo.data )
 		w.ajax = function (url , data , method ) { 
 			var promise = new Promise(function (resolve,reject) {
 				if( !navigator.onLine ) {
@@ -19,7 +19,7 @@
 					headers.token = userInfo.data;
 				};  
 				if( method == "post" ) {
-					//headers["Content-Type"] = "application/json";
+					headers["Content-Type"] = "application/json";
 				};
 				//console.log( "headers = " , JSON.stringify( headers ) )
 				$.ajax({
@@ -42,14 +42,22 @@
 			});
 			return promise;
 		}
-		w.Post = function ( url , data ) {
+		w.Post = function ( url , params , data ) {
 			var _data = data || {};
+			var _params = "?";
 			if( url.indexOf("/api/v1/reginit.api") == -1 && 				//注册接口
 				url.indexOf("/api/v1/login.api") == -1 &&					//登录接口			
 				url.indexOf("/api/v1/updatePwd.api") == -1 ) {				//找回密码
-				url += "?phone=" + userInfo.phone;
-			}
-			console.log( url , JSON.stringify( data ) ) 
+				_params += "phone=" + userInfo.phone + "&";
+			}; 
+			for( var p in params ) {
+				_params += p + "=" + params[p] + "&";
+			};
+			if( _params.length > 1 ) {
+				_params = _params.substring( 0 , _params.length - 1 );
+				url += _params;
+			};
+			console.log( url )
 			return w.ajax( url , _data , "post" ); 
 		};
 		w.Get = function ( url , data ) { 
