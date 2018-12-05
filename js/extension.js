@@ -6,7 +6,8 @@
 		title : "趣任务" ,
 		content : "邀朋友一起趣任务，每天8元，更有无限红包等你来拿。" ,
 		href : "https://www.pgyer.com/alfd" ,
-		smallImg : "_www/Icon-72.png"
+		pictures : ["_www/Icon-72.png"] ,
+		thumbs : ["_www/Icon-72.png"]
 	};
 	var wc = null,bitmap = null;
 	$.init({
@@ -29,7 +30,7 @@
 		}
 		$(".code")[0].innerHTML = html;
 		
-		getServices();
+		//getServices();
 		
 		$(".mui-bar-nav").on("tap",".share",function ( evt ) {
 			shareWeb( msg );

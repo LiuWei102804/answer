@@ -18,8 +18,10 @@
 				var account = $("#account")[0];
 				var password = $("#password")[0];
 				
+
+				
 				if( userInfo != null ) {
-					//openPage("./index.html");
+					openPage("./index.html");
 				}
 				console.log( md5(password.value || "") )
 				currentWebview.addEventListener("show",function () {

@@ -17,9 +17,9 @@
 				};
 				if( userInfo && userInfo.hasOwnProperty("data") ) {
 					headers.token = userInfo.data;
-				};
+				};  
 				if( method == "post" ) {
-					headers["Content-Type"] = "application/json";
+					//headers["Content-Type"] = "application/json";
 				};
 				//console.log( "headers = " , JSON.stringify( headers ) )
 				$.ajax({
