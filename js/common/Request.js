@@ -2,25 +2,26 @@
 	var uuid = null,userInfo = null;
 	$.plusReady(function () {
 		userInfo = JSON.parse( plus.storage.getItem("userInfo") );
-		
-		uuid = plus.device.uuid;
+
+		uuid = plus.device.uuid; 
+		//plus.storage.clear();
 		
 		w.ajax = function (url , data , method ) { 
-			//console.log( uuid )
 			var promise = new Promise(function (resolve,reject) {
 				if( !navigator.onLine ) {
 					reject({ code : 10086 , msg : "网络连接已断开" });
 					return;
 				};
-				var headers = {
-					UUID : uuid 
-					//token : "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDY0MTg5MzQ0NTIsInBheWxvYWQiOiJcIjE1MjU5ODg4MDAwYTY5YmNiYjMtOGI3ZC00ZTk4LWI4OTMtNmU5YzYyMTAzMTAyXCIifQ.8S3a9CISX7EBZH9XRlW2zKIJSGcNEYa9XLvuO4A2GGI"
+				var headers = {  
+					"UUID" : uuid 
 				};
-				//data.phone = "18918455233";
-				//console.log( userInfo.hasOwnProperty("data") ) 
 				if( userInfo && userInfo.hasOwnProperty("data") ) {
 					headers.token = userInfo.data;
-				}
+				};
+				if( method == "post" ) {
+					//headers["Content-Type"] = "application/json";
+				};
+				//console.log( "headers = " , JSON.stringify( headers ) )
 				$.ajax({
 					type: method ,
 					dataType:'json',				//服务器返回json格式数据
@@ -42,15 +43,20 @@
 			return promise;
 		}
 		w.Post = function ( url , data ) {
-			if( url.indexOf("/api/v1/reginit.api") > -1 && url.indexOf("/api/v1/login.api") > -1 ) {
+			var _data = data || {};
+			if( url.indexOf("/api/v1/reginit.api") == -1 && 				//注册接口
+				url.indexOf("/api/v1/login.api") == -1 &&					//登录接口			
+				url.indexOf("/api/v1/updatePwd.api") == -1 ) {				//找回密码
 				url += "?phone=" + userInfo.phone;
 			}
-			return w.ajax( url , data , "post" );
+			console.log( url , JSON.stringify( data ) ) 
+			return w.ajax( url , _data , "post" ); 
 		};
 		w.Get = function ( url , data ) { 
 			var _data = data ? data : {}; 
-			_data.phone = userInfo.phone;
-
+			if( url.indexOf("/api/v1/authCode") == -1 ) {					//发送验证码
+				_data.phone = userInfo.phone;
+			}
 			return w.ajax( url , _data , "get" );
 		};
 		

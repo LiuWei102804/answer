@@ -8,12 +8,12 @@
 		$(".funs-list").on("tap",".newpage-div",function () {
 			var page = this.dataset.page;
 			var level = this.dataset.level;
-			var t = this.dataset.title;
+			var title = this.dataset.title;
 
-			openPage( page , { title : t , data : data[level] }); 
+			openPage( page , { title : title , data : data[level] }); 
 		});
 		
-		myTeams({ phone : "18918455233" });
+		myTeams();
 		
 	});
 	

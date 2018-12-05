@@ -6,30 +6,32 @@
 				old_back();
 			};
 		});
-	};
-	$.init({
-	
-	});
-	
+	};	
 	var ans = {},			//答题提交数据
 		qus = [],			//答卷列表
 		qusIndex = 0,		//问卷索引
-		typeIndex = 1,		//文件类型索引
+		typeIndex = 1,		//问卷类型索引
 		toDayMaxPartake = 10,//剩余答题次数
 		end = false,		//答题结束
 		isChoice = false;		// 是否有选中
 	var content = null,		//问卷标题
 		ans = null,			//选项列表
 		nextBtn = null,		//提交按钮	
-		input = null;		
+		input = null,
+		qsClass = null;		//选项类型
+	$.init({
+	
+	});
 	$.plusReady(function () {
 		var user = JSON.parse( plus.storage.getItem("userInfo") ).nickname || "游客";
+		
 		content = $(".content")[0];
+		qsClass = $(".qs-class")[0];
 		ans = $(".ans")[0];
 		nextBtn = $(".qs-next")[0];
 		
 		$(".username")[0].innerHTML = "您好：" + user;  
-		$(".over")[0].innerHTML = "剩余次数：" + toDayMaxPartake;
+		$(".over")[0].innerHTML = "剩余答题次数：" + toDayMaxPartake;
 	
 		
 		
@@ -48,11 +50,7 @@
 				$.alert("提交答卷");
 				return;
 			};
-			if( typeof qus[typeIndex].question[qusIndex + 2] == "undefined" ) {
-				nextBtn.innerHTML = "提交";
-				end = true;
-				return;
-			}
+
 			if( !isChoice ) {
 				$.alert("请至少选择一项");
 				return;
@@ -71,7 +69,7 @@
 			setContent( qus[typeIndex].question[qusIndex] );
 			isChoice = false;
 			toDayMaxPartake -= 1;
-			$(".over")[0].innerHTML = "剩余次数：" + toDayMaxPartake;
+			$(".over")[0].innerHTML = "剩余答题次数：" + toDayMaxPartake;
 		});
 		/**
 		 * 	input 框选中
@@ -97,11 +95,18 @@
 	
 	
 	function setContent( ctx ){
+		if( typeof qus[typeIndex].question[qusIndex + 1] == "undefined" ) {
+			nextBtn.innerHTML = "提交";
+			end = true;
+			//return;
+		}
 		var type = ctx.answerType == 1 ? "checkbox" : "radio";
 		var choice = ctx.choice;
 		ans.innerHTML = "";
 		
-		content.innerHTML = ctx.question;
+		content.innerHTML = ctx.question;  
+		qsClass.innerHTML = ctx.answerType == 1 ? "多选题" : "单选题";
+
 		for( var i = 0; i < choice.length; i ++ ) {
 			var html = "<div class=\"mui-input-row mui-"+ type +" mui-left\">" +
 							"<label>"+ choice[i].choiceText +":" + choice[i].choiceLetters + "</label>" + 
@@ -119,6 +124,7 @@
 		app.getQuestions().then(function ( res ) {
 			if( res.hasOwnProperty("success") && res.success ) {
 				qus = res.data; 
+				console.log( JSON.stringify( qus[typeIndex].question.length ) )
 				setContent( qus[typeIndex].question[qusIndex] )
 				canPartake();
 			} else {

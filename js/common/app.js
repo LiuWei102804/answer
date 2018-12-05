@@ -8,15 +8,15 @@
 	 /*
 		用户登录
 	 */
-		owner.login = function ( params ) {
-				return Post( ORIGIN + apis.login , params );
-		};
-		/**
-		 * 	更新密码
-		 */
-		owner.updatePwd = function ( params ) {
-				return Post( ORIGIN + apis.updatePwd , params );
-		};
+	owner.login = function ( params ) {
+			return Post( ORIGIN + apis.login , params );
+	};
+	/**
+	 * 	更新密码
+	 */
+	owner.updatePwd = function ( params ) {
+		return Post( ORIGIN + apis.updatePwd , params );
+	};
 	 /*
 		发送验证码
 	 */

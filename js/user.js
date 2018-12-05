@@ -29,7 +29,7 @@
 		$(".mui-content").on("tap",".submit",function () {
 			params.nickName = nickName.value;
 			params.realName = realName.value;
-			params.phone = phone.value;
+			params.phone = userInfo.phone;
 			params.personalSign = personalSign.value;
 			updateInfo( params );
 		})

@@ -9,15 +9,17 @@
 // 		}]
 	});
 	$.plusReady(function () {
-		var currentWebview = plus.webview.currentWebview();
+		var curr = plus.webview.currentWebview();
+
 		var page = $.openWindow({
 			url : "./myMembersChild.html" ,
 			id : "./myMembersChild.html" ,
 			extras : {
-				data : currentWebview.data
+				data : curr.data ,
+				title : curr.title
 			}
 		})
-		currentWebview.append( page );
+		curr.append( page );
 	})
 
 })( mui , document );

@@ -19,8 +19,9 @@
 				var password = $("#password")[0];
 				
 				if( userInfo != null ) {
-						//openPage("./index.html");
+					//openPage("./index.html");
 				}
+				console.log( md5("abc123") )
 				currentWebview.addEventListener("show",function () {
 					var all = plus.webview.all();
 					for( var i = 0; i < all.length; i ++ ) {
@@ -72,7 +73,7 @@
 						 }  
 						  plus.nativeUI.closeWaiting();
 					 },function ( err ) {
-						mui.toast( requestMsg.fail + "" + err.message );
+						mui.toast( requestMsg.fail );
 						plus.nativeUI.closeWaiting();
 					 });
 				});

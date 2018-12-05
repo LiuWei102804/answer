@@ -1,5 +1,7 @@
 (function ( $ , doc ) {
-	var userInfo = null,qr = null;
+	var userInfo = null,
+		qr = null,
+		qrCode = null;
 	$.init({
 		pullRefresh: {
 			container: '#refreshContainer',
@@ -108,20 +110,27 @@
 		app.getUserInfo().then(function ( res ) {
 			if( res.hasOwnProperty("success") && res.success ) {
 				var data = res.data; 
-				console.log( JSON.stringify( res.data ) ) 
-				$(".nickName")[0].innerHTML = data.memberinfo.nickName;					//真实姓名
-				$(".userId")[0].innerHTML = "ID:" + data.memberinfo.phone; 			//手机号码
+				//console.log( JSON.stringify( res.data ) ) 
+				$(".nickName")[0].innerHTML = data.memberinfo.nickName;										//真实姓名
+				$(".userId")[0].innerHTML = "ID:" + data.memberinfo.phone; 									//手机号码
 				$(".dailyComm")[0].innerHTML = data.dailyComm || "0.00";									//今日收入（普通账户）
 				$(".totalComm")[0].innerHTML = data.totalComm || "0.00";									//总收入	（普通账户）
-				$(".totalwithdrawComm")[0].innerHTML = data.totalwithdrawComm || "0.00";	//总提现		（普通账户）
+				$(".totalwithdrawComm")[0].innerHTML = data.totalwithdrawComm || "0.00";					//总提现		（普通账户）
 				$(".dailyVip")[0].innerHTML = data.dailyVip || "0.00";										//今日收入  (精英账户)
 				$(".totalVip")[0].innerHTML = data.totalVip || "0.00";										//总收入   （精英账户）
-				$(".totalwithdrawVip")[0].innerHTML = data.totalwithdrawVip || "0.00";		//总提现		（精英账户）
-				new QRCode( qr , { 
+				$(".totalwithdrawVip")[0].innerHTML = data.totalwithdrawVip || "0.00";						//总提现		（精英账户）				
+
+				if( !qrCode ) {
+					qrCode = new QRCode( qr , { 
 						text : data.memberinfo.qrCode ,
 						width : 25 ,
 						height : 25
-				})
+					})
+				} else {
+					//qrCode.clear();
+					qrCode.makeCode( data.memberinfo.qrCode );
+				}
+
 				mui.extend( true , userInfo , data );
 				//清除旧数据
 				plus.storage.clear();

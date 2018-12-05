@@ -10,8 +10,8 @@
 		var amountType = 0;											//默认普通钱包
 		var radios = $("input[type=radio]");
 		
-		$(".ordinary")[0].textContent = "余额:" + data["commAvaible"];
-		$(".elite")[0].textContent = "余额:" + data["vipAvaible"];
+		$(".ordinary")[0].textContent = "余额:" + data["commAvaible"] + "元";
+		$(".elite")[0].textContent = "余额:" + data["vipAvaible"] + "元";
 
 		
 		$(".mui-content").on("tap","#draw",function () {
@@ -24,6 +24,10 @@
 			 * 如果普通钱包，检查普通钱包余额够不够提现，否则检查精英钱包
 			 */
 			if( amountType == 0 ) {
+				if( data["commAvaible"] < 100 ) {
+					$.toast("普通账户满100元才可提现");
+					return;
+				}
 				if( drawNum.value > data["commAvaible"] ) {
 					$.toast("可用余额不足");
 					return;

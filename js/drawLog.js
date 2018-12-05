@@ -27,6 +27,8 @@
 		var curr = plus.webview.currentWebview();
 		var type = curr.type;
 		params.type = type;
+
+		$(".mui-title")[0].innerHTML = curr.title;
 		
 		getDrawLog( params );
 	});

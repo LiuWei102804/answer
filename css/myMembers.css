@@ -1,1 +1,2 @@
-.nickName{ color: #ff4507; } 
+.mui-table-view-cell .nickName,.mui-table-view-cell .userId{ color: #ff4507; } 
+.mui-content { padding-bottom: 20px; }

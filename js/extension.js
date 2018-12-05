@@ -16,11 +16,18 @@
 	});
 	$.plusReady(function () {
 		var qr = mui("#qrcode")[0];
-		var code = new QRCode( qr , { 
-			text : "http://www.runoob.com" ,
+		var userInfo = JSON.parse( plus.storage.getItem("userInfo") );
+
+		var code = new QRCode( qr , {  
+			text : userInfo.memberinfo.qrCode ,
 			width : 108 ,
 			height : 108
 		});
+		var html = "";
+		for( var i = 0; i < userInfo.memberinfo.invitionCode.length; i ++ ) {
+			html += "<b>"+ userInfo.memberinfo.invitionCode[i] +"</b>";
+		}
+		$(".code")[0].innerHTML = html;
 		
 		getServices();
 		

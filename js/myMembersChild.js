@@ -9,7 +9,7 @@
 	});
 	$.plusReady(function () {
 		var curr = plus.webview.currentWebview();
-		var data = curr.data;
+		var data = curr.data; 
 		
 		$(".mui-title")[0].textContent = curr.title;
 		
@@ -20,11 +20,11 @@
 			$.each( data ,function ( index , item ) {
 				html += "<li class=\"mui-table-view-cell\">" +
 						"				<div>" +
-						"					<span class=\"nickName\" style=\"color : #ff4507\">"+ item.disUserName +"</span>" + 
+						"					<span class=\"nickName\">"+ item.disUserName +"</span>" + 
 						"					<small class=\"mui-pull-right inviteTime\">邀请时间:"+ item.addTime +"</small>" +	
 						"				</div>" + 
 						"				<div>" +
-						"					<small class=\"userId\" style=\"color : #ff4507\">("+ String( item.disModelId ).encryptPhoneNumber() +")</small>" + 
+						"					<small class=\"userId\">("+ String( item.disModelId ).encryptPhoneNumber() +")</small>" + 
 						"					<small class=\"mui-pull-right addTime\">添加时间:"+ item.addTime +"0</small>"
 						"				</div>" + 
 						"			</li>";
@@ -39,7 +39,9 @@
 	});
 	
 	function getMembers() {
-		
+		setTimeout(function () {
+			$('#refreshContainer').pullRefresh().endPulldownToRefresh();
+		},2000)
 	}
 })( mui , document );
 

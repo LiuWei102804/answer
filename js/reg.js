@@ -1,11 +1,6 @@
 (function ( $ , doc ) {
-// 	var old_back = $.back;
-// 	$.back = function () {
-// 		console.log( JSON.stringify( plus.webvew.getTopWebview() ) )
-// 		old_back();
-// 	}
 	var msgId = "",
-		  isSend = false;			//是否已发送验证码
+		isSend = false;			//是否已发送验证码
 	$.init({
 	
 	});
@@ -65,6 +60,7 @@
 		   app.sendCode({ phone : account.value }).then(function ( res ) {
 					if( res.hasOwnProperty("success") && res.success ) {
 							msgId = res.data;
+							$.toast("发送成功");
 							isSend = true;
 							var time = 60;
 							$("#getCode")[0].innerHTML = time + "s";
