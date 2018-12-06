@@ -19,13 +19,23 @@
 		getNews(newsDiv);  
 
 		if( plus.os.name.toLocaleLowerCase() == "android" ) {
-			plus.nativeUI.closeWaiting();
-		}
-	
-	
+				plus.nativeUI.closeWaiting();
+		}   
+
 		$(".account-class").on("tap",".newpage-div",function () {
 			var page = this.dataset.page;
-			openPage( page );
+
+			var index = null;
+			if( typeof this.dataset.index  != "undefined" ) {
+					index = this.dataset.index;
+			}
+
+			if( index ) {
+					openPage( page , { index : index } );
+			} else {
+					openPage( page );
+			}
+			
 		}); 
 		
 		//console.log( plus.navigator.isImmersedStatusbar() )

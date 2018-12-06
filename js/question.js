@@ -1,12 +1,5 @@
 (function ( $ , doc ) {
-	var old_back = mui.back;
-	mui.back = function () {
-		mui.confirm("确认退出问卷调研?","提示","确认",function ( btn ) {
-			if( btn.index == 0 ) {
-				old_back();
-			};
-		});
-	};	
+
 	var ansData = {   			//答题提交数据
 		title : "" ,
 		surveyId : "" ,
@@ -14,7 +7,7 @@
 	},			
 		qus = [],			//答卷列表
 		qusIndex = 0,		//问卷索引
-		typeIndex = 4,		//问卷类型索引
+		typeIndex = 0,		//问卷类型索引
 		toDayMaxPartake = 10,//剩余答题次数
 		end = false,		//答题结束
 		isChoice = false;		// 是否有选中
@@ -23,11 +16,36 @@
 		nextBtn = null,		//提交按钮	
 		input = null,
 		qsClass = null;		//选项类型
+		
+	var setContent;
+		
+	/**
+	 * 	重写 mui.back
+	 */
+	var old_back = mui.back;
+	mui.back = function () {
+		mui.confirm("确认退出问卷调研?","提示","确认",function ( btn ) {
+			if( btn.index == 0 ) {
+				old_back();
+			};
+		});
+	};	
 	$.init({
-	
+		beforeback : function () {
+			//console.log( JSON.stringify( plus ) )  
+			return true;
+		}
 	});
 	$.plusReady(function () {
 		var user = JSON.parse( plus.storage.getItem("userInfo") ).nickname || "游客";
+		typeIndex = plus.webview.currentWebview().index; 
+
+		var qsInfo = plus.storage.getItem("qsInfo" + typeIndex ); 
+		if( qsInfo != null ) {
+			qusIndex = JSON.parse( qsInfo ).qusIndex;
+		}
+		
+		//plus.storage.clear();
 		
 		content = $(".content")[0];
 		qsClass = $(".qs-class")[0];
@@ -72,7 +90,6 @@
 			 * 	今日可答题次数减1
 			 */
 			toDayMaxPartake -= 1;
-			console.log( ansData.question.length )
 			/**
 			 * 答卷结束
 			 */
@@ -106,31 +123,34 @@
 		 * 	查询答卷
 		 */
 		getQus();
+		 
+		
+		setContent = function ( ctx ) {
+			plus.storage.setItem("qsInfo" + typeIndex ,JSON.stringify({ qusIndex : qusIndex }));
+			if( typeof qus[typeIndex].question[qusIndex + 1] == "undefined" ) {
+				nextBtn.innerHTML = "提交";
+				end = true;
+				//return;
+			}
+			var type = ctx.answerType == 1 ? "checkbox" : "radio";
+			var choice = ctx.choice;
+			ans.innerHTML = "";
+			
+			content.innerHTML = ctx.question;  
+			qsClass.innerHTML = ctx.answerType == 1 ? "多选题" : "单选题";
+	
+			for( var i = 0; i < choice.length; i ++ ) {
+				var html = "<div class=\"mui-input-row mui-"+ type +" mui-left\">" +
+								"<label>"+ choice[i].choiceText +":" + choice[i].choiceLetters + "</label>" + 
+								"<input name=\"radio\" type=\""+ type +"\" value=\""+ choice[i].answerId +"\" />" + 
+							"</div>";
+							
+				ans.innerHTML += html;
+			};
+		}
 	});
 	
-	
-	function setContent( ctx ){
-		if( typeof qus[typeIndex].question[qusIndex + 1] == "undefined" ) {
-			nextBtn.innerHTML = "提交";
-			end = true;
-			//return;
-		}
-		var type = ctx.answerType == 1 ? "checkbox" : "radio";
-		var choice = ctx.choice;
-		ans.innerHTML = "";
-		
-		content.innerHTML = ctx.question;  
-		qsClass.innerHTML = ctx.answerType == 1 ? "多选题" : "单选题";
 
-		for( var i = 0; i < choice.length; i ++ ) {
-			var html = "<div class=\"mui-input-row mui-"+ type +" mui-left\">" +
-							"<label>"+ choice[i].choiceText +":" + choice[i].choiceLetters + "</label>" + 
-							"<input name=\"radio\" type=\""+ type +"\" value=\""+ choice[i].answerId +"\" />" + 
-						"</div>";
-						
-			ans.innerHTML += html;
-		};
-	};
 	/**
 	 * 获取答卷列表
 	 */
@@ -139,8 +159,9 @@
 		app.getQuestions().then(function ( res ) {
 			if( res.hasOwnProperty("success") && res.success ) {
 				qus = res.data; 
-				//console.log( JSON.stringify( qus[typeIndex].question.length ) )
-				setContent( qus[typeIndex].question[qusIndex] );
+				if( qus[typeIndex].question[qusIndex] ) {
+					setContent( qus[typeIndex].question[qusIndex] );
+				}
 				/**
 				 * 	答卷标题 
 				 */
