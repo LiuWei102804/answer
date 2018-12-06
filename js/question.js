@@ -7,10 +7,14 @@
 			};
 		});
 	};	
-	var ans = {},			//答题提交数据
+	var ansData = {   			//答题提交数据
+		title : "" ,
+		surveyId : "" ,
+		question : []
+	},			
 		qus = [],			//答卷列表
 		qusIndex = 0,		//问卷索引
-		typeIndex = 1,		//问卷类型索引
+		typeIndex = 4,		//问卷类型索引
 		toDayMaxPartake = 10,//剩余答题次数
 		end = false,		//答题结束
 		isChoice = false;		// 是否有选中
@@ -42,7 +46,33 @@
 			if( toDayMaxPartake <= 0 ) {
 				mui.alert("今日答题活动已达上限");
 				return;
+			};
+			if( !isChoice ) {
+				$.alert("请至少选择一项");
+				return;
+			};
+			/**
+			 * 	答卷数据
+			 */
+			var obj = {
+				answerType : qus[typeIndex].question[qusIndex].answerType ,
+				questionId : qus[typeIndex].question[qusIndex].questionId ,
+				question : qus[typeIndex].question[qusIndex].question ,
+				choice : []
 			}
+			input = $("input[type]");
+			$.each( input , function ( index, item ) {
+				if( item.checked ) { 
+					var obj2 = qus[typeIndex].question[qusIndex].choice[index];
+					obj.choice.push( obj2 );
+				}
+			});
+			ansData.question.push( obj );
+			/**
+			 * 	今日可答题次数减1
+			 */
+			toDayMaxPartake -= 1;
+			console.log( ansData.question.length )
 			/**
 			 * 答卷结束
 			 */
@@ -50,25 +80,10 @@
 				$.alert("提交答卷");
 				return;
 			};
-
-			if( !isChoice ) {
-				$.alert("请至少选择一项");
-				return;
-			}
-			input = $("input[type]");
-			$.each( input , function ( index, item ) {
-				if( item.checked ) { 
-//					ans[qsIndex] = {
-//						q : QS[qusIndex].q ,
-//						a : item.value 
-//					};
-
-				}
-			});
 			qusIndex += 1;
 			setContent( qus[typeIndex].question[qusIndex] );
 			isChoice = false;
-			toDayMaxPartake -= 1;
+			
 			$(".over")[0].innerHTML = "剩余答题次数：" + toDayMaxPartake;
 		});
 		/**
@@ -124,8 +139,16 @@
 		app.getQuestions().then(function ( res ) {
 			if( res.hasOwnProperty("success") && res.success ) {
 				qus = res.data; 
-				console.log( JSON.stringify( qus[typeIndex].question.length ) )
-				setContent( qus[typeIndex].question[qusIndex] )
+				//console.log( JSON.stringify( qus[typeIndex].question.length ) )
+				setContent( qus[typeIndex].question[qusIndex] );
+				/**
+				 * 	答卷标题 
+				 */
+				ansData.title = qus[typeIndex].title;
+				ansData.surveyId = qus[typeIndex].surveyId;
+				/**
+				 * 	查询剩余答题次数
+				 */
 				canPartake();
 			} else {
 				$.toast( requestMsg.fail )

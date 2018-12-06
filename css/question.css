@@ -7,4 +7,20 @@
 .qs-box .qs-content label input[type=radio]{ float: left; margin: 12px 5px 0 0; }*/
 .mui-checkbox.mui-left input[type=checkbox], .mui-radio.mui-left input[type=radio]{ left: 0; }
 .mui-checkbox.mui-left label, .mui-radio.mui-left label{ padding-left: 38px; }
-..mui-btn-block{ padding: 10px 0; }
+.mui-btn-block{ padding: 10px 0; }
+
+
+.mask{ position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 999; }
+.mask .hb{ width: 50%; height: 200px; border-radius: 10px; background: red;  color: gold; flex-direction: column; -webkit-flex-direction: column;}
+.mask .hb p{margin-top: 10px; font-size: 28px;  color: gold; border-bottom: 1px solid gold; width: 80%; text-align: center; line-height: 40px; margin-bottom: 10px;  }
+.mask .hb p small{ font-size: 20px; }
+.mask .hb small{ font-size: small; }
+.mask .show{ animation: show .5s ease-in-out; -webkit-animation: show .5s ease-in-out; animation-fill-mode: forwards; -webkit-animation-fill-mode: backwards;  }
+@keyframes show{
+	from{ transform: scale(0); opacity: 0; }
+	to{ transform: scale(1); opacity: 1;}
+}
+@-webkit-keyframes show{
+	from{ -webkit-transform: scale(0); opacity: 0;}
+	to{ -webkit-transform: scale(1); opacity: 1;}
+}
