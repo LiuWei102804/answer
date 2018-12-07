@@ -37,7 +37,7 @@
    		return Post( ORIGIN + apis.updateInfo , params );
    }
 	 /*
-			查询提现记录
+		查询提现记录
 	 */
 	owner.getDrawLog = function ( params ) {
 		return Get( ORIGIN + apis.drawHistory , params );
@@ -53,7 +53,7 @@
 			查询新闻咨询
 	*/
 	owner.getNews = function () {
-			return Get( ORIGIN + apis.getNews );
+		return Get( ORIGIN + apis.getNews );
 	};
 	/*
 			获取我的团队信息
@@ -72,24 +72,24 @@
 	 * 
 	 */
 	owner.drawApply = function ( params ) {
-			return Post( ORIGIN + apis.drawApply , params );
-	}
+		return Post( ORIGIN + apis.drawApply , params );
+	};
 	/*
 	 	查询问卷
 	 * */
 	owner.getQuestions = function () {
 		return Get( ORIGIN + apis.getQuestion );
-	}
+	};
 	/**
 	 * 	查询可答题次数
-	 */
+	 */ 
 	owner.canPartake = function () {
 		return Get( ORIGIN + apis.questionNum );
-	}
+	};
 	/**
 	 * 	提交答卷
 	 */
 	owner.questionReward = function () {
 		return Get( ORIGIN + apis.questionReward );
-	}
+	};
 }(mui, window.app = {}));

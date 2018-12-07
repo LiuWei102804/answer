@@ -62,24 +62,23 @@
 	  * 升级VIP
 	  */
 	function upLevel(){
-//		if( plus.os.name.toLocaleLowerCase() == "ios" ) {
-//			plus.runtime.openWeb("http://action-ing.com.cn/demo/api_url/pay.php?appkey=1726_f4b5f7c86bc844ecfcef23b6fef8dec9&uid=13&total_fee=2&pay_title=%E6%94%B6%E6%AC%BE%E4%BA%BA%E3%80%90%CA%9A%20%EF%A3%BF%20%C9%9E%E3%80%91&order_no=");
-//		 } else {
-			 			plus.runtime.openURL("http://action-ing.com.cn/demo/api_url/pay.php?appkey=1726_f4b5f7c86bc844ecfcef23b6fef8dec9&uid=13&total_fee=2&pay_title=%E6%94%B6%E6%AC%BE%E4%BA%BA%E3%80%90%CA%9A%20%EF%A3%BF%20%C9%9E%E3%80%91&order_no=",function ( err ) {
-			 		mui.alert( JSON.stringify( err ) )
-					$.confirm("检测到您未安装\"微信\",是否前往下载","提示",function ( btn ) {	
-						if( btn.index == 1 ) {
-							if( plus.os.name.toLocaleLowerCase() == "ios" ) {
-								plus.runtime.openURL("https://itunes.apple.com/cn/app/wechat/id414478124?mt=8"); 
-								
-							} else {
-								plus.runtime.openURL("https://weixin.qq.com/cgi-bin/readtemplate?t=w_down");
-							}
+		var payAddress = "http://98qo.cn/demo/api_url/pay.php";
+		var uid = plus.device.uuid;
+		var total_fee = "88";
+		var pay_title = encodeURI( "开通VIP" );
+		var order_no = "000001";
+		var appKey = "1724_d253ff22d9dbc28c3eb77d395056bbfe";
+		payAddress += "?uid=" + uid + "&";
+		payAddress += "total_fee=" + total_fee + "&";
+		payAddress += "pay_title=" + pay_title + "&";
+		payAddress += "order_no=" + order_no + "&";
+		payAddress += "appkey=" + appKey;
+		
+		//console.log( payAddress )
+		plus.runtime.openURL( payAddress , function ( err ) {
+			mui.alert( "打开地址失败");
+		},"com.tencent.mm");
 
-						}  
-					})  ;
-			},"com.tencent.mm");
-//		 }
 	
 	};
 	
@@ -110,7 +109,7 @@
 		app.getUserInfo().then(function ( res ) {
 			if( res.hasOwnProperty("success") && res.success ) {
 				var data = res.data; 
-				//console.log( JSON.stringify( res.data ) ) 
+				console.log( JSON.stringify( res.data ) ) 
 				$(".nickName")[0].innerHTML = data.memberinfo.nickName;										//真实姓名
 				$(".userId")[0].innerHTML = "ID:" + data.memberinfo.phone; 									//手机号码
 				$(".dailyComm")[0].innerHTML = data.dailyComm || "0.00";									//今日收入（普通账户）

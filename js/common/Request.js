@@ -56,7 +56,6 @@
 				_params = _params.substring( 0 , _params.length - 1 );
 				url += _params;
 			};
-			console.log( url )
 			return w.ajax( url , _data , "post" ); 
 		};
 		w.Get = function ( url , data ) { 

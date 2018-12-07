@@ -31,17 +31,16 @@
 		});
 	};	
 	$.init({
-		beforeback : function () {
-			//console.log( JSON.stringify( plus ) )  
-			return true;
-		}
-	});
+	}); 
 	$.plusReady(function () {
 		var user = JSON.parse( plus.storage.getItem("userInfo") ).nickname || "游客";
+		var D = new Date();
+		var currDay = D.getFullYear() + "/" + ( D.getMonth() + 1 ) + "/" + D.getDate();
+		
 		typeIndex = plus.webview.currentWebview().index; 
 
 		var qsInfo = plus.storage.getItem("qsInfo" + typeIndex ); 
-		if( qsInfo != null ) {
+		if( qsInfo != null && qsInfo.t == Date.parse( currDay ) ) {
 			qusIndex = JSON.parse( qsInfo ).qusIndex;
 		}
 		
@@ -126,7 +125,7 @@
 		 
 		
 		setContent = function ( ctx ) {
-			plus.storage.setItem("qsInfo" + typeIndex ,JSON.stringify({ qusIndex : qusIndex }));
+			plus.storage.setItem("qsInfo" + typeIndex ,JSON.stringify({ qusIndex : qusIndex , t : Date.parse( currDay )}));
 			if( typeof qus[typeIndex].question[qusIndex + 1] == "undefined" ) {
 				nextBtn.innerHTML = "提交";
 				end = true;
