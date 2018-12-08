@@ -9,7 +9,7 @@
 		qusIndex = 0,		//问卷索引
 		typeIndex = 0,		//问卷类型索引
 		toDayMaxPartake = 10,//剩余答题次数
-		end = false,		//答题结束
+		end = false,			//答题结束
 		isChoice = false;		// 是否有选中
 	var content = null,		//问卷标题
 		ans = null,			//选项列表
@@ -52,7 +52,7 @@
 		nextBtn = $(".qs-next")[0];
 		
 		$(".username")[0].innerHTML = "您好：" + user;  
-		$(".over")[0].innerHTML = "剩余答题次数：" + toDayMaxPartake;
+
 	
 		
 		
@@ -155,7 +155,7 @@
 	 */
 	function getQus() {
 		plus.nativeUI.showWaiting("加载中...");
-		app.getQuestions().then(function ( res ) {
+		app.getQuestions({ current : 1 , size : 2 }).then(function ( res ) {
 			if( res.hasOwnProperty("success") && res.success ) {
 				qus = res.data; 
 				if( qus[typeIndex].question[qusIndex] ) {
@@ -184,6 +184,11 @@
 	 */ 
 	function canPartake() {
 		app.canPartake().then(function ( res ) {
+			if( res.hasOwnProperty("success") && res.success ) {
+				toDayMaxPartake = res.data;
+				$(".over")[0].innerHTML = "剩余答题次数：" + toDayMaxPartake;
+				
+			}
 			//console.log( JSON.stringify( res ) )
 		},function ( err ) { 
 			mui.toast( requestMsg.fail );
@@ -195,17 +200,19 @@
 	function questionReward() {
 		plus.nativeUI.showWaiting("加载中...");
 		app.questionReward().then(function ( res ) {
+			
 			if( res.hasOwnProperty("success") && res.success ) {
+				$(".mask")[0].classList.remove("mui-hidden");
 				
 			} else {
-				mui.toast( requestMsg.fail );
+				mui.toast( res.errorMessage );
 			}
-			plus.nativeUI.showWaiting("加载中...");
+			plus.nativeUI.closeWaiting();
 		},function ( err ) {
 			plus.nativeUI.closeWaiting();
 		})
 	};
-
+	
 
 })( mui , document );
 

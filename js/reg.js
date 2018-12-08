@@ -9,12 +9,14 @@
 		var account = $("#account")[0];
 		var password = $("#password")[0];
 		var code = $("#code")[0]; 
+		var invitationCode = $(".invitationCode")[0];
 
 		$(".mui-content-padded").on("tap","#reg",function () {
 			var params = {
 				account : account.value ,
 				password : password.value ,
-				authCode : code.value
+				authCode : code.value , 
+				invitationCode : invitationCode.value
 			};
 			if( !Pattern.isPhone( params.account ) ) {
 				$.toast("请输入正确的手机号");
@@ -33,10 +35,11 @@
 			plus.nativeUI.showWaiting("加载中...");
 			app.reg( params ).then(function ( res ) {
 				if( res.hasOwnProperty("success") && res.success ) {
+					//console.log( JSON.stringify( res ) )
 					plus.storage.setItem("userInfo" , JSON.stringify( res ));
 					openPage("./index.html");
 				} else {
-						$.toast( requestMsg.fail );
+					$.toast( requestMsg.fail );
 				}
 				plus.nativeUI.closeWaiting();
 			},function ( err ) {
@@ -58,6 +61,7 @@
 			}
 			 plus.nativeUI.showWaiting("加载中...");
 		   app.sendCode({ phone : account.value }).then(function ( res ) {
+		   	//console.log( JSON.stringify( res ) )
 				if( res.hasOwnProperty("success") && res.success ) {
 					msgId = res.data;
 					$.toast("发送成功");
@@ -77,7 +81,7 @@
 					},1000);
 						
 				} else {
-					$.toast( requestMsg.fail );
+					$.toast( res.errorMessage );
 				}
 				plus.nativeUI.closeWaiting();
 			   

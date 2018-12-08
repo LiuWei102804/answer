@@ -1,6 +1,6 @@
 (function ( $ , doc ) {
 	var msgId = "",
-	isSend = false;			//是否已发送验证码
+		isSend = false;			//是否已发送验证码
 	$.init({
 		
 	});
@@ -30,11 +30,12 @@
 			doc.activeElement.blur();
 			params.msg_id = msgId;
 			plus.nativeUI.showWaiting("加载中...");
-			app.updatePwd( params ).then(function ( res ) {
+			app.updatePwd( params ).then(function ( res ) { 
+				console.log( JSON.stringify( res ) )
 				if( res.hasOwnProperty("success") && res.success ) {
-					console.log( JSON.stringify( res ) )
-					//plus.storage.setItem("userInfo" , JSON.stringify( res ));
-					//openPage("./index.html");
+					
+					plus.storage.setItem("userInfo" , JSON.stringify( res ));
+					openPage("./index.html");
 				} else {
 					$.toast( res.errorMessage );
 				}
@@ -57,6 +58,7 @@
 			}
 			plus.nativeUI.showWaiting("加载中...");
 		   app.sendCode({ phone : account.value }).then(function ( res ) {
+		   	console.log( JSON.stringify( res ) )
 				if( res.hasOwnProperty("success") && res.success ) {
 					msgId = res.data;
 					$.toast("发送成功");
@@ -74,7 +76,7 @@
 						}
 					},1000);	
 				} else {
-					$.toast( requestMsg.fail );
+					$.toast( res.errorMessage );
 				}
 				plus.nativeUI.closeWaiting();
 		   },function ( err ) {

@@ -22,7 +22,7 @@
 		var userInfo = JSON.parse( plus.storage.getItem("userInfo") );
 
 		var code = new QRCode( qr , {  
-			text : userInfo.memberinfo.qrCode ,
+			text : "http://47.104.139.205:8000/indexh5?code=" + userInfo.memberinfo.invitionCode ,
 			width : 108 ,
 			height : 108
 		});

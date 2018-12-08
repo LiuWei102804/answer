@@ -35,7 +35,7 @@
 		})
 	});
 	 
-	function updateInfo( params ) {
+	function updateInfo( {} , params ) {
 		plus.nativeUI.showWaiting("加载中...");
 		app.updateInfo( {} , params ).then(function ( res ) {
 			if( res.hasOwnProperty("success") && res.success ) {

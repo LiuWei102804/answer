@@ -4,6 +4,7 @@
 		userInfo = JSON.parse( plus.storage.getItem("userInfo") );
 
 		uuid = plus.device.uuid; 
+		//console.log( userInfo.data )
 		//plus.storage.clear();
 		w.ajax = function (url , data , method ) { 
 			var promise = new Promise(function (resolve,reject) {
@@ -19,7 +20,7 @@
 				};  
 				if( method == "post" ) {
 					headers["Content-Type"] = "application/json";
-				};
+				} 
 				//console.log( "headers = " , JSON.stringify( headers ) )
 				$.ajax({
 					type: method ,
@@ -42,9 +43,9 @@
 			return promise;
 		}
 		w.Post = function ( url , params , data ) {
-			var _data = data || {};
+			var _data = typeof data != "undefined" ? data : {};
 			var _params = "?";
-			if( url.indexOf("/api/v1/reginit.api") == -1 && 				//注册接口
+			if( url.indexOf("/api/v1/reginit.api") == -1 && 					//注册接口
 				url.indexOf("/api/v1/login.api") == -1 &&					//登录接口			
 				url.indexOf("/api/v1/updatePwd.api") == -1 ) {				//找回密码
 				_params += "phone=" + userInfo.phone + "&";
@@ -56,13 +57,17 @@
 				_params = _params.substring( 0 , _params.length - 1 );
 				url += _params;
 			};
+			console.log( "Post url " , url )
+			console.log( JSON.stringify( _data ) )
 			return w.ajax( url , _data , "post" ); 
 		};
 		w.Get = function ( url , data ) { 
-			var _data = data ? data : {}; 
+			var _data = typeof data != "undefined" ? data : {};
 			if( url.indexOf("/api/v1/authCode") == -1 ) {					//发送验证码
 				_data.phone = userInfo.phone;
 			}
+			console.log( "GET url = " , url );
+			console.log( JSON.stringify( _data ) )
 			return w.ajax( url , _data , "get" );
 		};
 		
@@ -71,18 +76,18 @@
 		 * 	监听网络断开
 		 * 
 		 */
-		document.addEventListener("netchange", function () {
-			var nt = plus.networkinfo.getCurrentType();
-			switch ( nt ) {
-				case plus.networkinfo.CONNECTION_CELL2G :
-				case plus.networkinfo.CONNECTION_CELL3G :
-					plus.nativeUI.toast("当前网络状态不佳",{ duration : "long" });
-					break;
-				case plus.networkinfo.CONNECTION_NONE :
-					plus.nativeUI.toast("当前网络连接已断开,请检查网络");
-					break;
-				default :
-			}
-		}, false );
+//		document.addEventListener("netchange", function () {
+//			var nt = plus.networkinfo.getCurrentType();
+//			switch ( nt ) {
+//				case plus.networkinfo.CONNECTION_CELL2G :
+//				case plus.networkinfo.CONNECTION_CELL3G :
+//					//plus.nativeUI.toast("当前网络状态不佳",{ duration : "long" });
+//					break;
+//				case plus.networkinfo.CONNECTION_NONE :
+//					//plus.nativeUI.toast("当前网络连接已断开,请检查网络");
+//					break;
+//				default :
+//			}
+//		}, false );
 	});
 })(mui,window);

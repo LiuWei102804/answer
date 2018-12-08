@@ -20,7 +20,7 @@
 
 
 				if( userInfo != null ) {
-					//openPage("./index.html");
+					openPage("./index.html");
 				}
 				console.log( md5("123456") )
 				currentWebview.addEventListener("show",function () {

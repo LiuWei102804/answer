@@ -2,7 +2,7 @@
 	/**
 	 * 用户注册
 	 **/
-	 owner.reg = function ( params ) {
+	 owner.reg = function ( params , data ) {
 	 	var _data = data ? data : {};
 		return Post( ORIGIN + apis.reg , params );
 	 };
@@ -33,8 +33,9 @@
    /**
     * 	修改个人信息
     */
-   owner.updateInfo = function ( params ) {
-   		return Post( ORIGIN + apis.updateInfo , params );
+   owner.updateInfo = function ( params , data ) {
+   		var _data = data ? data : {};
+   		return Post( ORIGIN + apis.updateInfo , params , _data );
    }
 	 /*
 		查询提现记录
@@ -64,8 +65,8 @@
 	/*
 			任务投放
 	*/
-	owner.putTask = function ( params ) {
-		return Post( ORIGIN + apis.putTask , params );
+	owner.putTask = function ( params , data ) {
+		return Post( ORIGIN + apis.putTask , params , data  );
 	};
 	/**
 	 * 	申请提现
@@ -77,8 +78,8 @@
 	/*
 	 	查询问卷
 	 * */
-	owner.getQuestions = function () {
-		return Get( ORIGIN + apis.getQuestion );
+	owner.getQuestions = function ( params ) {
+		return Get( ORIGIN + apis.getQuestion , params );
 	};
 	/**
 	 * 	查询可答题次数
@@ -93,3 +94,4 @@
 		return Get( ORIGIN + apis.questionReward );
 	};
 }(mui, window.app = {}));
+
