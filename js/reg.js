@@ -32,14 +32,16 @@
 			}
 			doc.activeElement.blur();
 			params.msg_id = msgId;
+			params.password = md5( params.password );
 			plus.nativeUI.showWaiting("加载中...");
 			app.reg( params ).then(function ( res ) {
 				if( res.hasOwnProperty("success") && res.success ) {
 					//console.log( JSON.stringify( res ) )
-					plus.storage.setItem("userInfo" , JSON.stringify( res ));
-					openPage("./index.html");
+					//plus.storage.setItem("userInfo" , JSON.stringify( res ));
+					$.back();
+					//openPage("./index.html");
 				} else {
-					$.toast( requestMsg.fail );
+					$.toast( res.errorMessage );
 				}
 				plus.nativeUI.closeWaiting();
 			},function ( err ) {

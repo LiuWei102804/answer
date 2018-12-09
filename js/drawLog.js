@@ -40,7 +40,7 @@
 				dataList = dataList.concat( data );
 				if( data.length ) {
 					$.each( data , function ( index , item ) {
-						html += "<li class=\"mui-table-view-cell flex\"><b>"+ item.withdrawNum +"</b><b>"+ item.withdrawTime +"</b><b>￥"+ item.totalAmount +"</b></li>";
+						html += "<li class=\"mui-table-view-cell flex\"><b>"+ item.withdrawNum +"</b><b>"+ ( String( item.withdrawTime ).split(" ")[0] ) +"</b><b>￥"+ item.totalAmount +"</b></li>";
 					});
 					$(".data-list")[0].innerHTML += html;
 					if( data.length < params.size ) {

@@ -90,8 +90,9 @@
 	/**
 	 * 	提交答卷
 	 */
-	owner.questionReward = function () {
-		return Get( ORIGIN + apis.questionReward );
+	owner.questionReward = function ( params , data ) {
+		var _data = data ? data : {};
+		return Post( ORIGIN + apis.questionReward , params , _data );
 	};
 }(mui, window.app = {}));
 

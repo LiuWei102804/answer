@@ -26,11 +26,11 @@
 				html += "<li class=\"mui-table-view-cell\">" +
 						"				<div>" +
 						"					<span class=\"nickName\">"+ item.disUserName +"</span>" + 
-						"					<small class=\"mui-pull-right inviteTime\">邀请时间:"+ item.addTime +"</small>" +	
+						//"					<small class=\"mui-pull-right inviteTime\">邀请时间:"+ item.addTime +"</small>" +	
 						"				</div>" + 
 						"				<div>" +
-						"					<small class=\"userId\">("+ String( item.disModelId ).encryptPhoneNumber() +")</small>" + 
-						"					<small class=\"mui-pull-right addTime\">添加时间:"+ item.addTime +"0</small>"
+						"					<small class=\"userId\">("+ String( item.phone ).encryptPhoneNumber() +")</small>" + 
+						"					<small class=\"mui-pull-right addTime\">添加时间:"+ item.addTime +"</small>"
 						"				</div>" + 
 						"			</li>";
 			});

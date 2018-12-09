@@ -8,7 +8,7 @@
 		qus = [],			//答卷列表
 		qusIndex = 0,		//问卷索引
 		typeIndex = 0,		//问卷类型索引
-		toDayMaxPartake = 10,//剩余答题次数
+		toDayMaxPartake = 2,//剩余答题次数
 		end = false,			//答题结束
 		isChoice = false;		// 是否有选中
 	var content = null,		//问卷标题
@@ -18,6 +18,8 @@
 		qsClass = null;		//选项类型
 		
 	var setContent;
+	var currentWebview;
+	var currDay;
 		
 	/**
 	 * 	重写 mui.back
@@ -35,13 +37,21 @@
 	$.plusReady(function () {
 		var user = JSON.parse( plus.storage.getItem("userInfo") ).nickname || "游客";
 		var D = new Date();
-		var currDay = D.getFullYear() + "/" + ( D.getMonth() + 1 ) + "/" + D.getDate();
+		currDay = D.getFullYear() + "/" + ( D.getMonth() + 1 ) + "/" + D.getDate();
 		
-		typeIndex = plus.webview.currentWebview().index; 
+		currentWebview = plus.webview.currentWebview();
+		typeIndex = currentWebview.index; 
 
 		var qsInfo = plus.storage.getItem("qsInfo" + typeIndex ); 
 		if( qsInfo != null && qsInfo.t == Date.parse( currDay ) ) {
 			qusIndex = JSON.parse( qsInfo ).qusIndex;
+			if( qsInfo.isOver ) {
+				$.alert("今日已答过该答卷！","提示",function () {
+					old_back();
+				});
+			}
+		} else {
+			plus.storage.removeItem("qsInfo" + typeIndex );
 		}
 		
 		//plus.storage.clear();
@@ -54,14 +64,17 @@
 		$(".username")[0].innerHTML = "您好：" + user;  
 
 	
-		
+		$("body").on("tap",".mask",function () {
+			this.classList.add("mui-hidden");
+			old_back();
+		})
 		
 		/*
 		 	下一题
 		 * */
 		$(".mui-content-padded").on("tap",".qs-next",function () {
 			if( toDayMaxPartake <= 0 ) {
-				mui.alert("今日答题活动已达上限");
+				$.alert("今日答题活动已达上限");
 				return;
 			};
 			if( !isChoice ) {
@@ -88,12 +101,12 @@
 			/**
 			 * 	今日可答题次数减1
 			 */
-			toDayMaxPartake -= 1;
+			//toDayMaxPartake -= 1;
 			/**
 			 * 答卷结束
 			 */
 			if( end ) {
-				$.alert("提交答卷");
+				questionReward();
 				return;
 			};
 			qusIndex += 1;
@@ -155,7 +168,7 @@
 	 */
 	function getQus() {
 		plus.nativeUI.showWaiting("加载中...");
-		app.getQuestions({ current : 1 , size : 2 }).then(function ( res ) {
+		app.getQuestions({ current : currentWebview.current || 1 , size : typeIndex + 1 }).then(function ( res ) {
 			if( res.hasOwnProperty("success") && res.success ) {
 				qus = res.data; 
 				if( qus[typeIndex].question[qusIndex] ) {
@@ -180,7 +193,7 @@
 		})
 	};
 	/**
-	 * 	查询可用答题次数
+	 * 	查询可用答题次数 
 	 */ 
 	function canPartake() {
 		app.canPartake().then(function ( res ) {
@@ -199,11 +212,13 @@
 	 */
 	function questionReward() {
 		plus.nativeUI.showWaiting("加载中...");
-		app.questionReward().then(function ( res ) {
-			
+		app.questionReward({ suveryId : ansData.surveyId } , { content : ansData } ).then(function ( res ) {
 			if( res.hasOwnProperty("success") && res.success ) {
+				$(".reward")[0].innerHTML = res.data;
 				$(".mask")[0].classList.remove("mui-hidden");
+				plus.storage.setItem("qsInfo" + typeIndex ,JSON.stringify({ qusIndex : qusIndex , t : Date.parse( currDay ) , isOver :"1" }));
 				
+				//plus.storage.setItem("question" + typeIndex , 1);
 			} else {
 				mui.toast( res.errorMessage );
 			}

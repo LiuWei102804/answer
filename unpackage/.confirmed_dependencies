@@ -37,7 +37,8 @@
   "pages/userCenterChild.html": {
     "refer": [
       "pages/myteam.html",
-      "pages/extension.html"
+      "pages/extension.html",
+      "pages/user.html"
     ],
     "resources": []
   },
@@ -60,5 +61,11 @@
     "refer": [
       "pages/myMembersChild.html"
     ]
+  },
+  "pages/taskList.html": {
+    "refer": [
+      "pages/question.html"
+    ],
+    "resources": []
   }
 }

@@ -23,7 +23,7 @@
 		//getTaskList();
 		$(".data-list").on("tap",".newpage-div",function () {
 			var index = this.dataset.index;
-			openPage("./question.html",{ index : index });
+			openPage("./question.html",{ index : index , current : params.current });
 		})
 	});
 	

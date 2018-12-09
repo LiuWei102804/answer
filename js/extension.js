@@ -1,16 +1,5 @@
 (function ( $ , doc ) {
-	/*
-	 	分享参数
-	 * */
-	var msg = {
-		title : "趣任务" ,
-		type : "web" ,
-		interface : "slient" ,
-		content : "邀朋友一起趣任务，每天8元，更有无限红包等你来拿。" ,
-		href : "https://www.pgyer.com/alfd" ,
-		pictures : ["_www/Icon-72.png"] ,
-		thumbs : ["_www/Icon-72.png"]
-	};
+
 	var wc = null,bitmap = null;
 	$.init({
 		gestureConfig : {
@@ -20,9 +9,21 @@
 	$.plusReady(function () {
 		var qr = mui("#qrcode")[0];
 		var userInfo = JSON.parse( plus.storage.getItem("userInfo") );
+		/*
+		 	分享参数
+		 * */
+		var msg = {
+			title : "趣任务" ,
+			type : "web" , 
+			interface : "slient" ,
+			content : "邀朋友一起趣任务，每天8元，更有无限红包等你来拿。" ,
+			href : "http://47.104.139.205:8000/static/index.html?code=" + userInfo.memberinfo.invitionCode ,
+			pictures : ["_www/Icon-72.png"] ,
+			thumbs : ["_www/Icon-72.png"]
+		};  
 
 		var code = new QRCode( qr , {  
-			text : "http://47.104.139.205:8000/indexh5?code=" + userInfo.memberinfo.invitionCode ,
+			text : "http://47.104.139.205:8000/static/index.html?code=" + userInfo.memberinfo.invitionCode ,
 			width : 108 ,
 			height : 108
 		});
@@ -45,7 +46,7 @@
 					wc = plus.webview.currentWebview();
 					bitmap = new plus.nativeObj.Bitmap(String(Date.parse( new Date())));
 					wc.draw(bitmap,function(){
-						bitmap.save("_doc/"+ Date.parse( new Date()) +".png", { format : "png" },function ( i ) {
+						bitmap.save("_doc/"+ Date.parse( new Date()) +".png", { format : "png" , clip : { top : "0px" } },function ( i ) {
 							plus.gallery.save( i.target , function ( d ) {
 								bitmap.clear();
 								$.toast("保存图片成功");

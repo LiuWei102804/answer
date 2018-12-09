@@ -4,7 +4,7 @@
 		userInfo = JSON.parse( plus.storage.getItem("userInfo") );
 
 		uuid = plus.device.uuid; 
-		//console.log( userInfo.data )
+		console.log( JSON.stringify( userInfo ) )
 		//plus.storage.clear();
 		w.ajax = function (url , data , method ) { 
 			var promise = new Promise(function (resolve,reject) {
