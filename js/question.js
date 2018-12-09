@@ -20,6 +20,7 @@
 	var setContent;
 	var currentWebview;
 	var currDay;
+	var userInfo;
 		
 	/**
 	 * 	重写 mui.back
@@ -35,7 +36,8 @@
 	$.init({
 	}); 
 	$.plusReady(function () {
-		var user = JSON.parse( plus.storage.getItem("userInfo") ).nickname || "游客";
+		userInfo = JSON.parse( plus.storage.getItem("userInfo") );
+		var user = userInfo.nickname || "游客";
 		var D = new Date();
 		currDay = D.getFullYear() + "/" + ( D.getMonth() + 1 ) + "/" + D.getDate();
 		
@@ -215,6 +217,7 @@
 		app.questionReward({ suveryId : ansData.surveyId } , { content : ansData } ).then(function ( res ) {
 			if( res.hasOwnProperty("success") && res.success ) {
 				$(".reward")[0].innerHTML = res.data;
+				$(".rewardType")[0].innerHTML = "已放入"+ ( userInfo.memberinfo.disUserType >= 1 ? '精英':'普通')+"账户";
 				$(".mask")[0].classList.remove("mui-hidden");
 				plus.storage.setItem("qsInfo" + typeIndex ,JSON.stringify({ qusIndex : qusIndex , t : Date.parse( currDay ) , isOver :"1" }));
 				
