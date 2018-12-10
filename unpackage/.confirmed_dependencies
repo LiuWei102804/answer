@@ -38,7 +38,8 @@
     "refer": [
       "pages/myteam.html",
       "pages/extension.html",
-      "pages/user.html"
+      "pages/user.html",
+      "pages/draw.html"
     ],
     "resources": []
   },
@@ -67,5 +68,10 @@
       "pages/question.html"
     ],
     "resources": []
+  },
+  "pages/draw.html": {
+    "refer": [
+      "pages/apply.html"
+    ]
   }
 }

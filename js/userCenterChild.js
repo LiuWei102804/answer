@@ -65,25 +65,23 @@
 		if( userInfo.memberinfo.disUserType >= 1 ) {
 			$.alert("您已经不是普通用户了,无需升级！");
 			return;
-		}
-		var payAddress = "http://api.hxs823.cn/demo/api_url/pay.php";
-		var uid = userInfo.memberinfo.phone;
-		var total_fee = "2"; 
-		var pay_title = encodeURI( "升级VIP" );
-		var order_no = "order_" + Date.parse( new Date() );
-		var appKey = "1726_f4b5f7c86bc844ecfcef23b6fef8dec9";
-		var back_url = encodeURIComponent( "http://47.104.139.205:8000/api/v1/payCallback" );
-		payAddress += "?uid=" + uid;
-		payAddress += "&total_fee=" + total_fee;
-		payAddress += "&pay_title=" + pay_title;
-		payAddress += "&order_no=" + order_no;
-		payAddress += "&appkey=" + appKey;
-		payAddress += "&back_url=" + back_url;
-//		 
-//		//console.log( payAddress )
-		plus.runtime.openWeb( payAddress , function ( err ) {
-			mui.alert( "打开地址失败");
-		});
+		};
+		plus.nativeUI.showWaiting("加载中...");
+		app.getPayUrl().then(function ( res ) {
+			if( res.hasOwnProperty("success") && res.success ) {
+				var data = Pattern.isSpace( res.data , true );
+				
+				//console.log( res.data )
+				plus.runtime.openWeb( data );
+			} else {
+				$.toast( res.errorMessage );
+			}
+			plus.nativeUI.closeWaiting();
+		},function ( err ) {
+			$.toast( requestMsg.fail );
+			plus.nativeUI.closeWaiting();
+		})
+
 		//openPage("./upLevel.html");
 	
 	};

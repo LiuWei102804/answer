@@ -20,6 +20,7 @@
 		questionReward : "/api/v1/question/callback" ,	//提交答卷
 		getNews : "/api/v1/notice/list" ,				//获取咨询信息
 		putTask : "/api/v1/company/add" ,				//任务投放,企业合作
+		getPayUrl : "/api/v1/toPay"						//获取充值 URL
 	};
 	win.requestMsg = {
 		fail : "请求数据失败，请重试"

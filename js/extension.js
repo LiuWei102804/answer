@@ -9,11 +9,11 @@
 	$.plusReady(function () {
 		var qr = mui("#qrcode")[0];
 		var userInfo = JSON.parse( plus.storage.getItem("userInfo") );
+
 		/*
 		 	分享参数
 		 * */
 		var msg = {
-			title : "趣任务" , 
 			type : "web" , 
 			//interface : "slient" ,
 			content : "邀朋友一起趣任务，每天8元，更有无限红包等你来拿。" ,

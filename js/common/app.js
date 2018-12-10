@@ -94,5 +94,11 @@
 		var _data = data ? data : {};
 		return Post( ORIGIN + apis.questionReward , params , _data );
 	};
+	/**
+	 * 	获取充值 URL
+	 */
+	owner.getPayUrl = function () {
+		return Get( ORIGIN + apis.getPayUrl );	
+	};
 }(mui, window.app = {}));
 

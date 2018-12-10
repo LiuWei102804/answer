@@ -3,7 +3,7 @@
     "id" : "H5BE3FBA0", /*应用的标识，创建应用时自动生成，勿手动修改*/
     "name" : "趣任务", /*应用名称，程序桌面图标名称*/
     "version" : {
-        "name" : "1.0.31", /*应用版本名称*/
+        "name" : "1.0.34", /*应用版本名称*/
         "code" : "83"
     },
     "description" : "邀朋友一起趣任务，每天8元，更有无限红包等你来拿。", /*应用描述信息*/
@@ -298,7 +298,8 @@
 				"refer": [
 					"pages/myteam.html",
 					"pages/extension.html",
-					"pages/user.html"
+					"pages/user.html",
+					"pages/draw.html"
 				],
 				"priority": 0
 			},
@@ -327,6 +328,13 @@
 				"resources": [],
 				"refer": [
 					"pages/question.html"
+				],
+				"priority": 0
+			},
+			"pages/draw.html": {
+				"resources": [],
+				"refer": [
+					"pages/apply.html"
 				],
 				"priority": 0
 			}
