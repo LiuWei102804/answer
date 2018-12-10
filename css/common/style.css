@@ -9,7 +9,7 @@ input:-ms-input-placeholder{ color:#686869; }
 .mui-bar{ height: 64px; padding-top: 20px;  }
 
 a { text-decoration: none; }
-a:hover, a:focus { text-decoration: none;  }
+a:hover, a:focus { text-decoration: none;  }  
 img{ border: 0; width: 100%; } 
  
 .mui-content{ min-height: 100%; margin-top: 20px;}

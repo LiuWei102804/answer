@@ -3,10 +3,10 @@
     "id" : "H5BE3FBA0", /*应用的标识，创建应用时自动生成，勿手动修改*/
     "name" : "趣任务", /*应用名称，程序桌面图标名称*/
     "version" : {
-        "name" : "1.0.23", /*应用版本名称*/
+        "name" : "1.0.31", /*应用版本名称*/
         "code" : "83"
     },
-    "description" : "", /*应用描述信息*/
+    "description" : "邀朋友一起趣任务，每天8元，更有无限红包等你来拿。", /*应用描述信息*/
     "icons" : {
         "72" : "icon.png"
     },
@@ -70,21 +70,7 @@
                 "keystore" : "", /*Android应用打包使用的密钥库文件*/
                 "password" : "", /*Android应用打包使用密钥库中证书的密码*/
                 "aliasname" : "", /*Android应用打包使用密钥库中证书的别名*/
-                "permissions" : [
-                    "<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
-                    "<uses-permission android:name=\"android.permission.INTERNET\"/>",
-                    "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
-                    "<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
-                    "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
-                    "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
-                    "<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
-                    "<uses-feature android:name=\"android.hardware.camera\"/>",
-                    "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
-                    "<uses-permission android:name=\"android.permission.USE_FINGERPRINT\"/>",
-                    "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>",
-                    "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
-                    "<uses-permission android:name=\"android.permission.CAMERA\"/>"
-                ]
+                "permissions" : ["<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>","<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>","<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>","<uses-permission android:name=\"android.permission.INTERNET\"/>","<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>","<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.VIBRATE\"/>","<uses-permission android:name=\"android.permission.READ_LOGS\"/>","<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>","<uses-permission android:name=\"android.permission.CALL_PHONE\"/>","<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>","<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>","<uses-feature android:name=\"android.hardware.camera.autofocus\"/>","<uses-feature android:name=\"android.hardware.camera\"/>","<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>","<uses-permission android:name=\"android.permission.USE_FINGERPRINT\"/>","<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>","<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>","<uses-permission android:name=\"android.permission.CAMERA\"/>"]
             },
             "orientation" : [ "portrait-primary", "portrait-secondary" ], /*应用支持的方向，portrait-primary：竖屏正方向；portrait-secondary：竖屏反方向；landscape-primary：横屏正方向；landscape-secondary：横屏反方向*/
             "icons" : {
@@ -147,14 +133,14 @@
                         "default" : "", /*iPhone3启动图片选，分辨率：320x480*/
 
                         /*3.5英寸设备(iPhone4)启动图片，分辨率：640x960*/
-                        "retina40" : "C:/Users/wei.liu/Desktop/启动图片/6p.png",
-                        "iphonex" : "C:/Users/wei.liu/Desktop/启动图片/6p.png",
-                        "retina47" : "C:/Users/wei.liu/Desktop/启动图片/6p.png",
-                        "retina55" : "C:/Users/wei.liu/Desktop/启动图片/6p.png",
-                        "retina35" : "C:/Users/wei.liu/Desktop/启动图片/6p.png"
+                        "retina40" : "images/6p.png",
+                        "iphonex" : "images/6p.png",
+                        "retina47" : "images/6p.png",
+                        "retina55" : "images/6p.png",
+                        "retina35" : "images/6p.png"
                     },
                     "ipad" : {
-                        "portrait" : "C:/Users/wei.liu/Desktop/启动图片/6p.png", /*iPad竖屏启动图片，分辨率：768x1004*/
+                        "portrait" : "images/6p.png", /*iPad竖屏启动图片，分辨率：768x1004*/
                         "portrait-retina" : "", /*iPad高分屏竖屏图片，分辨率：1536x2008*/
                         "landscape" : "", /*iPad横屏启动图片，分辨率：1024x748*/
                         "landscape-retina" : "", /*iPad高分屏横屏启动图片，分辨率：2048x1496*/
@@ -167,119 +153,197 @@
                 "android" : {
                     "mdpi" : "", /*普通屏启动图片，分辨率：240x282*/
                     "ldpi" : "", /*大屏启动图片，分辨率：320x442*/
-                    "hdpi" : "C:/Users/wei.liu/Desktop/启动图片/6p.png", /*高分屏启动图片，分辨率：480x762*/
-                    "xhdpi" : "C:/Users/wei.liu/Desktop/启动图片/6p.png", /*720P高分屏启动图片，分辨率：720x1242*/
-                    "xxhdpi" : "C:/Users/wei.liu/Desktop/启动图片/6p.png"
+                    "hdpi" : "images/6p.png", /*高分屏启动图片，分辨率：480x762*/
+                    "xhdpi" : "images/6p.png", /*720P高分屏启动图片，分辨率：720x1242*/
+                    "xxhdpi" : "images/6p.png"
                 }
             }
         },
         "adid" : "123138120110"
     },
     "dependencies" : {
-        "pages" : {
-            "setting.html" : {
-                "href" : "setting.html",
-                "resources" : [
-                    "js/mui.min.js",
-                    "js/mui.view.js",
-                    "libs/easymob-webim-sdk/jquery-1.11.1.js",
-                    "libs/easymob-webim-sdk/strophe-custom-2.0.0.js",
-                    "libs/easymob-webim-sdk/json2.js",
-                    "libs/easymob-webim-sdk/easemob.im-1.0.5.js",
-                    "js/feedback.js",
-                    "js/feedback-page.js",
-                    "js/mui.locker.js",
-                    "js/app.js",
-                    "css/mui.min.css",
-                    "fonts/mui.ttf",
-                    "css/feedback-page.css",
-                    "images/iconfont-tianjia.png"
-                ],
-                "refer" : [ "login.html" ],
-                "priority" : 1
-            },
-            "main.html" : {
-                "href" : "main.html",
-                "resources" : [ "css/mui.min.css", "fonts/mui.ttf", "js/mui.min.js", "js/app.js" ],
-                "refer" : [ "setting.html" ],
-                "priority" : 1
-            },
-            "unlock.html" : {
-                "href" : "unlock.html",
-                "resources" : [
-                    "css/mui.min.css",
-                    "fonts/mui.ttf",
-                    "js/mui.min.js",
-                    "js/mui.locker.js",
-                    "js/app.js"
-                ],
-                "refer" : [ "login.html", "main.html" ],
-                "priority" : 0
-            },
-            "forget_password.html" : {
-                "href" : "forget_password.html",
-                "resources" : [
-                    "css/mui.min.css",
-                    "fonts/mui.ttf",
-                    "css/style.css",
-                    "js/mui.min.js",
-                    "js/app.js"
-                ],
-                "priority" : 1
-            },
-            "reg.html" : {
-                "href" : "reg.html",
-                "resources" : [
-                    "css/mui.min.css",
-                    "fonts/mui.ttf",
-                    "css/style.css",
-                    "js/mui.min.js",
-                    "js/app.js"
-                ],
-                "refer" : [ "login.html" ],
-                "priority" : 3
-            },
-            "login.html" : {
-                "href" : "login.html",
-                "resources" : [
-                    "css/mui.min.css",
-                    "fonts/mui.ttf",
-                    "css/style.css",
-                    "js/mui.min.js",
-                    "js/mui.enterfocus.js",
-                    "js/app.js",
-                    "images/qihoo.png",
-                    "images/qq.png",
-                    "images/sinaweibo.png",
-                    "images/weixin.png"
-                ],
-                "refer" : [
-                    "unlock.html",
-                    "forget_password.html",
-                    "main.html",
-                    "reg.html",
-                    "index.html"
-                ],
-                "priority" : 0
-            },
-            "index.html" : {
-                "resources" : [],
-                "refer" : [ "pages/task.html", "pages/my.html", "pages/home.html" ],
-                "priority" : 0
-            }
-        },
-        "idle" : {
-            "resources" : [
-                "js/service.js",
-                "libs/easymob-webim-sdk/quickstart.md",
-                "images/user-photo.png",
-                "README.md"
-            ]
-        }
-    },
+		"pages": {
+			"setting.html": {
+				"href": "setting.html",
+				"resources": [
+					"js/mui.min.js",
+					"js/mui.view.js",
+					"libs/easymob-webim-sdk/jquery-1.11.1.js",
+					"libs/easymob-webim-sdk/strophe-custom-2.0.0.js",
+					"libs/easymob-webim-sdk/json2.js",
+					"libs/easymob-webim-sdk/easemob.im-1.0.5.js",
+					"js/feedback.js",
+					"js/feedback-page.js",
+					"js/mui.locker.js",
+					"js/app.js",
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/feedback-page.css",
+					"images/iconfont-tianjia.png"
+				],
+				"refer": [
+					"login.html"
+				],
+				"priority": 1
+			},
+			"main.html": {
+				"href": "main.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"js/mui.min.js",
+					"js/app.js"
+				],
+				"refer": [
+					"setting.html"
+				],
+				"priority": 1
+			},
+			"unlock.html": {
+				"href": "unlock.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"js/mui.min.js",
+					"js/mui.locker.js",
+					"js/app.js"
+				],
+				"refer": [
+					"login.html",
+					"main.html"
+				],
+				"priority": 0
+			},
+			"forget_password.html": {
+				"href": "forget_password.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/style.css",
+					"js/mui.min.js",
+					"js/app.js"
+				],
+				"priority": 1
+			},
+			"reg.html": {
+				"href": "reg.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/style.css",
+					"js/mui.min.js",
+					"js/app.js"
+				],
+				"refer": [
+					"login.html"
+				],
+				"priority": 3
+			},
+			"login.html": {
+				"href": "login.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/style.css",
+					"js/mui.min.js",
+					"js/mui.enterfocus.js",
+					"js/app.js",
+					"images/qihoo.png",
+					"images/qq.png",
+					"images/sinaweibo.png",
+					"images/weixin.png"
+				],
+				"refer": [
+					"unlock.html",
+					"forget_password.html",
+					"main.html",
+					"reg.html",
+					"index.html"
+				],
+				"priority": 0
+			},
+			"index.html": {
+				"resources": [
+					"pages/home.html"
+				],
+				"refer": [
+					"pages/task.html",
+					"pages/my.html",
+					"pages/userCenter.html"
+				],
+				"priority": 0
+			},
+			"pages/userCenter.html": {
+				"resources": [
+					"pages/userCenterChild.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"pages/home.html": {
+				"resources": [],
+				"refer": [
+					"pages/put.html",
+					"pages/plan.html",
+					"pages/notOpen.html",
+					"pages/taskList.html",
+					"pages/question.html",
+					"pages/flow.html",
+					"pages/mall.html"
+				],
+				"priority": 0
+			},
+			"pages/userCenterChild.html": {
+				"resources": [],
+				"refer": [
+					"pages/myteam.html",
+					"pages/extension.html",
+					"pages/user.html"
+				],
+				"priority": 0
+			},
+			"pages/myteam.html": {
+				"resources": [],
+				"refer": [
+					"pages/members.html"
+				],
+				"priority": 0
+			},
+			"pages/members.html": {
+				"resources": [],
+				"refer": [
+					"pages/myMembers.html"
+				],
+				"priority": 0
+			},
+			"pages/myMembers.html": {
+				"resources": [
+					"pages/myMembersChild.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"pages/taskList.html": {
+				"resources": [],
+				"refer": [
+					"pages/question.html"
+				],
+				"priority": 0
+			}
+		},
+		"idle": {
+			"resources": [
+				"js/service.js",
+				"libs/easymob-webim-sdk/quickstart.md",
+				"images/user-photo.png",
+				"README.md"
+			]
+		}
+	},
     "unpackage" : [
         "README.md",
         "libs/easymob-webim-sdk/quickstart.md",
         "images/user-photo.png"
-    ]
+    ],
+    "fullscreen" : false
 }

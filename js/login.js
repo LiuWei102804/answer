@@ -20,9 +20,8 @@
 
 
 				if( userInfo != null ) {
-					//openPage("./index.html");
+					openPage("./index.html");
 				}
-				console.log( md5("123456") )
 				currentWebview.addEventListener("show",function () {
 					var all = plus.webview.all();
 					for( var i = 0; i < all.length; i ++ ) {
@@ -77,35 +76,16 @@
 						plus.nativeUI.closeWaiting();
 					 });
 				});
+				
+				
+				/**
+				 * 	监听注册返回
+				 */
+				doc.addEventListener("regback",function ( event ) {
+					var detail = event.detail;
+					
+					account.value = detail.account;
+					password.value = detail.password;
+				},false);
 		})
 })( mui , document );
-
-//$.plusReady(function() {
-	//var isFirstLogin = plus.storage.getItem("username") == null;
-	
-	
-// 	if( !isFirstLogin ) {
-// 		if( plus.fingerprint.isSupport() && 
-// 			plus.fingerprint.isKeyguardSecure() && 							plus.fingerprint.isEnrolledFingerprints() ) {
-// 			//指纹识别	
-// 			plus.fingerprint.authenticate(function () {
-// 				openPage("./index.html");
-// 			},function ( err ) {
-// 				$.toast("指纹识别失败,请重试");
-// 			},{ message : "请使用指纹识别" })
-// 			//console.log("已有指纹识别");
-// 		} else {
-// 			console.log("未设置指纹识别")
-// 		}
-// 	} else {
-// 		console.log("使用账号密码登录");
-// 	}
-
-	
-
-
-
-
-
-
-//});

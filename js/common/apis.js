@@ -1,10 +1,10 @@
 (function ( $ , win ) {
-	win.ORIGIN = "http://47.104.139.205:8000";
+	win.ORIGIN = "http://156.237.129.242:8000";
 	
 	
 	win.apis = {
-		reg : "/api/v1/reginit.api" ,					//注册
-		login : "/api/v1/login.api" ,					//登录
+		reg : 		"/api/v1/reginit.api" ,					//注册
+		login : 	"/api/v1/login.api" ,					//登录
 		getMsgCode : "/api/v1/authCode" ,				//获取验证码
 		drawHistory : "/api/v1/withdraw/history" ,		//查询提现记录
 		checkDrawStatu : "/api/v1/withdraw/check" ,		//查询是否可提现

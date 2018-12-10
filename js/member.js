@@ -16,7 +16,7 @@
 			var page = this.dataset.page;
 			var title = this.dataset.title;
 			var level = this.dataset.level;
-			console.log( title ) 
+			console.log( JSON.stringify( data[level] ) ) 
 			openPage( page , { data : data[level] , title : title });
 		});
 	})

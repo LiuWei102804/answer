@@ -3,12 +3,69 @@
     "refer": [
       "pages/task.html",
       "pages/my.html",
-      "pages/home.html"
-    ]
+      "pages/home.html",
+      "pages/userCenter.html"
+    ],
+    "resources": []
   },
   "login.html": {
     "refer": [
       "index.html"
+    ],
+    "resources": []
+  },
+  "pages/userCenter.html": {
+    "resources": [
+      "pages/userCenterChild.html"
+    ],
+    "refer": [
+      "pages/userCenterChild.html"
     ]
+  },
+  "pages/home.html": {
+    "refer": [
+      "pages/put.html",
+      "pages/plan.html",
+      "pages/notOpen.html",
+      "pages/taskList.html",
+      "pages/question.html",
+      "pages/flow.html",
+      "pages/mall.html"
+    ],
+    "resources": []
+  },
+  "pages/userCenterChild.html": {
+    "refer": [
+      "pages/myteam.html",
+      "pages/extension.html",
+      "pages/user.html"
+    ],
+    "resources": []
+  },
+  "pages/myteam.html": {
+    "refer": [
+      "pages/members.html"
+    ],
+    "resources": []
+  },
+  "pages/members.html": {
+    "refer": [
+      "pages/myMembers.html"
+    ],
+    "resources": []
+  },
+  "pages/myMembers.html": {
+    "resources": [
+      "pages/myMembersChild.html"
+    ],
+    "refer": [
+      "pages/myMembersChild.html"
+    ]
+  },
+  "pages/taskList.html": {
+    "refer": [
+      "pages/question.html"
+    ],
+    "resources": []
   }
 }

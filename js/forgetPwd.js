@@ -1,12 +1,13 @@
 (function ( $ , doc ) {
 	var msgId = "",
-	isSend = false;			//是否已发送验证码
+		isSend = false;			//是否已发送验证码
 	$.init({
 		
 	});
 	$.plusReady(function () {
 		var account = $("#account")[0];
 		var password = $("#password")[0];
+		var confirmPwd = $("#confirmPwd")[0];
 		var code = $("#code")[0]; 
 
 		$(".mui-content-padded").on("tap","#reg",function () {
@@ -24,15 +25,28 @@
 				return;
 			}
 			if( !Pattern.isEnglishAndNumber( params.password , 6 , 20 ) ) {
-				$.toast("请使用6-20位数字加字母组合");
+				$.toast("登录密码请使用6-20位数字加字母组合");
+				return;
+			}
+			if( !Pattern.isEnglishAndNumber( confirmPwd.value , 6 , 20 ) ) {
+				$.toast("确认密码请使用6-20位数字加字母组合");
+				return;
+			}
+			if( params.password != confirmPwd.value ) {
+				$.toast("两次密码输入不一致,请重新输入");
 				return;
 			}
 			doc.activeElement.blur();
 			params.msg_id = msgId;
 			plus.nativeUI.showWaiting("加载中...");
-			app.updatePwd( params ).then(function ( res ) {
+			params.password = md5( params.password );
+			app.updatePwd( params ).then(function ( res ) { 
+				console.log( JSON.stringify( res ) )
 				if( res.hasOwnProperty("success") && res.success ) {
-					console.log( JSON.stringify( res ) )
+					$.alert("修改成功,确认返回登录","提示",function () {
+						$.back();
+					});
+					
 					//plus.storage.setItem("userInfo" , JSON.stringify( res ));
 					//openPage("./index.html");
 				} else {
@@ -57,6 +71,7 @@
 			}
 			plus.nativeUI.showWaiting("加载中...");
 		   app.sendCode({ phone : account.value }).then(function ( res ) {
+		   	console.log( JSON.stringify( res ) )
 				if( res.hasOwnProperty("success") && res.success ) {
 					msgId = res.data;
 					$.toast("发送成功");
@@ -74,7 +89,7 @@
 						}
 					},1000);	
 				} else {
-					$.toast( requestMsg.fail );
+					$.toast( res.errorMessage );
 				}
 				plus.nativeUI.closeWaiting();
 		   },function ( err ) {

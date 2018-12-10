@@ -5,7 +5,7 @@
 	$.plusReady(function () {
 		var company = $(".company")[0];
 		var task = $(".task")[0];
-		var contact = $(".contact");
+		var contact = $(".contact")[0];
 		var tel = $(".tel")[0];
 		
 		
@@ -30,13 +30,12 @@
 				companyName : company.value ,
 				taskRequirement : task.value ,
 				contact : contact.value ,
-				contactTell : tel.value 
+				contactTell : tel.value  
 			};
 			plus.nativeUI.showWaiting("加载中...");
-			app.putTask( params ).then(function ( res ) {
-				console.log( JSON.stringify(res  ) )
+			app.putTask( {} , params ).then(function ( res ) {
 				if( res.hasOwnProperty("success") && res.success ) {
-					
+					$.alert("任务投放成功");
 				} else {
 					$.toast( requestMsg.fail );
 				}
@@ -48,4 +47,5 @@
 		})
 	})
 })( mui , document );
+
  

@@ -1,5 +1,5 @@
 (function ( $ , doc ) {
-	var userInfo = null,
+	var userInfo = {},
 		qr = null,
 		qrCode = null;
 	$.init({
@@ -62,23 +62,29 @@
 	  * 升级VIP
 	  */
 	function upLevel(){
-		var payAddress = "http://98qo.cn/demo/api_url/pay.php";
-		var uid = plus.device.uuid;
-		var total_fee = "88";
-		var pay_title = encodeURI( "开通VIP" );
-		var order_no = "000001";
-		var appKey = "1724_d253ff22d9dbc28c3eb77d395056bbfe";
-		payAddress += "?uid=" + uid + "&";
-		payAddress += "total_fee=" + total_fee + "&";
-		payAddress += "pay_title=" + pay_title + "&";
-		payAddress += "order_no=" + order_no + "&";
-		payAddress += "appkey=" + appKey;
-		
-		//console.log( payAddress )
-		plus.runtime.openURL( payAddress , function ( err ) {
+		if( userInfo.memberinfo.disUserType >= 1 ) {
+			$.alert("您已经不是普通用户了,无需升级！");
+			return;
+		}
+		var payAddress = "http://api.hxs823.cn/demo/api_url/pay.php";
+		var uid = userInfo.memberinfo.phone;
+		var total_fee = "2"; 
+		var pay_title = encodeURI( "升级VIP" );
+		var order_no = "order_" + Date.parse( new Date() );
+		var appKey = "1726_f4b5f7c86bc844ecfcef23b6fef8dec9";
+		var back_url = encodeURIComponent( "http://47.104.139.205:8000/api/v1/payCallback" );
+		payAddress += "?uid=" + uid;
+		payAddress += "&total_fee=" + total_fee;
+		payAddress += "&pay_title=" + pay_title;
+		payAddress += "&order_no=" + order_no;
+		payAddress += "&appkey=" + appKey;
+		payAddress += "&back_url=" + back_url;
+//		 
+//		//console.log( payAddress )
+		plus.runtime.openWeb( payAddress , function ( err ) {
 			mui.alert( "打开地址失败");
-		},"com.tencent.mm");
-
+		});
+		//openPage("./upLevel.html");
 	
 	};
 	
@@ -89,16 +95,17 @@
 		if( func == "changeAccount" ) {
 			mui.confirm("确定要切换账号吗?","提示","确定",function ( btn ) {
 				if( btn.index == 0  ) {
+					plus.storage.removeItem("userInfo");
 					var webView = plus.webview.getWebviewById("./index.html");
 					webView.close("pop-out");
 				}
 			})
 		} else {
-			plus.nativeUI.showWaiting();
+			plus.nativeUI.showWaiting("检查更新..");
 			mui.later(function () {
 				mui.toast("已经是最新版本");
 				plus.nativeUI.closeWaiting();
-			},2000)
+			},3000)
 		}
 	};
 	
@@ -108,20 +115,42 @@
 	function getUserInfo() {
 		app.getUserInfo().then(function ( res ) {
 			if( res.hasOwnProperty("success") && res.success ) {
-				var data = res.data; 
-				console.log( JSON.stringify( res.data ) ) 
-				$(".nickName")[0].innerHTML = data.memberinfo.nickName;										//真实姓名
-				$(".userId")[0].innerHTML = "ID:" + data.memberinfo.phone; 									//手机号码
+				var data = res.data;  
+				var userType = "";
+				switch( Number( data.memberinfo.disUserType ) ) {
+//					case 0 :
+//						userType = "普通用户";
+//						break;
+					case 1 :
+						userType = "精英调查员";
+						break;
+					case 2 :
+						userType = "特约调查员";
+						break;
+					case 3 :
+						userType = "A级调查员";
+						break;
+					case 4 :
+						userType = "S级调查员";
+						break;
+					default :
+						userType = "普通用户";  
+					
+				}
+				$(".nickName")[0].innerHTML = Boolean( data.memberinfo.nickName ) ?  data.memberinfo.nickName : data.memberinfo.phone.encryptPhoneNumber();										//真实姓名
+				//$(".avatar")[0].src = data.avatar;
+				$(".userId")[0].innerHTML = "ID:" + data.memberinfo.phone.encryptPhoneNumber(); 									//手机号码
 				$(".dailyComm")[0].innerHTML = data.dailyComm || "0.00";									//今日收入（普通账户）
 				$(".totalComm")[0].innerHTML = data.totalComm || "0.00";									//总收入	（普通账户）
 				$(".totalwithdrawComm")[0].innerHTML = data.totalwithdrawComm || "0.00";					//总提现		（普通账户）
 				$(".dailyVip")[0].innerHTML = data.dailyVip || "0.00";										//今日收入  (精英账户)
 				$(".totalVip")[0].innerHTML = data.totalVip || "0.00";										//总收入   （精英账户）
-				$(".totalwithdrawVip")[0].innerHTML = data.totalwithdrawVip || "0.00";						//总提现		（精英账户）				
+				$(".totalwithdrawVip")[0].innerHTML = data.totalwithdrawVip || "0.00";	//总提现		（精英账户）
+				$(".userType")[0].innerHTML = "(" + userType + ")";
 
 				if( !qrCode ) {
 					qrCode = new QRCode( qr , { 
-						text : data.memberinfo.qrCode ,
+						text : "http://47.104.139.205:8000/indexh5?code=" + data.invitionCode ,
 						width : 25 ,
 						height : 25
 					})
@@ -130,9 +159,9 @@
 					qrCode.makeCode( data.memberinfo.qrCode );
 				}
 
-				mui.extend( true , userInfo , data );
+				$.extend( true , userInfo , data );
 				//清除旧数据
-				plus.storage.clear();
+				//plus.storage.clear();
 				plus.storage.setItem("userInfo",JSON.stringify( userInfo ));
 			} else {
 				$.toast( requestMsg.fail );

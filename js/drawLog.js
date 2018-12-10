@@ -1,55 +1,71 @@
 (function ( $ , doc ) {
 	var params = {
-		phone : "18918455233" , 
-		type : ""
+		type : "" ,
+		current : 1 ,
+		size : 15
 	};
+	var dataList = [];
+	var isEnd = false;
 	$.init({
 		pullRefresh : {
 			container:"#refreshContainer",//下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
-			down : {
-			  style:'circle',//必选，下拉刷新样式，目前支持原生5+ ‘circle’ 样式
-			  callback : function () {
-				  getDrawLog( params );
-			  }
-			},
 			up : {
-			  //height:50,//可选.默认50.触发上拉加载拖动距离
-			  //auto:true,//可选,默认false.自动上拉加载一次
+			  height:50,//可选.默认50.触发上拉加载拖动距离
+			  auto: true,//可选,默认false.自动上拉加载一次
 			  contentrefresh : "正在加载...",//可选，正在加载状态时，上拉加载控件上显示的标题内容
 			  contentnomore:'没有更多数据了',//可选，请求完毕若没有更多数据时显示的提醒内容；
 			  callback : function () {
-				  this.endPullupToRefresh(false);
-			  } 
+			  		setTimeout(getLogs,0)
+			  }
 			}
-		} ,
+		}
 	});
 	$.plusReady(function () {
 		var curr = plus.webview.currentWebview();
 		var type = curr.type;
+
 		params.type = type;
 
 		$(".mui-title")[0].innerHTML = curr.title;
-		
-		getDrawLog( params );
 	});
 	
 	/*
-		查询提现记录
+		查询提现记录  
 	*/
-   function getDrawLog( params ) {
-		plus.nativeUI.showWaiting("加载中...");
+   function getLogs() {
+   		var html = "";
+   		if( !$(".empty-data")[0].classList.contains("mui-hidden") ) {
+   			$(".empty-data")[0].classList.add("mui-hidden");
+   		} 
 		app.getDrawLog( params ).then(function ( res ) {
 			if( res.hasOwnProperty("success") && res.success ) {
-				console.log( JSON.stringify( res ) )
+				var data = res.data; 
+				dataList = dataList.concat( data );
+				if( data.length ) {
+					$.each( data , function ( index , item ) {
+						html += "<li class=\"mui-table-view-cell flex\"><b>"+ item.withdrawNum +"</b><b>"+ ( String( item.withdrawTime ).split(" ")[0] ) +"</b><b>￥"+ item.totalAmount +"</b></li>";
+					});
+					$(".data-list")[0].innerHTML += html;
+					if( data.length < params.size ) {
+						isEnd = true;
+					} else {
+						params.current += 1; 
+					}
+				} else {
+					if( dataList.length < 1 ) {
+						$(".data-list")[0].classList.add("mui-hidden");
+						$(".empty-data")[0].classList.remove("mui-hidden");
+					}
+				}
 			} else {
-				mui.toast( requestMsg.fail );
+				mui.toast( res.errorMessage );
 			}
-			plus.nativeUI.closeWaiting();
-			mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
+			$('#refreshContainer').pullRefresh().endPullupToRefresh(isEnd);
 		},function ( err ) {
 			mui.toast( requestMsg.fail );
-			plus.nativeUI.closeWaiting();
-			mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
+			$('#refreshContainer').pullRefresh().endPullupToRefresh(isEnd);
+		}).catch(function ( e ) {
+			consoele.log( JSON.stringify( e ) )
 		})
    };
 })( mui , document );
