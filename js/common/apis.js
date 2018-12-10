@@ -1,5 +1,5 @@
 (function ( $ , win ) {
-	win.ORIGIN = "http://47.104.139.205:8000";
+	win.ORIGIN = "http://156.237.129.242:8000";
 	
 	
 	win.apis = {
