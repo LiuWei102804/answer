@@ -41,11 +41,20 @@
 			plus.nativeUI.showWaiting("加载中...");
 			params.password = md5( params.password );
 			app.updatePwd( params ).then(function ( res ) { 
-				console.log( JSON.stringify( res ) )
+				//console.log( JSON.stringify( res ) )
 				if( res.hasOwnProperty("success") && res.success ) {
-					$.alert("修改成功,确认返回登录","提示",function () {
+					$.fire( plus.webview.getLaunchWebview() , "regback" , { account : params.account , password : password.value });
+					$.alert("注册成功,即将返回登录","提示","确认",function () {
 						$.back();
-					});
+					},"div");
+					try{
+						$.later(function () {
+							$.back();
+							$.closePopup();
+						},3000);
+					} catch ( e ) {
+
+					}
 					
 					//plus.storage.setItem("userInfo" , JSON.stringify( res ));
 					//openPage("./index.html");

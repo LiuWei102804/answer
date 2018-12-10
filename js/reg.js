@@ -43,10 +43,15 @@
 					$.alert("注册成功,即将返回登录","提示","确认",function () {
 						$.back();
 					},"div");
-					$.later(function () {
-						$.back();
-						$.closePopup();
-					},3000)
+					try{
+						$.later(function () {
+							$.back();
+							$.closePopup();
+						},3000)
+					} catch ( e ) {
+
+					}
+
 					
 					//openPage("./index.html");
 				} else {
