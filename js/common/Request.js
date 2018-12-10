@@ -57,8 +57,8 @@
 				_params = _params.substring( 0 , _params.length - 1 );
 				url += _params;
 			};
-			console.log( "Post url " , url )
-			console.log( JSON.stringify( _data ) )
+//			console.log( "Post url " , url )
+//			console.log( JSON.stringify( _data ) )
 			return w.ajax( url , _data , "post" ); 
 		};
 		w.Get = function ( url , data ) { 
@@ -66,8 +66,8 @@
 			if( url.indexOf("/api/v1/authCode") == -1 ) {					//发送验证码
 				_data.phone = userInfo.phone;
 			}
-			console.log( "GET url = " , url );
-			console.log( JSON.stringify( _data ) )
+//			console.log( "GET url = " , url );
+//			console.log( JSON.stringify( _data ) )
 			return w.ajax( url , _data , "get" );
 		};
 		

@@ -13,17 +13,17 @@
 		 	分享参数
 		 * */
 		var msg = {
-			title : "趣任务" ,
+			title : "趣任务" , 
 			type : "web" , 
-			interface : "slient" ,
+			//interface : "slient" ,
 			content : "邀朋友一起趣任务，每天8元，更有无限红包等你来拿。" ,
-			href : "http://47.104.139.205:8000/static/index.html?code=" + userInfo.memberinfo.invitionCode ,
+			href : "http://156.237.129.242:8000/static/statics/index.html?code=" + userInfo.memberinfo.invitionCode ,
 			pictures : ["_www/Icon-72.png"] ,
 			thumbs : ["_www/Icon-72.png"]
 		};  
 
 		var code = new QRCode( qr , {  
-			text : "http://47.104.139.205:8000/static/index.html?code=" + userInfo.memberinfo.invitionCode ,
+			text : "http://156.237.129.242:8000/static/statics/index.html?code=" + userInfo.memberinfo.invitionCode ,
 			width : 108 ,
 			height : 108
 		});

@@ -6,12 +6,12 @@
 		var sign = "appkey=1726_f4b5f7c86bc844ecfcef23b6fef8dec9&order_no=00001&secretkey=f46da9a097c42c20974dcb13d977914d&total_fee=2&uid=13857102804&";
 		console.log( md5( sign ) )
 		
-		fast_pay.get_openid({
-			pay_title : "支付测试" ,
-			success : function ( data ) {
-				console.log( "支付测试" , JSON.stringify( data ) )
-			}
-		})
+//		fast_pay.get_openid({
+//			pay_title : "支付测试" ,
+//			success : function ( data ) {
+//				console.log( "支付测试" , JSON.stringify( data ) )
+//			}
+//		})
 		fast_pay.shows_qr({
 			appkey: '1726_f4b5f7c86bc844ecfcef23b6fef8dec9', //填写网站生成的appkey
 			//pay_type: "gren_qr" ,

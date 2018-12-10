@@ -34,6 +34,9 @@
 	*/
    function getLogs() {
    		var html = "";
+   		if( !$(".empty-data")[0].classList.contains("mui-hidden") ) {
+   			$(".empty-data")[0].classList.add("mui-hidden");
+   		} 
 		app.getDrawLog( params ).then(function ( res ) {
 			if( res.hasOwnProperty("success") && res.success ) {
 				var data = res.data; 

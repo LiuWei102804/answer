@@ -95,6 +95,7 @@
 		if( func == "changeAccount" ) {
 			mui.confirm("确定要切换账号吗?","提示","确定",function ( btn ) {
 				if( btn.index == 0  ) {
+					plus.storage.removeItem("userInfo");
 					var webView = plus.webview.getWebviewById("./index.html");
 					webView.close("pop-out");
 				}
@@ -158,7 +159,7 @@
 					qrCode.makeCode( data.memberinfo.qrCode );
 				}
 
-				mui.extend( true , userInfo , data );
+				$.extend( true , userInfo , data );
 				//清除旧数据
 				//plus.storage.clear();
 				plus.storage.setItem("userInfo",JSON.stringify( userInfo ));

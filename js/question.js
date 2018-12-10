@@ -21,6 +21,7 @@
 	var currentWebview;
 	var currDay;
 	var userInfo;
+	var qsInfo;
 		
 	/**
 	 * 	重写 mui.back
@@ -37,17 +38,17 @@
 	}); 
 	$.plusReady(function () {
 		userInfo = JSON.parse( plus.storage.getItem("userInfo") );
-		var user = userInfo.nickname || "游客";
+		var user = userInfo.memberinfo.nickName || userInfo.memberinfo.phone;
 		var D = new Date();
 		currDay = D.getFullYear() + "/" + ( D.getMonth() + 1 ) + "/" + D.getDate();
 		
 		currentWebview = plus.webview.currentWebview();
 		typeIndex = currentWebview.index; 
-
-		var qsInfo = plus.storage.getItem("qsInfo" + typeIndex ); 
-		if( qsInfo != null && qsInfo.t == Date.parse( currDay ) ) {
-			qusIndex = JSON.parse( qsInfo ).qusIndex;
-			if( qsInfo.isOver ) {
+//plus.storage.setItem("qsInfo8" ,JSON.stringify({ qusIndex : 4 , t : 1544371200000 , isOver : 1 }));
+		qsInfo = plus.storage.getItem("qsInfo" + typeIndex ) != null ? JSON.parse( plus.storage.getItem("qsInfo" + typeIndex ) ) : null; 
+		if( qsInfo != null ) {
+			qusIndex = qsInfo.qusIndex;
+			if( qsInfo.isOver == 1 && qsInfo.t == Date.parse( currDay ) ) {
 				$.alert("今日已答过该答卷！","提示",function () {
 					old_back();
 				});
@@ -140,7 +141,9 @@
 		 
 		
 		setContent = function ( ctx ) {
-			plus.storage.setItem("qsInfo" + typeIndex ,JSON.stringify({ qusIndex : qusIndex , t : Date.parse( currDay )}));
+			
+			plus.storage.setItem("qsInfo" + typeIndex ,JSON.stringify({ qusIndex : qusIndex , t : Date.parse( currDay ) , isOver : qsInfo && qsInfo.isOver ? qsInfo.isOver : "0" }));
+			
 			if( typeof qus[typeIndex].question[qusIndex + 1] == "undefined" ) {
 				nextBtn.innerHTML = "提交";
 				end = true;
@@ -153,6 +156,7 @@
 			content.innerHTML = ctx.question;  
 			qsClass.innerHTML = ctx.answerType == 1 ? "多选题" : "单选题";
 	
+			
 			for( var i = 0; i < choice.length; i ++ ) {
 				var html = "<div class=\"mui-input-row mui-"+ type +" mui-left\">" +
 								"<label>"+ choice[i].choiceText +":" + choice[i].choiceLetters + "</label>" + 
@@ -173,6 +177,7 @@
 		app.getQuestions({ current : currentWebview.current || 1 , size : typeIndex + 1 }).then(function ( res ) {
 			if( res.hasOwnProperty("success") && res.success ) {
 				qus = res.data; 
+				//console.log( JSON.stringify( qus[typeIndex].question[qusIndex] ) )
 				if( qus[typeIndex].question[qusIndex] ) {
 					setContent( qus[typeIndex].question[qusIndex] );
 				}
@@ -212,14 +217,15 @@
 	/**
 	 * 	提交答卷
 	 */
-	function questionReward() {
+	function questionReward() { 
 		plus.nativeUI.showWaiting("加载中...");
 		app.questionReward({ suveryId : ansData.surveyId } , { content : ansData } ).then(function ( res ) {
 			if( res.hasOwnProperty("success") && res.success ) {
+				plus.storage.setItem("qsInfo" + typeIndex ,JSON.stringify({ qusIndex : qusIndex , t : Date.parse( currDay ) , isOver :"1" }));
 				$(".reward")[0].innerHTML = res.data;
 				$(".rewardType")[0].innerHTML = "已放入"+ ( userInfo.memberinfo.disUserType >= 1 ? '精英':'普通')+"账户";
 				$(".mask")[0].classList.remove("mui-hidden");
-				plus.storage.setItem("qsInfo" + typeIndex ,JSON.stringify({ qusIndex : qusIndex , t : Date.parse( currDay ) , isOver :"1" }));
+				
 				
 				//plus.storage.setItem("question" + typeIndex , 1);
 			} else {

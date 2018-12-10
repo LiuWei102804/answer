@@ -34,11 +34,25 @@
 			params.msg_id = msgId;
 			params.password = md5( params.password );
 			plus.nativeUI.showWaiting("加载中...");
+
 			app.reg( params ).then(function ( res ) {
 				if( res.hasOwnProperty("success") && res.success ) {
 					//console.log( JSON.stringify( res ) )
 					//plus.storage.setItem("userInfo" , JSON.stringify( res ));
-					$.back();
+					$.fire( plus.webview.getLaunchWebview() , "regback" , { account : params.account , password : password.value });
+					$.alert("注册成功,即将返回登录","提示","确认",function () {
+						$.back();
+					},"div");
+					try{
+						$.later(function () {
+							$.back();
+							$.closePopup();
+						},3000)
+					} catch ( e ) {
+
+					}
+
+					
 					//openPage("./index.html");
 				} else {
 					$.toast( res.errorMessage );
@@ -71,15 +85,14 @@
 					var time = 60;
 					$("#getCode")[0].innerHTML = time + "s";
 					var t = setInterval(function () {
-							time --;
-							if( time <= 0 ) {
-									clearInterval( t );
-									isSend = false;
-									$("#getCode")[0].innerHTML = "获取";
-							} else {
-									$("#getCode")[0].innerHTML = time + "s";
-							}
-							
+						time --;
+						if( time <= 0 ) {
+								clearInterval( t );
+								isSend = false;
+								$("#getCode")[0].innerHTML = "获取";
+						} else {
+								$("#getCode")[0].innerHTML = time + "s";
+						}	
 					},1000);
 						
 				} else {

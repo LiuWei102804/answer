@@ -8,6 +8,7 @@
 		.head #user-logo{ position: relative; width: 60px; height: 60px; overflow: hidden; }
 		.head #user-logo input[type=file]{ width: 100%; height: 100%; opacity: 0; position: absolute; top:0; left: 0; }
 		.head #user-logo img{ width: 60px; height: 60px; border-radius: 50%; }
+		.head .nickName{ float: left; max-width: 60%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; -webkit-text-overflow: ellipsis; }
 		.head .profit{ width: 100%; height: 50px; font-size: 12px; border-top:1px solid #fff; }
 		.head .profit div{ flex: 1; -webkit-flex: 1; flex-direction: column; -webkit-flex-direction: column; border-right: 1px solid #fff; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; -webkit-text-overflow:ellipsis; }
 		.head .profit div:last-child{ border-right: none;}
