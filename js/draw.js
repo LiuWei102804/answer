@@ -7,13 +7,14 @@ mui.plusReady(function () {
 		if( page == "./apply.html" ) {
 			app.checkDrawStatu().then(function ( res ) {
 				if( res.hasOwnProperty("success") && res.success ) {
-					if( res.data.vipAllow ) {
+					console.log( JSON.stringify( res ) )
+					//if( res.data.vipAllow ) {
 						openPage( page , { title : t , data : res.data });
-					} else {
-						mui.toast("请先升级 VIP");
-					}
+					//} else {
+					//	mui.toast("请先升级 VIP");
+					//}
 				} else {
-					mui.toast( requestMsg.fail );
+					mui.toast( res.errorMessage );
 				}
 			},function ( err ) {
 				mui.toast( requestMsg.fail );

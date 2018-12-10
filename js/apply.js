@@ -10,6 +10,7 @@
 		var amountType = 0;											//默认普通钱包
 		var radios = $("input[type=radio]");
 
+console.log( JSON.stringify( data ) )
 		$(".ordinary")[0].textContent = "余额:" + data["commAvaible"] + "元";
 		$(".elite")[0].textContent = "余额:" + data["vipAvaible"] + "元";
 		
