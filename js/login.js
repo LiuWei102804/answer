@@ -61,7 +61,8 @@
 						password : md5( password.value )
 					}; 
 					 doc.activeElement.blur();
-					 plus.nativeUI.showWaiting("加载中...");
+					 $("#login").button("loading");
+					 //plus.nativeUI.showWaiting("加载中...");
 					 app.login( params ).then(function ( res ) {
 						 if( res.hasOwnProperty("success") && res.success ) {
 						 		res.phone = account.value;
@@ -70,10 +71,12 @@
 						 } else {
 								mui.toast( res.errorMessage );
 						 }  
-						  plus.nativeUI.closeWaiting();
+						 $("#login").button("reset");
+						  //plus.nativeUI.closeWaiting();
 					 },function ( err ) {
+					 	$("#login").button("reset");
 						mui.toast( requestMsg.fail );
-						plus.nativeUI.closeWaiting();
+						//plus.nativeUI.closeWaiting();
 					 });
 				});
 				
