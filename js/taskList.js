@@ -30,6 +30,7 @@
 	function getTaskList() { 
 		var html = "";
 		app.getQuestions( params ).then(function ( res ) {
+			console.log( JSON.stringify( res ) )
 			if( res.hasOwnProperty("success") && res.success ) {
 				var data = res.data;
 				dataList = dataList.concat( data ); 
@@ -45,7 +46,7 @@
 						params.current += 1; 
 					}
 				} else {
-					if( dataList.length > 1 ) {
+					if( dataList.length < 1 ) { 
 						$(".data-list")[0].classList.add("mui-hidden");
 						$(".empty-data")[0].classList.remove("mui-hidden");
 					}
