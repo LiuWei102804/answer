@@ -35,7 +35,7 @@
 				dataList = dataList.concat( data ); 
 				if( data.length ) {
 					$.each( data , function ( index , item ) {
-						html += "<li class=\"mui-table-view-cell newpage-div\" data-index=\""+ index +"\">"+ item.description +"</li>";
+						html += "<li class=\"mui-table-view-cell newpage-div\" data-index=\""+ index +"\">"+ item.title +"</li>";
 						//console.log( JSON.stringify( item ) )
 					});
 					$(".data-list")[0].innerHTML += html;
