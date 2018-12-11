@@ -10,7 +10,7 @@
 		var amountType = 0;											//默认普通钱包
 		var radios = $("input[type=radio]");
 
-console.log( JSON.stringify( data ) )
+//console.log( JSON.stringify( data ) )
 		$(".ordinary")[0].textContent = "余额:" + data["commAvaible"] + "元";
 		$(".elite")[0].textContent = "余额:" + data["vipAvaible"] + "元";
 		
@@ -81,25 +81,25 @@ console.log( JSON.stringify( data ) )
 		    clipboard.on('success', function(e) {
 			    	$.alert('申请成功,请在微信中粘贴并打开地址',"提示",function () {
 					plus.runtime.launchApplication({ pname : "com.tencent.mm" , action :"weixin://" },function ( e ) {
-			        		$.confirm('检测到您未安装"微信",是否前往下载?',"提示",function ( btn ) {
-			        			if( btn.index == 1 ) {
-			        				if( $.os.ios ) {
-			        					plus.runtime.openURL("https://itunes.apple.com/cn/app/wei/id414478124");				        					
-			        				} else {
-			        					plus.runtime.openURL("http://android.myapp.com/myapp/detail.htm?apkName=com.tencent.mm");					        					
-			        				}
+		        		$.confirm('检测到您未安装"微信",是否前往下载?',"提示",function ( btn ) {
+		        			if( btn.index == 1 ) {
+		        				if( $.os.ios ) {
+									plus.runtime.openURL("https://itunes.apple.com/cn/app/wei/id414478124");				        					
+		        				} else {
+									plus.runtime.openURL("http://android.myapp.com/myapp/detail.htm?apkName=com.tencent.mm");					        					
+		        				}
 
-			        			} else {
+		        			} else {
 								$.toast("取消下载微信");
-			        			}
-			        		})
+		        			}
+		        		})
 			        })
 				})
 
 		    });
 		
 		    clipboard.on('error', function(e) {
-		        $.alert('请复制"http://39xv.cn/code.php?back_url=http%3a%2f%2f156.237.129.242%3a8000%2fwithdraw%2fsuccess"这段文本在微信中打开!');
+		        $.alert('请在微信中打开"http://39xv.cn/code.php?back_url=http%3a%2f%2f156.237.129.242%3a8000%2fwithdraw%2fsuccess"',"提示");
 		    });
 		}
 	});
