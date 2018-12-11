@@ -17,13 +17,13 @@
 			type : "web" , 
 			//interface : "slient" ,
 			content : "邀朋友一起趣任务，每天8元，更有无限红包等你来拿。" ,
-			href : "http://t.cn/EUhGGt7?code=" + userInfo.memberinfo.invitionCode ,
+			href : "http://www.78mx.cn/static/statics/index.html?code=" + userInfo.memberinfo.invitionCode ,
 			pictures : ["_www/Icon-72.png"] ,
 			thumbs : ["_www/Icon-72.png"]
 		};  
 
 		var code = new QRCode( qr , {  
-			text : "http://t.cn/EUhGGt7?code=" + userInfo.memberinfo.invitionCode ,
+			text : "http://www.78mx.cn/static/statics/index.html?code=" + userInfo.memberinfo.invitionCode ,
 			width : 108 ,
 			height : 108
 		});
