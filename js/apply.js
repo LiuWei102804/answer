@@ -48,7 +48,8 @@
 			app.drawApply( params ).then(function ( res ) {
 				//console.log( JSON.stringify( res ) )
 				if( res.hasOwnProperty("success") && res.success ) {
-					downAppOrToWechat();
+					$.alert("申请成功,请耐心等待...");
+					//downAppOrToWechat();
 				} else {
 					$.toast( res.errorMessage );
 				}
