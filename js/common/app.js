@@ -66,14 +66,16 @@
 			任务投放
 	*/
 	owner.putTask = function ( params , data ) {
-		return Post( ORIGIN + apis.putTask , params , data  );
+		var _data = data ? data : {};
+		return Post( ORIGIN + apis.putTask , params , _data  );
 	};
 	/**
 	 * 	申请提现
 	 * 
 	 */
-	owner.drawApply = function ( params ) {
-		return Post( ORIGIN + apis.drawApply , params );
+	owner.drawApply = function ( params , data ) {
+		var _data = data ? data : {};
+		return Post( ORIGIN + apis.drawApply , params , _data );
 	};
 	/*
 	 	查询问卷

@@ -58,7 +58,7 @@
 				url += _params;
 			};
 //			console.log( "Post url " , url )
-//			console.log( JSON.stringify( _data ) )
+			console.log( JSON.stringify( _data ) )
 			return w.ajax( url , _data , "post" ); 
 		};
 		w.Get = function ( url , data ) { 

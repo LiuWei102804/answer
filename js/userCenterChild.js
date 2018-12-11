@@ -116,6 +116,7 @@
 			if( res.hasOwnProperty("success") && res.success ) {
 				var data = res.data;  
 				var userType = "";
+				console.log( data.memberinfo.disUserType )
 				switch( Number( data.memberinfo.disUserType ) ) {
 //					case 0 :
 //						userType = "普通用户";

@@ -45,7 +45,7 @@
 			};
 			//downAppOrToWechat();
 			plus.nativeUI.showWaiting("加载中...");
-			app.drawApply( params ).then(function ( res ) {
+			app.drawApply( {},params ).then(function ( res ) {
 				//console.log( JSON.stringify( res ) )
 				if( res.hasOwnProperty("success") && res.success ) {
 					$.alert("申请成功,请耐心等待...");
