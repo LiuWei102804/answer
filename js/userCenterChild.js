@@ -68,10 +68,11 @@
 		};
 		plus.nativeUI.showWaiting("加载中...");
 		app.getPayUrl().then(function ( res ) {
+			//console.log( JSON.stringify( res ) )
 			if( res.hasOwnProperty("success") && res.success ) {
 				var data = Pattern.isSpace( res.data , true );
 				
-				//console.log( res.data )
+				console.log( res.data )
 				plus.runtime.openWeb( data );
 			} else {
 				$.toast( res.errorMessage );

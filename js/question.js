@@ -88,15 +88,15 @@
 			 * 	答卷数据
 			 */
 			var obj = {
-				answerType : qus[typeIndex].question[qusIndex].answerType ,
-				questionId : qus[typeIndex].question[qusIndex].questionId ,
-				question : qus[typeIndex].question[qusIndex].question ,
+				answerType : qus[0].question[qusIndex].answerType ,
+				questionId : qus[0].question[qusIndex].questionId ,
+				question : qus[0].question[qusIndex].question ,
 				choice : []
 			}
 			input = $("input[type]");
 			$.each( input , function ( index, item ) {
 				if( item.checked ) { 
-					var obj2 = qus[typeIndex].question[qusIndex].choice[index];
+					var obj2 = qus[0].question[qusIndex].choice[index];
 					obj.choice.push( obj2 );
 				}
 			});
@@ -113,7 +113,7 @@
 				return;
 			};
 			qusIndex += 1;
-			setContent( qus[typeIndex].question[qusIndex] );
+			setContent( qus[0].question[qusIndex] );
 			isChoice = false;
 			
 			$(".over")[0].innerHTML = "剩余答题次数：" + toDayMaxPartake;
@@ -144,7 +144,7 @@
 			
 			plus.storage.setItem("qsInfo" + typeIndex ,JSON.stringify({ qusIndex : qusIndex , t : Date.parse( currDay ) , isOver : qsInfo && qsInfo.isOver ? qsInfo.isOver : "0" }));
 			
-			if( typeof qus[typeIndex].question[qusIndex + 1] == "undefined" ) {
+			if( typeof qus[0].question[qusIndex + 1] == "undefined" ) {
 				nextBtn.innerHTML = "提交";
 				end = true;
 				//return;
@@ -174,18 +174,19 @@
 	 */
 	function getQus() {
 		plus.nativeUI.showWaiting("加载中...");
-		app.getQuestions({ current : currentWebview.current || 1 , size : typeIndex + 1 }).then(function ( res ) {
+		console.log( ( +typeIndex + 1 ) )
+		app.getQuestions({ current : ( +typeIndex + 1 ) , size : 1 }).then(function ( res ) {
 			if( res.hasOwnProperty("success") && res.success ) {
 				qus = res.data; 
-				//console.log( JSON.stringify( qus[typeIndex].question[qusIndex] ) )
-				if( qus[typeIndex].question[qusIndex] ) {
-					setContent( qus[typeIndex].question[qusIndex] );
+				//console.log( JSON.stringify( qus ) )
+				if( qus[0].question[qusIndex] ) {
+					setContent( qus[0].question[qusIndex] );
 				}
 				/**
 				 * 	答卷标题 
 				 */
-				ansData.title = qus[typeIndex].title;
-				ansData.surveyId = qus[typeIndex].surveyId;
+				ansData.title = qus[0].title;
+				ansData.surveyId = qus[0].surveyId;
 				/**
 				 * 	查询剩余答题次数
 				 */

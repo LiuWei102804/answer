@@ -31,7 +31,7 @@
 			}
 
 			if( index ) {
-					openPage( page , { index : index } );
+					openPage( page , { index : index , current : index } );
 			} else {
 					openPage( page );
 			}

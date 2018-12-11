@@ -1,7 +1,7 @@
 (function ( $ , doc ) {
 	var params = {
 		current : 1 ,
-		size : 15
+		size : 10
 	};
 	var dataList = [];
 	var isEnd = false;
@@ -23,20 +23,20 @@
 		//getTaskList();
 		$(".data-list").on("tap",".newpage-div",function () {
 			var index = this.dataset.index;
-			openPage("./question.html",{ index : index , current : params.current });
+			openPage("./question.html",{ index : index , current : index });
 		})
 	});
 	
 	function getTaskList() { 
 		var html = "";
 		app.getQuestions( params ).then(function ( res ) {
-			console.log( JSON.stringify( res ) )
+			//console.log( JSON.stringify( res ) )
 			if( res.hasOwnProperty("success") && res.success ) {
 				var data = res.data;
 				dataList = dataList.concat( data ); 
 				if( data.length ) {
 					$.each( data , function ( index , item ) {
-						html += "<li class=\"mui-table-view-cell newpage-div\" data-index=\""+ index +"\">"+ item.title +"</li>";
+						html += "<li class=\"mui-table-view-cell newpage-div\" data-index=\""+ ($(".data-list")[0].children.length + index ) +"\">"+ item.title +"</li>";
 						//console.log( JSON.stringify( item ) )
 					});
 					$(".data-list")[0].innerHTML += html;
