@@ -6,6 +6,7 @@
 	};
 	var dataList = [];
 	var isEnd = false;
+	var loading = true;
 	$.init({
 		pullRefresh : {
 			container:"#refreshContainer",//下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
@@ -33,7 +34,11 @@
 		查询提现记录  
 	*/
    function getLogs() {
+   		if( !loading ) {
+   			return;
+   		}
    		var html = "";
+   		loading = false;
    		if( !$(".empty-data")[0].classList.contains("mui-hidden") ) {
    			$(".empty-data")[0].classList.add("mui-hidden");
    		} 
@@ -61,9 +66,11 @@
 				mui.toast( res.errorMessage );
 			}
 			$('#refreshContainer').pullRefresh().endPullupToRefresh(isEnd);
+			loading = true;
 		},function ( err ) {
 			mui.toast( requestMsg.fail );
 			$('#refreshContainer').pullRefresh().endPullupToRefresh(isEnd);
+			loading = true;
 		}).catch(function ( e ) {
 			consoele.log( JSON.stringify( e ) )
 		})

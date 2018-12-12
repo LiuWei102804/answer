@@ -62,6 +62,7 @@
 					}; 
 					 doc.activeElement.blur();
 					 $("#login").button("loading");
+
 					 //plus.nativeUI.showWaiting("加载中...");
 					 app.login( params ).then(function ( res ) {
 						 if( res.hasOwnProperty("success") && res.success ) {

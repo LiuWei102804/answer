@@ -42,13 +42,13 @@
 		var D = new Date();
 		currDay = D.getFullYear() + "/" + ( D.getMonth() + 1 ) + "/" + D.getDate();
 		
-		currentWebview = plus.webview.currentWebview();
+		currentWebview = plus.webview.currentWebview(); 
 		typeIndex = currentWebview.index; 
 //plus.storage.setItem("qsInfo8" ,JSON.stringify({ qusIndex : 4 , t : 1544371200000 , isOver : 1 }));
 		qsInfo = plus.storage.getItem("qsInfo" + typeIndex ) != null ? JSON.parse( plus.storage.getItem("qsInfo" + typeIndex ) ) : null; 
-		if( qsInfo != null ) {
+		if( qsInfo != null ) { 
 			qusIndex = qsInfo.qusIndex;
-			if( qsInfo.isOver == 1 && qsInfo.t == Date.parse( currDay ) ) {
+			if( qsInfo.isOver == 1 && qsInfo.t == Date.parse( currDay ) && qsInfo.account == userInfo.memberinfo.phone ) {
 				$.alert("今日已答过该答卷！","提示",function () {
 					old_back();
 				});
@@ -142,7 +142,7 @@
 		
 		setContent = function ( ctx ) {
 			
-			plus.storage.setItem("qsInfo" + typeIndex ,JSON.stringify({ qusIndex : qusIndex , t : Date.parse( currDay ) , isOver : qsInfo && qsInfo.isOver ? qsInfo.isOver : "0" }));
+			plus.storage.setItem("qsInfo" + typeIndex ,JSON.stringify({ qusIndex : qusIndex , t : Date.parse( currDay ) , isOver : qsInfo && qsInfo.isOver ? qsInfo.isOver : "0" , account : userInfo.memberinfo.phone }));
 			
 			if( typeof qus[0].question[qusIndex + 1] == "undefined" ) {
 				nextBtn.innerHTML = "提交";

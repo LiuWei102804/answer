@@ -37,8 +37,7 @@
 		
 		$(".mui-bar-nav").on("tap",".share",function ( evt ) {
 			shareWeb( msg );
-		});
-		
+		}); 
 		
 		doc.addEventListener("longtap",function(){
 			plus.nativeUI.actionSheet({title:'保存图片',cancel:'取消',buttons:[{ title : "保存图片" }]}, function( e ) {
@@ -48,7 +47,7 @@
 					wc.draw(bitmap,function(){
 						bitmap.save("_doc/"+ Date.parse( new Date()) +".png", { format : "png" , clip : { top : "0px" } },function ( i ) {
 							plus.gallery.save( i.target , function ( d ) {
-								bitmap.clear();
+								bitmap.clear(); 
 								$.toast("保存图片成功");
 							},function ( e ) {
 								bitmap.clear();

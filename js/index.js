@@ -19,8 +19,11 @@
 		
 		//alert(plus.navigator.isImmersedStatusbar());
 
+//plus.runtime.launchApplication({ pname : "com.tencent.mm" , action : "weixin://dl/businessWebview/link/" , extra : { url : "https://www.baidu.com" }  },function () { 
+//	 
+//})
 		currPage = $.openWindow({
-			url:'./pages/home.html',  
+			url:'./pages/home.html',   
 			id:'./pages/home.html',  
 			styles:{  
 				top:'0px',  
@@ -56,5 +59,13 @@
 				currPage = dataPage;
 			})
 		});
+		
+		
+
 	});
+	
+	
+
+	
+	
 })( mui , document );

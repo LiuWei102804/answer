@@ -1,5 +1,7 @@
 (function ( $ , w ) {
-	var uuid = null,userInfo = null;
+	var uuid = null,
+		userInfo = null,
+		offLineTip = false;
 	$.plusReady(function () {
 		userInfo = JSON.parse( plus.storage.getItem("userInfo") );
 
@@ -9,6 +11,12 @@
 		w.ajax = function (url , data , method ) { 
 			var promise = new Promise(function (resolve,reject) {
 				if( !navigator.onLine ) {
+					if( !offLineTip ) {
+						$.alert( "网络连接已断开" ,function () {
+							offLineTip = true;
+						});
+					}
+
 					reject({ code : 10086 , msg : "网络连接已断开" });
 					return;
 				};
@@ -21,7 +29,6 @@
 				if( method == "post" ) {
 					headers["Content-Type"] = "application/json";
 				} 
-				//console.log( "headers = " , JSON.stringify( headers ) )
 				$.ajax({
 					type: method ,
 					dataType:'json',				//服务器返回json格式数据
@@ -57,8 +64,8 @@
 				_params = _params.substring( 0 , _params.length - 1 );
 				url += _params;
 			};
-//			console.log( "Post url " , url )
-			console.log( JSON.stringify( _data ) )
+//			console.log( "Post url " , url ) 
+//			console.log( JSON.stringify( params ) )
 			return w.ajax( url , _data , "post" ); 
 		};
 		w.Get = function ( url , data ) { 
@@ -76,18 +83,15 @@
 		 * 	监听网络断开
 		 * 
 		 */
-//		document.addEventListener("netchange", function () {
-//			var nt = plus.networkinfo.getCurrentType();
-//			switch ( nt ) {
-//				case plus.networkinfo.CONNECTION_CELL2G :
-//				case plus.networkinfo.CONNECTION_CELL3G :
-//					//plus.nativeUI.toast("当前网络状态不佳",{ duration : "long" });
-//					break;
-//				case plus.networkinfo.CONNECTION_NONE :
-//					//plus.nativeUI.toast("当前网络连接已断开,请检查网络");
-//					break;
-//				default :
-//			}
-//		}, false );
+		document.addEventListener("netchange", function () {
+			var nt = plus.networkinfo.getCurrentType();
+			switch ( nt ) {
+				case plus.networkinfo.CONNECTION_NONE :
+					//plus.nativeUI.toast("当前网络连接已断开,请检查网络");
+					break;
+				default :
+					offLineTip = false;
+			}
+		}, false );
 	});
 })(mui,window);

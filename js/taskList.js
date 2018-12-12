@@ -1,10 +1,11 @@
 (function ( $ , doc ) {
 	var params = {
 		current : 1 ,
-		size : 10
+		size : 15 
 	};
 	var dataList = [];
 	var isEnd = false;
+	var loading = true;
 	$.init({
 		pullRefresh : {
 			container:"#refreshContainer",//待刷新区域标识，querySelector能定位的css选择器均可，比如：id、.class等
@@ -28,6 +29,10 @@
 	});
 	
 	function getTaskList() { 
+		if( !loading ) {
+			return;
+		}
+		loading = false;
 		var html = "";
 		app.getQuestions( params ).then(function ( res ) {
 			//console.log( JSON.stringify( res ) )
@@ -55,9 +60,11 @@
 				$.toast( res.errorMessage );
 			}
 			$('#refreshContainer').pullRefresh().endPullupToRefresh(isEnd);
-		},function ( err ) {
+			loading = true;
+		},function ( err ) { 
 			$.toast( requestMsg.fail );
 			$('#refreshContainer').pullRefresh().endPullupToRefresh(isEnd); 
+			loading = true;
 		}).catch(function ( e ) {
 			console.log( e )
 		})
