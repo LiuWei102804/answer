@@ -17,7 +17,7 @@
 			var page = this.dataset.page;
 			var title = this.dataset.title;
 			if( title ) {
-				console.log( this.dataset.walletType )
+				//console.log( this.dataset.walletType )
 				openPage( page , { title : title , walletType : this.dataset.walletType , flag : this.dataset.flag });
 			} else {
 				openPage( page );
@@ -80,7 +80,7 @@
 			if( res.hasOwnProperty("success") && res.success ) {
 				var data = Pattern.isSpace( res.data , true );
 				
-				console.log( res.data )
+				//console.log( res.data )
 				plus.runtime.openWeb( data );
 			} else {
 				$.toast( res.errorMessage );
@@ -217,7 +217,7 @@
 			if( res.hasOwnProperty("success") && res.success ) {
 				var data = res.data;  
 				var userType = "";
-//				console.log( data.memberinfo.disUserType )
+//				console.log( JSON.stringify( data ) )
 				switch( Number( data.memberinfo.disUserType ) ) {
 //					case 0 :
 //						userType = "普通用户";
@@ -240,7 +240,7 @@
 				}
 				$(".nickName")[0].innerHTML = Boolean( data.memberinfo.nickName ) ?  data.memberinfo.nickName : data.memberinfo.phone.encryptPhoneNumber();										//真实姓名
 				//$(".avatar")[0].src = data.avatar;
-				$(".userId")[0].innerHTML = "ID:" + data.memberinfo.phone.encryptPhoneNumber(); 									//手机号码
+				$(".userId")[0].innerHTML = "ID:" + data.memberinfo.id; 						 			//手机号码
 				$(".dailyComm")[0].innerHTML = data.dailyComm || "0.00";									//今日收入（普通账户）
 				$(".totalComm")[0].innerHTML = data.totalComm || "0.00";									//总收入	（普通账户）
 				$(".totalwithdrawComm")[0].innerHTML = data.totalwithdrawComm || "0.00";					//总提现		（普通账户）

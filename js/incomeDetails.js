@@ -87,7 +87,7 @@
 						$(".data-list")[0].classList.add("mui-hidden");
 						$(".empty-data")[0].classList.remove("mui-hidden");
 					}
-					isEnd = true;
+					//isEnd = true;
 				}
 			} else {
 				$.toast( res.errorMessage );
