@@ -10,6 +10,6 @@
 		$(".newsText")[0].innerHTML = newsText.content;
 		$(".time")[0].innerHTML = newsText.createtime;
 		
-		console.log( JSON.stringify( newsText ) )
+		//console.log( JSON.stringify( newsText ) )
 	});
 })( mui, document );

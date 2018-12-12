@@ -1,0 +1,8 @@
+.mui-content{ background: #fff; }
+.data-title { height: 40px; }
+.mui-table-view-cell{ padding: 11px 0; }
+.data-title span{ flex: 1; -webkit-flex: 1; text-align: center; } 
+.data-list li b{ flex: 1; -webkit-flex: 1; text-align: center;  font-weight: normal; font-size: 14px; color: #666; display: flex; display: -webkit-flex; justify-content: center; -webkit-justify-content: center; align-content: center; -webkit-align-items: center;}
+/*.data-list li b:nth-child(2),.data-title span:nth-child(2){ flex: 2; -webkit-flex: 2; }*/
+.data-list li b:last-child{ color: red;  }
+ 

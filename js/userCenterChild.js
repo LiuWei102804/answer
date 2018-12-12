@@ -15,7 +15,13 @@
 		userInfo = JSON.parse( plus.storage.getItem("userInfo") );
 		$(".account-data").on("tap",".newpage-div",function () {
 			var page = this.dataset.page;
-			openPage( page );
+			var title = this.dataset.title;
+			if( title ) {
+				openPage( page , { title : title });
+			} else {
+				openPage( page );
+			}
+			
 		});
 
 		/**

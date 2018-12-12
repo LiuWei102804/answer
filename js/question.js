@@ -10,7 +10,7 @@
 		typeIndex = 0,		//问卷类型索引
 		toDayMaxPartake = 2,//剩余答题次数
 		end = false,			//答题结束
-		isChoice = false;		// 是否有选中
+		isChoice = 0;		// 是否有选中
 	var content = null,		//问卷标题
 		ans = null,			//选项列表
 		nextBtn = null,		//提交按钮	
@@ -28,8 +28,8 @@
 	 */
 	var old_back = mui.back;
 	mui.back = function () {
-		mui.confirm("确认退出问卷调研?","提示","确认",function ( btn ) {
-			if( btn.index == 0 ) {
+		mui.confirm("确认退出问卷调研?","提示",["取消","确认"],function ( btn ) {
+			if( btn.index == 1 ) {
 				old_back();
 			};
 		});
@@ -46,6 +46,9 @@
 		typeIndex = currentWebview.index; 
 //plus.storage.setItem("qsInfo8" ,JSON.stringify({ qusIndex : 4 , t : 1544371200000 , isOver : 1 }));
 		qsInfo = plus.storage.getItem("qsInfo" + typeIndex ) != null ? JSON.parse( plus.storage.getItem("qsInfo" + typeIndex ) ) : null; 
+		
+//		console.log( JSON.stringify( qsInfo ))
+//		console.log( Date.parse( currDay )  )
 		if( qsInfo != null ) { 
 			qusIndex = qsInfo.qusIndex;
 			if( qsInfo.isOver == 1 && qsInfo.t == Date.parse( currDay ) && qsInfo.account == userInfo.memberinfo.phone ) {
@@ -123,10 +126,11 @@
 		 */
 		$(".mui-content").on("change","input",function () {
 			if( this.checked ) {
-				isChoice = true;
+				isChoice ++;
 			} else {
-				isChoice = false;
+				isChoice --;
 			}
+			//console.log( isChoice )
 		})
 		/*
 		 	退出系统
@@ -141,7 +145,7 @@
 		 
 		
 		setContent = function ( ctx ) {
-			
+			isChoice = 0;
 			plus.storage.setItem("qsInfo" + typeIndex ,JSON.stringify({ qusIndex : qusIndex , t : Date.parse( currDay ) , isOver : qsInfo && qsInfo.isOver ? qsInfo.isOver : "0" , account : userInfo.memberinfo.phone }));
 			
 			if( typeof qus[0].question[qusIndex + 1] == "undefined" ) {
@@ -174,7 +178,6 @@
 	 */
 	function getQus() {
 		plus.nativeUI.showWaiting("加载中...");
-		console.log( ( +typeIndex + 1 ) )
 		app.getQuestions({ current : ( +typeIndex + 1 ) , size : 1 }).then(function ( res ) {
 			if( res.hasOwnProperty("success") && res.success ) {
 				qus = res.data; 

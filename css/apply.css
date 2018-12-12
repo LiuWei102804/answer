@@ -1,0 +1,6 @@
+.mui-content{ background: #fff; }
+h4{ padding: 0 3%; background-color: #fff; height: 40px; line-height: 40px; }
+.mui-input-row{ border-bottom: 1px solid #ddd; }
+.imp{ color: red; padding: 0 3%;}
+.imp:nth-of-type(1){ margin-top: 20px; }
+.imp:before{ content: "*"; color: red; }
