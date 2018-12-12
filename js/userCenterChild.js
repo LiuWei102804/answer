@@ -17,7 +17,8 @@
 			var page = this.dataset.page;
 			var title = this.dataset.title;
 			if( title ) {
-				openPage( page , { title : title });
+				console.log( this.dataset.walletType )
+				openPage( page , { title : title , walletType : this.dataset.walletType , flag : this.dataset.flag });
 			} else {
 				openPage( page );
 			}

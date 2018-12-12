@@ -102,5 +102,12 @@
 	owner.getPayUrl = function () {
 		return Get( ORIGIN + apis.getPayUrl );	
 	};
+	/**
+	 *	获取今日收入 
+	 */
+	owner.getDailyHistory = function ( params , data ) {
+		var _data = data ? data : {};
+		return Post( ORIGIN + apis.getDailyHistory , params , _data );
+	};
 }(mui, window.app = {}));
 

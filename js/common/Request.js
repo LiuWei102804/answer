@@ -42,7 +42,11 @@
 						resolve( res );
 					} ,
 					error : function ( err ) { 
-						console.error( "request call err " + err.message );
+//						for( var e in err ) {
+//							console.log( e , err[e])
+//						}
+						//console.log( err.responseText )
+						console.error( "request call err " + err.readyState );
 						reject( err );
 					}
 				});
@@ -65,7 +69,7 @@
 				url += _params;
 			};
 //			console.log( "Post url " , url ) 
-//			console.log( JSON.stringify( params ) )
+//			console.log( JSON.stringify( _data ) )
 			return w.ajax( url , _data , "post" ); 
 		};
 		w.Get = function ( url , data ) { 

@@ -61,14 +61,15 @@
 						$(".data-list")[0].classList.add("mui-hidden");
 						$(".empty-data")[0].classList.remove("mui-hidden");
 					}
+					isEnd = true;
 				}
 			} else {
-				mui.toast( res.errorMessage );
+				$.toast( res.errorMessage );
 			}
 			$('#refreshContainer').pullRefresh().endPullupToRefresh(isEnd);
 			loading = true;
 		},function ( err ) {
-			mui.toast( requestMsg.fail );
+			$.toast( requestMsg.fail );
 			$('#refreshContainer').pullRefresh().endPullupToRefresh(isEnd);
 			loading = true;
 		}).catch(function ( e ) {
