@@ -1,13 +1,14 @@
 (function ( $ , doc ) {
+	var newsList = [];
 	$.init({
-			preloadPages : [{
-					url : "./notOpen.html" ,
-					id : "./notOpen.html" ,
-					styles : {
-							top : "0px" ,
-							bottom : "0px"
-					}
-			}]
+		preloadPages : [{
+			url : "./notOpen.html" ,
+			id : "./notOpen.html" ,
+			styles : {
+				top : "0px" ,
+				bottom : "0px"
+			}
+		}]
 	})
 	$.plusReady(function () {
 	// 				var gallery = $('.$-slider'); 
@@ -31,12 +32,22 @@
 			}
 
 			if( index ) {
-					openPage( page , { index : index , current : index } );
+				openPage( page , { index : index , current : index } );
 			} else {
-					openPage( page );
+				openPage( page );
 			}
 			
 		}); 
+		
+		/**
+		 * 	跳转新闻资讯
+		 */
+		$(".mui-content").on("tap",".newsPage",function () {
+			var index = this.dataset.index;
+			var page = this.dataset.page;
+			//console.log( page )
+			openPage( page ,{ newsText : newsList[index] } ); 
+		});
 		
 		//console.log( plus.navigator.isImmersedStatusbar() )
 
@@ -48,11 +59,11 @@
    function getNews( obj ) {
 	   app.getNews().then(function ( res ) {
 		   if( res.hasOwnProperty("success") && res.success ) {
-			   var data = res.data;
-			   if( data instanceof Array ) {
+			   newsList = res.data;
+			   if( newsList instanceof Array ) {
 				   var html = "";
-				   for( var i = 0; i < data.length; i ++ ) {
-					   html += "<small>"+ data[i].title +"</small>";
+				   for( var i = 0; i < newsList.length; i ++ ) {
+					   html += "<small class=\"newsPage\" data-index=\""+ i +"\" data-page=\"./newsDetails.html\">"+ newsList[i].title +"</small>";
 				   }
 				   obj.innerHTML = html;
 				   runNews( obj );  
@@ -60,7 +71,7 @@
 				   $.toast( requestMsg.fail );
 			   }
 		   } else {
-			   $.toast( requestMsg.fail );
+			   $.toast( res.errorMessage );
 		   }
 	   },function ( err ) {
 		   $.toast( requestMsg.fail );
