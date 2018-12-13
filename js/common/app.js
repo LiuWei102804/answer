@@ -109,5 +109,11 @@
 		var _data = data ? data : {};
 		return Post( ORIGIN + apis.getDailyHistory , params , _data );
 	};
+	/**
+	 *	获取已答答卷 
+	 */
+	owner.getSurveyHistory = function () {
+		return Get( ORIGIN + apis.getSurveyHistory );
+	};
 }(mui, window.app = {}));
 

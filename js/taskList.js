@@ -24,7 +24,7 @@
 		//getTaskList();
 		$(".data-list").on("tap",".newpage-div",function () {
 			var index = this.dataset.index;
-			openPage("./question.html",{ index : index , current : index });
+			openPage("./question.html",{ index : index , current : index , question : [dataList[index]] });
 		})
 	});
 	
@@ -39,24 +39,23 @@
 			if( res.hasOwnProperty("success") && res.success ) {
 				var data = res.data;
 				dataList = dataList.concat( data ); 
-				if( data.length ) {
-					$.each( data , function ( index , item ) {
-						html += "<li class=\"mui-table-view-cell newpage-div\" data-index=\""+ ($(".data-list")[0].children.length + index ) +"\">"+ item.title +"</li>";
-						//console.log( JSON.stringify( item ) )
-					});
-					$(".data-list")[0].innerHTML += html;
-					if( data.length < params.size ) {
-						isEnd = true;
+				if( data instanceof Array ) {
+					if( data.length ) {
+						$.each( data , function ( index , item ) {
+							html += "<li class=\"mui-table-view-cell newpage-div\" data-index=\""+ ($(".data-list")[0].children.length + index ) +"\">"+ item.title +"</li>";
+							//console.log( JSON.stringify( item ) )
+						});
+						$(".data-list")[0].innerHTML += html;
+						if( data.length < params.size ) {
+							isEnd = true;
+						} else {
+							params.current += 1; 
+						}
 					} else {
-						params.current += 1; 
+						isEnd = true;
 					}
-				} else {
-					if( dataList.length < 1 ) { 
-						$(".data-list")[0].classList.add("mui-hidden");
-						$(".empty-data")[0].classList.remove("mui-hidden");
-					}
-					//isEnd = true;
 				}
+
 			} else {
 				$.toast( res.errorMessage );
 			}

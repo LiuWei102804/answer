@@ -20,8 +20,9 @@
 		questionReward : "/api/v1/question/callback" ,	//提交答卷
 		getNews : "/api/v1/notice/list" ,				//获取咨询信息
 		putTask : "/api/v1/company/add" ,				//任务投放,企业合作
-		getPayUrl : "/api/v1/toPay" 	,					//获取充值 URL
-		getDailyHistory : "/api/v1/dailyHistory" 		//今日收入&总收入
+		getPayUrl : "/api/v1/toPay" 	,				//获取充值 URL
+		getDailyHistory : "/api/v1/dailyHistory" , 		//今日收入&总收入
+		getSurveyHistory : "/api/v1/survey/surveyHistory" ,	//获取已答答卷
 	};
 	win.requestMsg = {
 		fail : "请求数据失败，请重试"

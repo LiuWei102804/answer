@@ -19,7 +19,6 @@
 		
 	var setContent;
 	var currentWebview;
-	var currDay;
 	var userInfo;
 	var qsInfo;
 		
@@ -39,32 +38,39 @@
 	$.plusReady(function () {
 		userInfo = JSON.parse( plus.storage.getItem("userInfo") );
 		var user = userInfo.memberinfo.nickName || userInfo.memberinfo.phone;
-		var D = new Date();
-		currDay = D.getFullYear() + "/" + ( D.getMonth() + 1 ) + "/" + D.getDate();
+		
+		
 		
 		currentWebview = plus.webview.currentWebview(); 
 		typeIndex = currentWebview.index; 
-//plus.storage.setItem("qsInfo8" ,JSON.stringify({ qusIndex : 4 , t : 1544371200000 , isOver : 1 }));
-		qsInfo = plus.storage.getItem("qsInfo" + typeIndex ) != null ? JSON.parse( plus.storage.getItem("qsInfo" + typeIndex ) ) : null; 
+
 		
-//		console.log( JSON.stringify( qsInfo ))
-//		console.log( Date.parse( currDay )  )
-		if( qsInfo != null ) { 
+		qsInfo = plus.storage.getItem("qsInfo" + typeIndex ) != null ? 
+				 JSON.parse( plus.storage.getItem("qsInfo" + typeIndex ) ) : 
+				 null;
+		
+//		console.log( JSON.stringify( qsInfo )) 
+		if( qsInfo != null && userInfo.memberinfo.phone == qsInfo.account ) { 
 			qusIndex = qsInfo.qusIndex;
-			if( qsInfo.isOver == 1 && qsInfo.t == Date.parse( currDay ) && qsInfo.account == userInfo.memberinfo.phone ) {
-				$.alert("今日已答过该答卷！","提示",function () {
-					old_back();
-				});
-			}
 		} else {
 			plus.storage.removeItem("qsInfo" + typeIndex );
+		};
+		/**
+		 * 	查询答卷
+		 */
+		if( currentWebview.hasOwnProperty("question") ) {
+			qus = currentWebview.question; 
+			getQusPowerList(qus[0]);
+		} else {
+			getQus();
 		}
 		
 		//plus.storage.clear();
 		
+		
 		content = $(".content")[0];
 		qsClass = $(".qs-class")[0];
-		ans = $(".ans")[0];
+		ans 	= $(".ans")[0];
 		nextBtn = $(".qs-next")[0];
 		
 		$(".username")[0].innerHTML = "您好：" + user;  
@@ -138,15 +144,13 @@
 		$(".mui-content-padded").on("tap",".qs-quit",function () {
 			$.back();
 		});
-		/**
-		 * 	查询答卷
-		 */
-		getQus();
+		
+
 		 
 		
 		setContent = function ( ctx ) {
 			isChoice = 0;
-			plus.storage.setItem("qsInfo" + typeIndex ,JSON.stringify({ qusIndex : qusIndex , t : Date.parse( currDay ) , isOver : qsInfo && qsInfo.isOver ? qsInfo.isOver : "0" , account : userInfo.memberinfo.phone }));
+			plus.storage.setItem("qsInfo" + typeIndex ,JSON.stringify({ qusIndex : qusIndex , account : userInfo.memberinfo.phone }));
 			
 			if( typeof qus[0].question[qusIndex + 1] == "undefined" ) {
 				nextBtn.innerHTML = "提交";
@@ -172,6 +176,41 @@
 		}
 	});
 	
+	/**
+	 * 	获取已答列表
+	 */
+	function getQusPowerList( item ) {
+		plus.nativeUI.showWaiting("加载中...");
+		$(".mui-title")[0].innerHTML = item.title;
+		app.getSurveyHistory().then(function ( res ) {
+			if( res.hasOwnProperty("success") && res.success ) {
+				if( res.data instanceof Array ) {
+					if( res.data.indexOf( item.surveyId ) > -1 ) {
+						$.alert("今日已答过该答卷！","提示",function () {
+							old_back();
+						});
+					} else {
+						//console.log( qusIndex )
+						if( item.question[qusIndex] ) {
+							setContent( item.question[qusIndex] );
+						};
+					}
+				} else {
+					$.toast( requestMsg.fail );	
+				}
+			} else {
+				$.toast( res.errorMessage );
+			}
+			plus.nativeUI.closeWaiting();
+		},function ( err ) {
+			plus.nativeUI.closeWaiting();
+			$.toast( requestMsg.fail );
+		});
+		/** 
+		 * 	查询剩余答题次数
+		*/
+		canPartake();
+	};
 
 	/**
 	 * 获取答卷列表
@@ -182,24 +221,20 @@
 			if( res.hasOwnProperty("success") && res.success ) {
 				qus = res.data; 
 				//console.log( JSON.stringify( qus ) )
-				if( qus[0].question[qusIndex] ) {
-					setContent( qus[0].question[qusIndex] );
-				}
 				/**
 				 * 	答卷标题 
 				 */
 				ansData.title = qus[0].title;
 				ansData.surveyId = qus[0].surveyId;
 				/**
-				 * 	查询剩余答题次数
+				 * 	查询已答列表
 				 */
-				canPartake();
+				getQusPowerList( qus[0] );
 			} else {
 				$.toast( requestMsg.fail )
 			} 
-			plus.nativeUI.closeWaiting();
+			
 		},function ( err ) {
-			plus.nativeUI.closeWaiting();
 			$.toast( requestMsg.fail )
 		})
 	};
@@ -210,10 +245,8 @@
 		app.canPartake().then(function ( res ) {
 			if( res.hasOwnProperty("success") && res.success ) {
 				toDayMaxPartake = res.data;
-				$(".over")[0].innerHTML = "剩余答题次数：" + toDayMaxPartake;
-				
+				$(".over")[0].innerHTML = "剩余答题次数：" + toDayMaxPartake;				
 			}
-			//console.log( JSON.stringify( res ) )
 		},function ( err ) { 
 			mui.toast( requestMsg.fail );
 		}); 
@@ -225,7 +258,7 @@
 		plus.nativeUI.showWaiting("加载中...");
 		app.questionReward({ suveryId : ansData.surveyId } , { content : ansData } ).then(function ( res ) {
 			if( res.hasOwnProperty("success") && res.success ) {
-				plus.storage.setItem("qsInfo" + typeIndex ,JSON.stringify({ qusIndex : qusIndex , t : Date.parse( currDay ) , isOver :"1" }));
+				plus.storage.setItem("qsInfo" + typeIndex ,JSON.stringify({ qusIndex : qusIndex , account : userInfo.memberinfo.phone }));
 				$(".reward")[0].innerHTML = res.data;
 				$(".rewardType")[0].innerHTML = "已放入"+ ( userInfo.memberinfo.disUserType >= 1 ? '精英':'普通')+"账户";
 				$(".mask")[0].classList.remove("mui-hidden");

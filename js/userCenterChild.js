@@ -215,9 +215,9 @@
 
 		app.getUserInfo().then(function ( res ) {
 			if( res.hasOwnProperty("success") && res.success ) {
-				var data = res.data;  
+				var data = res.data;   
 				var userType = "";
-//				console.log( JSON.stringify( data ) )
+				console.log( JSON.stringify( data ) )
 				switch( Number( data.memberinfo.disUserType ) ) {
 //					case 0 :
 //						userType = "普通用户";

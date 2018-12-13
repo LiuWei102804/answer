@@ -19,6 +19,12 @@
 		
 		//alert(plus.navigator.isImmersedStatusbar());
 
+//console.log( plus.storage.key(0) )
+//console.log( plus.storage.key(1) )
+//console.log( plus.storage.key(2) )
+//console.log( JSON.stringify( plus.storage.getItem("qsInfo0") ) )
+//console.log( JSON.stringify( plus.storage.getItem("qsInfo1") ) )
+//console.log( JSON.stringify( plus.storage.getItem("userInfo") ) )
 //plus.runtime.launchApplication({ pname : "com.tencent.mm" , action : "weixin://dl/businessWebview/link/" , extra : { url : "https://www.baidu.com" }  },function () { 
 //	 
 //})

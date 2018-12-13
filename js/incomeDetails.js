@@ -40,55 +40,51 @@
    		}
    		var html = "";
    		loading = false;
-   		if( !$(".empty-data")[0].classList.contains("mui-hidden") ) {
-   			$(".empty-data")[0].classList.add("mui-hidden");
-   		};
    		//console.log( JSON.stringify( params ) ) 
 		app.getDailyHistory( params ).then(function ( res ) {
 			//console.log( JSON.stringify( res ))
 			if( res.hasOwnProperty("success") && res.success ) {
 				var data = res.data; 
 				dataList = dataList.concat( data );
-				if( data.length ) {
-					$.each( data , function ( index , item ) {
-						var desc = "";
-						switch( Number( item.accountType ) ) {
-							case 0 :
-								desc = "答题奖励";
-								break;
-							case 1 :
-								desc = "精英邀请";
-								break;
-							case 2 :
-								desc = "普通邀请";
-								break;
-							case 3 :
-								desc = "团队邀请";
-								break;
-							case 4 :
-								desc = "团队分红";
-								break;
-							case 5 :
-								desc = "下级答题";
-								break;
-							default : 
-								desc = "其他奖励"; 
+				if( data instanceof Array ) {
+					if( data.length ) {
+						$.each( data , function ( index , item ) {
+							var desc = "";
+							switch( Number( item.accountType ) ) {
+								case 0 :
+									desc = "答题奖励";
+									break;
+								case 1 :
+									desc = "精英邀请";
+									break;
+								case 2 :
+									desc = "普通邀请";
+									break;
+								case 3 :
+									desc = "团队邀请";
+									break;
+								case 4 :
+									desc = "团队分红";
+									break;
+								case 5 :
+									desc = "下级答题";
+									break;
+								default : 
+									desc = "其他奖励"; 
+							}
+							html += "<li class=\"mui-table-view-cell flex\"><b>"+ desc +"</b><b>"+ ( String( item.addTime ).split(" ")[0] ) +"</b><b>￥"+ item.changeAmount +"</b></li>";
+						});
+						$(".data-list")[0].innerHTML += html;
+						if( data.length < params.size ) {
+							isEnd = true;
+						} else {
+							params.current += 1; 
 						}
-						html += "<li class=\"mui-table-view-cell flex\"><b>"+ desc +"</b><b>"+ ( String( item.addTime ).split(" ")[0] ) +"</b><b>￥"+ item.changeAmount +"</b></li>";
-					});
-					$(".data-list")[0].innerHTML += html;
-					if( data.length < params.size ) {
-						isEnd = true;
 					} else {
-						params.current += 1; 
+						isEnd = true;
 					}
-				} else {
-					if( dataList.length < 1 ) {
-						$(".data-list")[0].classList.add("mui-hidden");
-						$(".empty-data")[0].classList.remove("mui-hidden");
-					}
-					//isEnd = true;
 				}
+
 			} else {
 				$.toast( res.errorMessage );
 			}
