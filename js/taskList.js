@@ -6,6 +6,7 @@
 	var dataList = [];
 	var isEnd = false;
 	var loading = true;
+	var powerFlag = false;				//获取已答列表标识
 	$.init({
 		pullRefresh : {
 			container:"#refreshContainer",//待刷新区域标识，querySelector能定位的css选择器均可，比如：id、.class等
@@ -25,7 +26,9 @@
 		$(".data-list").on("tap",".newpage-div",function () {
 			var index = this.dataset.index;
 			openPage("./question.html",{ index : index , current : index , question : [dataList[index]] });
-		})
+		});
+		
+		
 	});
 	
 	function getTaskList() { 
@@ -40,9 +43,10 @@
 				var data = res.data;
 				dataList = dataList.concat( data ); 
 				if( data instanceof Array ) {
-					if( data.length ) {
-						$.each( data , function ( index , item ) {
-							html += "<li class=\"mui-table-view-cell newpage-div\" data-index=\""+ ($(".data-list")[0].children.length + index ) +"\">"+ item.title +"</li>";
+					if( data.length ) { 
+						$.each( data , function ( index , item ) { 
+							//console.log( JSON.stringify( item ) )
+							html += "<li class=\"mui-table-view-cell newpage-div\" data-index=\""+ ($(".data-list")[0].children.length + index ) +"\"  data-survey-id=\""+ item.surveyId +"\"><span class=\"mui-pull-left\">"+ item.title +"</span></li>";
 							//console.log( JSON.stringify( item ) )
 						});
 						$(".data-list")[0].innerHTML += html;
@@ -50,7 +54,14 @@
 							isEnd = true;
 						} else {
 							params.current += 1; 
+						};
+						if( !powerFlag ) {
+							getQusPowerList( data );	
+						} else {
+							setIdent( data );
 						}
+						
+						
 					} else {
 						isEnd = true;
 					}
@@ -68,6 +79,53 @@
 		}).catch(function ( e ) {
 			console.log( e )
 		})
+	};
+		/**
+	 * 	获取已答列表
+	 */
+	function getQusPowerList() {
+		//plus.nativeUI.showWaiting("加载中...");
+		//$(".mui-title")[0].innerHTML = item.title;
+		app.getSurveyHistory().then(function ( res ) {
+			if( res.hasOwnProperty("success") && res.success ) {
+				if( res.data instanceof Array ) { 
+					setIdent( res.data );
+				} else {
+					$.toast( requestMsg.fail );	
+				}
+				powerFlag = true;
+			} else {
+				$.toast( res.errorMessage );
+			}
+			//plus.nativeUI.closeWaiting();
+		},function ( err ) {
+			//plus.nativeUI.closeWaiting();
+			$.toast( requestMsg.fail );
+		});
+	};
+	/**
+	 * 	设置标识
+	 */
+	function setIdent( data ) {
+		$(".newpage-div").each( function( key , elem ) {
+			var ident = this.dataset.surveyId;
+			var statu = "";
+			var color = "";
+			//console.log( ident ) 
+			$.each( data , function( index , id ) {
+				if( id == ident ) {
+					statu = "(已答)";
+					color = "end";
+				} else {
+					statu = "(未答)";
+					color = "begin";
+				}
+			});
+			if( elem.children.length < 2 ) {
+				elem.innerHTML += "<small class=\"mui-pull-right "+ color +"\">"+ statu +"</small>";
+			}
+			
+		});
 	};
 })( mui , document );
  
