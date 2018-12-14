@@ -264,7 +264,7 @@
 				$(".mask")[0].classList.remove("mui-hidden");
 				
 				
-				//plus.storage.setItem("question" + typeIndex , 1);
+				//plus.storage.setItem("question" + typeIndex , 1); 
 			} else {
 				mui.toast( res.errorMessage );
 			}
