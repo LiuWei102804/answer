@@ -1,19 +1,33 @@
 (function ( $, doc ) {
+	var data = {};
 	$.init({
 		
 	});
 	
 	$.plusReady(function () {
 		var curr = plus.webview.currentWebview();
-		var data = curr.data;
 		var drawNum = $("input[type=number]")[0];
 		var amountType = 0;											//默认普通钱包
 		var radios = $("input[type=radio]");
 		var userInfo = JSON.parse( plus.storage.getItem("userInfo") );
 
-//console.log( JSON.stringify( data ) )
-		$(".ordinary")[0].textContent = "余额:" + data["commAvaible"] + "元";
-		$(".elite")[0].textContent = "余额:" + data["vipAvaible"] + "元";
+		plus.nativeUI.showWaiting("加载中...");
+		app.checkDrawStatu().then(function ( res ) {
+			
+			if( res.hasOwnProperty("success") && res.success ) {
+				console.log( JSON.stringify( res ) )
+				data = res.data;
+				$(".ordinary")[0].textContent = "余额:" + data["commAvaible"] + "元";
+				$(".elite")[0].textContent = "余额:" + data["vipAvaible"] + "元";
+
+			} else {
+				$.toast( res.errorMessage );
+			}
+			plus.nativeUI.closeWaiting();
+		},function ( err ) {
+			$.toast( requestMsg.fail );
+			plus.nativeUI.closeWaiting();
+		})
 		
 		$("#draw")[0].addEventListener("tap",function () {
 			if( drawNum.value == "" ) {
@@ -38,13 +52,13 @@
 					$.toast("可用余额不足");
 					return;
 				}
-			} 
+			};
+
 
 			var params = {
 				amount : drawNum.value,
 				amountType : amountType
-			};
-			//downAppOrToWechat();
+			};	
 			plus.nativeUI.showWaiting("加载中...");
 			app.drawApply( {},params ).then(function ( res ) {
 				//console.log( JSON.stringify( res ) )
@@ -61,6 +75,7 @@
 				$.toast( err.message );
 				plus.nativeUI.closeWaiting();
 			})
+					
 		},false);
 		
 		
@@ -82,7 +97,7 @@
 		    });
 
 		    clipboard.on('success', function(e) {
-			    	$.alert('申请成功,请在微信中粘贴并打开地址进行验证',"提示",function () {
+			    	$.alert('申请成功,请在微信中粘贴地址并打开进行验证\n 提现链接请勿发送给其他人打开，否则不到账。',"提示",function () {
 					plus.runtime.launchApplication({ pname : "com.tencent.mm" , action :"weixin://" },function ( e ) {
 			        		$.confirm('检测到您未安装"微信",是否前往下载?',"提示",function ( btn ) {
 			        			if( btn.index == 1 ) {
@@ -96,6 +111,7 @@
 			        			}
 			        		})
 			        })
+					curr.reload();
 				})
 		    });
 		
