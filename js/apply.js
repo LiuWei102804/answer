@@ -9,6 +9,7 @@
 		var drawNum = $("input[type=number]")[0];
 		var amountType = 0;											//默认普通钱包
 		var radios = $("input[type=radio]");
+		var userInfo = JSON.parse( plus.storage.getItem("userInfo") );
 
 //console.log( JSON.stringify( data ) )
 		$(".ordinary")[0].textContent = "余额:" + data["commAvaible"] + "元";
@@ -48,8 +49,9 @@
 			app.drawApply( {},params ).then(function ( res ) {
 				//console.log( JSON.stringify( res ) )
 				if( res.hasOwnProperty("success") && res.success ) {
-					$.alert("申请成功,请耐心等待...");
-					//downAppOrToWechat();
+					//$.alert("申请成功,请耐心等待...");
+					res.data.url += encodeURIComponent("&phone=" + userInfo.memberinfo.phone);
+					downAppOrToWechat( res.data.url );
 				} else {
 					$.toast( res.errorMessage );
 				}
@@ -72,35 +74,33 @@
 		});
 		
 		
-		function downAppOrToWechat() {
+		function downAppOrToWechat( url ) {
 		    var clipboard = new ClipboardJS('#draw', {
 		        text: function() {
-		            return 'http://39xv.cn/code.php?back_url=http%3a%2f%2fwww.78mx.cn%2fwithdraw%2fsuccess';
+		            return url;
 		        }
 		    });
 
 		    clipboard.on('success', function(e) {
-			    	$.alert('申请成功,请在微信中粘贴并打开地址',"提示",function () {
+			    	$.alert('申请成功,请在微信中粘贴并打开地址进行验证',"提示",function () {
 					plus.runtime.launchApplication({ pname : "com.tencent.mm" , action :"weixin://" },function ( e ) {
-		        		$.confirm('检测到您未安装"微信",是否前往下载?',"提示",function ( btn ) {
-		        			if( btn.index == 1 ) {
-		        				if( $.os.ios ) {
+			        		$.confirm('检测到您未安装"微信",是否前往下载?',"提示",function ( btn ) {
+			        			if( btn.index == 1 ) {
+			        				if( $.os.ios ) {
 									plus.runtime.openURL("https://itunes.apple.com/cn/app/wei/id414478124");				        					
-		        				} else {
+			        				} else {
 									plus.runtime.openURL("http://android.myapp.com/myapp/detail.htm?apkName=com.tencent.mm");					        					
-		        				}
-
-		        			} else {
+			        				}
+			        			} else {
 								$.toast("取消下载微信");
-		        			}
-		        		})
+			        			}
+			        		})
 			        })
 				})
-
 		    });
 		
 		    clipboard.on('error', function(e) {
-		        $.alert('请在微信中打开"http://39xv.cn/code.php?back_url=http%3a%2f%2fwww.78mx.cn%2fwithdraw%2fsuccess"',"提示");
+		        $.alert('请在微信中打开"'+ url +'"',"提示");
 		    });
 		}
 	});

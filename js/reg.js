@@ -46,7 +46,7 @@
 
 					$.alert("注册成功,即将返回登录","提示","确认",function () {
 						$.back();
-					});
+					},"div");
 					try{
 						$.fire( plus.webview.getLaunchWebview() , "regback" , { account : params.account , password : password.value });
 						

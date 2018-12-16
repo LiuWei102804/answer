@@ -181,12 +181,12 @@
     });
     //手机号加密
     Object.defineProperty( String.prototype , "encryptPhoneNumber" , {
-    	value : function () {
-    		if( this.length < 11 ) {
-    			return this;
-    		}
-    		var start = this.substring(0,3);
-    		var end = this.substring(7);
+    		value : function () {
+	    		if( this.length < 11 ) {
+	    			return this;
+	    		}
+	    		var start = this.substring(0,3);
+	    		var end = this.substring(7);
 
 			return start + "****" + end;
         } ,
