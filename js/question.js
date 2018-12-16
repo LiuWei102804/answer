@@ -21,6 +21,7 @@
 	var currentWebview;
 	var userInfo;
 	var qsInfo;
+	var currDate;
 		
 	/**
 	 * 	重写 mui.back
@@ -29,6 +30,8 @@
 	mui.back = function () {
 		mui.confirm("确认退出问卷调研?","提示",["取消","确认"],function ( btn ) {
 			if( btn.index == 1 ) {
+				
+				//currentWebview.opener().reload();
 				old_back();
 			};
 		});
@@ -38,7 +41,13 @@
 	$.plusReady(function () {
 		userInfo = JSON.parse( plus.storage.getItem("userInfo") );
 		var user = userInfo.memberinfo.nickName || userInfo.memberinfo.phone;
-		
+		var D = new Date();
+		currDate = D.getFullYear() + "/" + ( D.getMonth() + 1 ) + "/" + D.getDate();
+
+		content = $(".content")[0];
+		qsClass = $(".qs-class")[0];
+		ans 	= $(".ans")[0];
+		nextBtn = $(".qs-next")[0];
 		
 		
 		currentWebview = plus.webview.currentWebview(); 
@@ -48,30 +57,22 @@
 		qsInfo = plus.storage.getItem("qsInfo" + typeIndex ) != null ? 
 				 JSON.parse( plus.storage.getItem("qsInfo" + typeIndex ) ) : 
 				 null;
-		
-//		console.log( JSON.stringify( qsInfo )) 
-		if( qsInfo != null && userInfo.memberinfo.phone == qsInfo.account ) { 
+		 
+		 //	console.log( JSON.stringify( qsInfo ) )
+		if( qsInfo != null && userInfo.memberinfo.phone == qsInfo.account && Date.parse( currDate ) == qsInfo.t ) { 
 			qusIndex = qsInfo.qusIndex;
+			if( currentWebview.question && qusIndex >= currentWebview.question[0].question.length ) {
+				qusIndex = currentWebview.question[0].question.length - 1;
+			}
 		} else {
 			plus.storage.removeItem("qsInfo" + typeIndex );
 		};
-		/**
-		 * 	查询答卷
-		 */
-		if( currentWebview.hasOwnProperty("question") ) {
-			qus = currentWebview.question; 
-			getQusPowerList(qus[0]);
-		} else {
-			getQus();
-		}
+
 		
 		//plus.storage.clear();
 		
 		
-		content = $(".content")[0];
-		qsClass = $(".qs-class")[0];
-		ans 	= $(".ans")[0];
-		nextBtn = $(".qs-next")[0];
+
 		
 		$(".username")[0].innerHTML = "您好：" + user;  
 
@@ -81,13 +82,13 @@
 			old_back();
 		})
 		
-		/*
+		/*  
 		 	下一题
 		 * */
 		$(".mui-content-padded").on("tap",".qs-next",function () {
 			if( toDayMaxPartake <= 0 ) {
 				$.alert("今日答题活动已达上限");
-				return;
+				return; 
 			};
 			if( !isChoice ) {
 				$.alert("请至少选择一项");
@@ -150,7 +151,7 @@
 		
 		setContent = function ( ctx ) {
 			isChoice = 0;
-			plus.storage.setItem("qsInfo" + typeIndex ,JSON.stringify({ qusIndex : qusIndex , account : userInfo.memberinfo.phone }));
+			plus.storage.setItem("qsInfo" + typeIndex ,JSON.stringify({ qusIndex : qusIndex , account : userInfo.memberinfo.phone , t : Date.parse( currDate ) }));
 			
 			if( typeof qus[0].question[qusIndex + 1] == "undefined" ) {
 				nextBtn.innerHTML = "提交";
@@ -173,6 +174,27 @@
 							
 				ans.innerHTML += html;
 			};
+		};
+		/**
+		 * 	查询答卷
+		 */  
+		if( currentWebview.hasOwnProperty("question") ) {
+			qus = currentWebview.question; 
+
+			ansData.title = qus[0].title;
+			ansData.surveyId = qus[0].surveyId; 
+			$(".mui-title")[0].innerHTML = qus[0].title;
+	
+			if( qus[0].question[qusIndex] ) {
+				setContent( qus[0].question[qusIndex] );
+				/** 
+				 * 	查询剩余答题次数
+				*/
+				canPartake();
+			};
+
+		} else {
+			getQus();
 		}
 	});
 	
@@ -206,10 +228,6 @@
 			plus.nativeUI.closeWaiting();
 			$.toast( requestMsg.fail );
 		});
-		/** 
-		 * 	查询剩余答题次数
-		*/
-		canPartake();
 	};
 
 	/**
@@ -218,24 +236,33 @@
 	function getQus() {
 		plus.nativeUI.showWaiting("加载中...");
 		app.getQuestions({ current : ( +typeIndex + 1 ) , size : 1 }).then(function ( res ) {
+			//console.log( JSON.stringify( res ) )
 			if( res.hasOwnProperty("success") && res.success ) {
 				qus = res.data; 
-				//console.log( JSON.stringify( qus ) )
+				if( qus[0].question[qusIndex] ) {
+					setContent( qus[0].question[qusIndex] );
+				};
 				/**
 				 * 	答卷标题 
 				 */
+
 				ansData.title = qus[0].title;
-				ansData.surveyId = qus[0].surveyId;
+				ansData.surveyId = Number( qus[0].surveyId );
 				/**
 				 * 	查询已答列表
 				 */
 				getQusPowerList( qus[0] );
+				/** 
+				 * 	查询剩余答题次数
+				*/
+				canPartake();
 			} else {
 				$.toast( requestMsg.fail )
 			} 
-			
+			plus.nativeUI.closeWaiting();
 		},function ( err ) {
-			$.toast( requestMsg.fail )
+			$.toast( requestMsg.fail );
+			plus.nativeUI.closeWaiting(); 
 		})
 	};
 	/**
@@ -258,7 +285,11 @@
 		plus.nativeUI.showWaiting("加载中...");
 		app.questionReward({ suveryId : ansData.surveyId } , { content : ansData } ).then(function ( res ) {
 			if( res.hasOwnProperty("success") && res.success ) {
-				plus.storage.setItem("qsInfo" + typeIndex ,JSON.stringify({ qusIndex : qusIndex , account : userInfo.memberinfo.phone }));
+				plus.storage.setItem("qsInfo" + typeIndex ,JSON.stringify({ qusIndex : qusIndex , account : userInfo.memberinfo.phone , t : Date.parse( currDate ) }));
+				/**
+				 * 	事件传递
+				 */
+				$.fire( plus.webview.getWebviewById("./taskListChild.html") , "rewardBack" , { index :typeIndex } );
 				$(".reward")[0].innerHTML = res.data;
 				$(".rewardType")[0].innerHTML = "已放入"+ ( userInfo.memberinfo.disUserType >= 1 ? '精英':'普通')+"账户";
 				$(".mask")[0].classList.remove("mui-hidden");

@@ -21,15 +21,19 @@
 			if( !Pattern.isPhone( params.account ) ) {
 				$.toast("请输入正确的手机号");
 				return;
-			}
+			};
 			if( !Pattern.isNumber( params.authCode , 6 , 6 ) ) {
 				$.toast("请输入验证码");
 				return;
-			}
+			};
 			if( !Pattern.isEnglishAndNumber( params.password , 6 , 20 ) ) {
 				$.toast("请使用6-20位数字加字母组合");
 				return;
-			}
+			};
+			if( Pattern.isSpace( params.invitationCode , true ) == "" ) {
+				$.toast("请填写邀请码");
+				return;
+			};
 			doc.activeElement.blur();
 			params.msg_id = msgId;
 			params.password = md5( params.password );
@@ -39,11 +43,13 @@
 				if( res.hasOwnProperty("success") && res.success ) {
 					//console.log( JSON.stringify( res ) )
 					//plus.storage.setItem("userInfo" , JSON.stringify( res ));
-					$.fire( plus.webview.getLaunchWebview() , "regback" , { account : params.account , password : password.value });
+
 					$.alert("注册成功,即将返回登录","提示","确认",function () {
 						$.back();
-					},"div");
+					});
 					try{
+						$.fire( plus.webview.getLaunchWebview() , "regback" , { account : params.account , password : password.value });
+						
 						$.later(function () {
 							$.back();
 							$.closePopup();

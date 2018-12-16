@@ -10,7 +10,8 @@
   },
   "login.html": {
     "refer": [
-      "index.html"
+      "index.html",
+      "reg.html"
     ],
     "resources": []
   },
@@ -67,11 +68,14 @@
     "refer": [
       "pages/question.html"
     ],
-    "resources": []
+    "resources": [
+      "pages/taskListChild.html"
+    ]
   },
   "pages/draw.html": {
     "refer": [
       "pages/apply.html"
-    ]
+    ],
+    "resources": []
   }
 }

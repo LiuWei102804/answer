@@ -8,6 +8,13 @@
 				top : "0px" ,
 				bottom : "0px"
 			}
+		},{
+			url : "./taskList.html" ,
+			id : "./taskList.html" ,
+			styles : {
+				top : "0px" ,
+				bottom : "0px"
+			}
 		}]
 	})
 	$.plusReady(function () {

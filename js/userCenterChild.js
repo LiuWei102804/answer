@@ -141,12 +141,11 @@
 				} else {
 					$.toast("当前版本为最新版本！");
 				}
+				plus.nativeUI.closeWaiting();
 			} ,
 			error : function ( err ) {
-				$.toast("更新信息检查失败,请重试");
-			} ,
-			complete : function () {
 				plus.nativeUI.closeWaiting();
+				$.toast("更新信息检查失败,请重试");
 			}
 		})
 	};

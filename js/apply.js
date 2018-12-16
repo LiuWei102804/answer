@@ -75,7 +75,7 @@
 		function downAppOrToWechat() {
 		    var clipboard = new ClipboardJS('#draw', {
 		        text: function() {
-		            return 'http://39xv.cn/code.php?back_url=http%3a%2f%2f156.237.129.242%3a8000%2fwithdraw%2fsuccess';
+		            return 'http://39xv.cn/code.php?back_url=http%3a%2f%2fwww.78mx.cn%2fwithdraw%2fsuccess';
 		        }
 		    });
 
@@ -100,7 +100,7 @@
 		    });
 		
 		    clipboard.on('error', function(e) {
-		        $.alert('请在微信中打开"http://39xv.cn/code.php?back_url=http%3a%2f%2f156.237.129.242%3a8000%2fwithdraw%2fsuccess"',"提示");
+		        $.alert('请在微信中打开"http://39xv.cn/code.php?back_url=http%3a%2f%2fwww.78mx.cn%2fwithdraw%2fsuccess"',"提示");
 		    });
 		}
 	});
