@@ -1,6 +1,12 @@
 .mui-content{ background: #fff; }
-h4{ padding: 0 3%; background-color: #fff; height: 40px; line-height: 40px; }
+.mui-content h4{ padding: 0 3%; background-color: #fff; height: 40px; line-height: 40px; }
 .mui-input-row{ border-bottom: 1px solid #ddd; }
 .imp{ color: red; padding: 0 3%;}
 .imp:nth-of-type(1){ margin-top: 20px; }
 .imp:before{ content: "*"; color: red; }
+
+.tip{ position: absolute; top: 0; left: 0; right: 0; bottom: 0; -webkit-flex-direction: column; flex-direction: column; z-index: 999; color: #fff; background: rgba(0,0,0,0.7); } 
+.tip h4{ width: 70%; margin-bottom: 20px; line-height: 26px; text-align: center; }
+.tip #qrcode{ width: 200px; height: 200px; border: 10px solid #fff; }
+.tip button{ width: 70%; margin-top: 20px; }
+ 

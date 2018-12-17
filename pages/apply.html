@@ -30,12 +30,21 @@
 			</div>
 			<p class="imp">1、普通账户满100元才可提现,精英账户无限制。</p>
 			<p class="imp">2、所有账户提现都需要10%的提现手续费。</p>
-			<p class="imp">3、提现链接请勿发送给其他人打开，否则不到账。</p>
+			<!--<p class="imp">3、提现链接请勿发送给其他人打开，否则不到账。</p>-->
 			<div class="mui-content-padded">
 				<button id='draw' class="mui-btn mui-btn-block mui-btn-primary">确定</button>
 			</div>
 		</div>
+
+		<div class="tip flex-align flex-just flex mui-hidden">
+			<h4>请截图保存二维码,打开微信扫一扫进行提现</h4>
+			<div id="qrcode"></div>
+			<button type="button" class="mui-btn mui-btn-block mui-btn-primary">打开微信</button>
+		</div>
+		
+
 		<script type="text/javascript" src="../js/common/mui.min.js"></script>
+		<script type="text/javascript" src="../js/common/qrcode.min.js"></script>
 		<script type="text/javascript" src="../js/common/clipboard.min.js" ></script>
 		<script type="text/javascript" src="../js/common/Pattern.js"></script>
 		<script type="text/javascript" src="../js/common/common.js"></script>
