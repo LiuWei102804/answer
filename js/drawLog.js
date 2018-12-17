@@ -7,6 +7,8 @@
 	var dataList = [];
 	var isEnd = false;
 	var loading = true;
+	var reset = "";
+	var type;
 	$.init({
 		pullRefresh : {
 			container:"#refreshContainer",//下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
@@ -23,11 +25,19 @@
 	});
 	$.plusReady(function () {
 		var curr = plus.webview.currentWebview();
-		var type = curr.type;
+		type = curr.type;
 
 		params.type = type;
+		if( type == 1 ) {
+			$(".edit")[0].classList.remove("mui-hidden");
+		}
 
 		$(".mui-title")[0].innerHTML = curr.title;
+		
+		$(".mui-content").on("tap",".reset",function () {
+			var id = this.dataset.wid; 
+			openPage("./apply.html",{ wid : id });
+		});
 	});
 	
 	/*
@@ -45,8 +55,12 @@
 				dataList = dataList.concat( data );
 				if( data instanceof Array ) {
 					if( data.length ) {
+						
+						//
 						$.each( data , function ( index , item ) {
-							html += "<li class=\"mui-table-view-cell flex\"><b>"+ item.withdrawNum +"</b><b>"+ ( String( item.withdrawTime ).split(" ")[0] ) +"</b><b>￥"+ item.totalAmount +"</b></li>";
+							//console.log( type )
+							reset = type == 1 ? "<b><button type=\"button\" class=\"mui-btn reset\" data-wid=\""+ item.id +"\">重新提交</button></b>" : "";
+							html += "<li class=\"mui-table-view-cell flex\"><b>"+ item.withdrawNum +"</b><b>"+ ( String( item.withdrawTime ).split(" ")[0] ) +"</b><b>￥"+ item.totalAmount +"</b>"+ reset +"</li>";
 						});
 						$(".data-list")[0].innerHTML += html;
 						if( data.length < params.size ) {
@@ -69,7 +83,7 @@
 			$('#refreshContainer').pullRefresh().endPullupToRefresh(isEnd);
 			loading = true;
 		}).catch(function ( e ) {
-			consoele.log( JSON.stringify( e ) )
+			console.log( JSON.stringify( e ) )
 		})
    };
 })( mui , document );

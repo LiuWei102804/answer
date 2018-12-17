@@ -71,14 +71,14 @@
 //			console.log( "Post url " , url ) 
 //			console.log( JSON.stringify( _data ) )
 			return w.ajax( url , _data , "post" ); 
-		};
+		}; 
 		w.Get = function ( url , data ) { 
 			var _data = typeof data != "undefined" ? data : {};
 			if( url.indexOf("/api/v1/authCode") == -1 ) {					//发送验证码
 				_data.phone = userInfo.phone;
 			}
-//			console.log( "GET url = " , url );
-//			console.log( JSON.stringify( _data ) )
+			console.log( url ); 
+			console.log( JSON.stringify( _data ) )
 			return w.ajax( url , _data , "get" );
 		};
 		

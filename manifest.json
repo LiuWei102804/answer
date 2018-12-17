@@ -3,7 +3,7 @@
     "id" : "H5BE3FBA0", /*应用的标识，创建应用时自动生成，勿手动修改*/
     "name" : "趣任务", /*应用名称，程序桌面图标名称*/
     "version" : {
-        "name" : "1.0.56", /*应用版本名称*/
+        "name" : "1.0.59", /*应用版本名称*/
         "code" : "83"
     },
     "description" : "邀朋友一起趣任务，每天8元，更有无限红包等你来拿。", /*应用描述信息*/
@@ -156,622 +156,625 @@
         "adid" : "123138120110"
     },
     "dependencies" : {
-	  "pages": {
-	    "setting.html": {
-	      "href": "setting.html",
-	      "resources": [
-	        "js/mui.min.js",
-	        "js/mui.view.js",
-	        "libs/easymob-webim-sdk/jquery-1.11.1.js",
-	        "libs/easymob-webim-sdk/strophe-custom-2.0.0.js",
-	        "libs/easymob-webim-sdk/json2.js",
-	        "libs/easymob-webim-sdk/easemob.im-1.0.5.js",
-	        "js/feedback.js",
-	        "js/feedback-page.js",
-	        "js/mui.locker.js",
-	        "js/app.js",
-	        "css/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/feedback-page.css",
-	        "images/iconfont-tianjia.png"
-	      ],
-	      "refer": [
-	        "login.html"
-	      ],
-	      "priority": 1
-	    },
-	    "main.html": {
-	      "href": "main.html",
-	      "resources": [
-	        "css/mui.min.css",
-	        "fonts/mui.ttf",
-	        "js/mui.min.js",
-	        "js/app.js"
-	      ],
-	      "refer": [
-	        "setting.html"
-	      ],
-	      "priority": 1
-	    },
-	    "unlock.html": {
-	      "href": "unlock.html",
-	      "resources": [
-	        "css/mui.min.css",
-	        "fonts/mui.ttf",
-	        "js/mui.min.js",
-	        "js/mui.locker.js",
-	        "js/app.js"
-	      ],
-	      "refer": [
-	        "login.html",
-	        "main.html"
-	      ],
-	      "priority": 0
-	    },
-	    "forget_password.html": {
-	      "href": "forget_password.html",
-	      "resources": [
-	        "css/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/style.css",
-	        "js/mui.min.js",
-	        "js/app.js"
-	      ],
-	      "priority": 1
-	    },
-	    "reg.html": {
-	      "href": "reg.html",
-	      "resources": [
-	        "css/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/style.css",
-	        "js/mui.min.js",
-	        "js/app.js",
-	        "css/common/mui.min.css",
-	        "css/common/style.css",
-	        "css/reg.css",
-	        "js/common/mui.min.js",
-	        "js/common/md5.min.js",
-	        "js/common/apis.js",
-	        "js/common/Pattern.js",
-	        "js/common/common.js",
-	        "js/common/share.js",
-	        "js/common/Request.js",
-	        "js/common/app.js",
-	        "js/reg.js"
-	      ],
-	      "refer": [
-	        "login.html"
-	      ],
-	      "priority": 3
-	    },
-	    "login.html": {
-	      "href": "login.html",
-	      "resources": [
-	        "css/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/style.css",
-	        "js/mui.min.js",
-	        "js/mui.enterfocus.js",
-	        "js/app.js",
-	        "images/qihoo.png",
-	        "images/qq.png",
-	        "images/sinaweibo.png",
-	        "images/weixin.png",
-	        "css/common/mui.min.css",
-	        "css/common/style.css",
-	        "css/login.css",
-	        "js/common/mui.min.js",
-	        "js/common/md5.min.js",
-	        "js/common/Pattern.js",
-	        "js/common/common.js",
-	        "js/common/Request.js",
-	        "js/common/apis.js",
-	        "js/common/app.js",
-	        "js/login.js"
-	      ],
-	      "refer": [
-	        "unlock.html",
-	        "forget_password.html",
-	        "main.html",
-	        "reg.html",
-	        "index.html",
-	        "pages/userCenter.html",
-	        "pages/home.html",
-	        "forgetPwd.html"
-	      ],
-	      "priority": 0
-	    },
-	    "index.html": {
-	      "resources": [
-	        "pages/home.html",
-	        "css/common/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/common/style.css",
-	        "css/index.css",
-	        "images/home.png",
-	        "images/user.png",
-	        "images/home_a.png",
-	        "images/user_a.png",
-	        "js/common/mui.min.js",
-	        "js/common/common.js",
-	        "js/common/share.js",
-	        "js/common/Request.js",
-	        "js/common/app.js",
-	        "js/index.js"
-	      ],
-	      "refer": [
-	        "pages/task.html",
-	        "pages/my.html",
-	        "pages/userCenter.html",
-	        "pages/home.html"
-	      ],
-	      "priority": 0
-	    },
-	    "pages/userCenter.html": {
-	      "resources": [
-	        "pages/userCenterChild.html",
-	        "css/common/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/common/style.css",
-	        "css/userCenter.css",
-	        "images/userdata_bg.png",
-	        "images/round_shadow.png",
-	        "js/common/mui.min.js",
-	        "js/common/qrcode.min.js",
-	        "js/common/common.js",
-	        "js/common/Request.js",
-	        "js/common/apis.js",
-	        "js/common/app.js",
-	        "js/userCenter.js"
-	      ],
-	      "refer": [
-	        "pages/userCenterChild.html"
-	      ],
-	      "priority": 0
-	    },
-	    "pages/home.html": {
-	      "resources": [
-	        "css/common/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/common/style.css",
-	        "css/home.css",
-	        "images/userdata_bg.png",
-	        "images/search.png",
-	        "js/common/mui.min.js",
-	        "js/common/common.js",
-	        "js/common/share.js",
-	        "js/common/Animate.js",
-	        "js/common/Request.js",
-	        "js/common/apis.js",
-	        "js/common/app.js",
-	        "js/home.js",
-	        "images/logo.png",
-	        "images/sancode.png",
-	        "images/banner.png",
-	        "images/shop.png",
-	        "images/lock.png",
-	        "images/skill.png",
-	        "images/media.png",
-	        "images/read.png",
-	        "images/register.png",
-	        "images/download.png",
-	        "images/game.png"
-	      ],
-	      "refer": [
-	        "pages/put.html",
-	        "pages/plan.html",
-	        "pages/notOpen.html",
-	        "pages/taskList.html",
-	        "pages/question.html",
-	        "pages/flow.html",
-	        "pages/mall.html",
-	        "pages/newsDetails.html",
-	        "pages/profit.html"
-	      ],
-	      "priority": 0
-	    },
-	    "pages/userCenterChild.html": {
-	      "resources": [
-	        "css/common/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/common/style.css",
-	        "css/userCenter.css",
-	        "images/userdata_bg.png",
-	        "images/round_shadow.png",
-	        "js/common/mui.min.js",
-	        "js/common/qrcode.min.js",
-	        "js/common/common.js",
-	        "js/common/Pattern.js",
-	        "js/common/Extend.js",
-	        "js/common/Request.js",
-	        "js/common/apis.js",
-	        "js/common/app.js",
-	        "js/userCenterChild.js",
-	        "images/userphoto.png",
-	        "images/account.png",
-	        "images/elite.png",
-	        "images/data.png",
-	        "images/team.png",
-	        "images/bankcard.png",
-	        "images/money.png",
-	        "images/update.png",
-	        "images/change.png",
-	        "images/uplevel.png",
-	        "images/quit.png"
-	      ],
-	      "refer": [
-	        "pages/myteam.html",
-	        "pages/extension.html",
-	        "pages/user.html",
-	        "pages/draw.html",
-	        "pages/incomeDetails.html"
-	      ],
-	      "priority": 0
-	    },
-	    "pages/myteam.html": {
-	      "resources": [
-	        "css/common/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/common/style.css",
-	        "css/myteam.css",
-	        "js/common/mui.min.js",
-	        "js/common/common.js",
-	        "js/common/Request.js",
-	        "js/common/apis.js",
-	        "js/common/app.js",
-	        "js/myteam.js"
-	      ],
-	      "refer": [
-	        "pages/members.html"
-	      ],
-	      "priority": 0
-	    },
-	    "pages/members.html": {
-	      "resources": [
-	        "css/common/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/common/style.css",
-	        "js/common/mui.min.js",
-	        "js/common/common.js",
-	        "js/common/Request.js",
-	        "js/common/app.js",
-	        "js/member.js"
-	      ],
-	      "refer": [
-	        "pages/myMembers.html"
-	      ],
-	      "priority": 0
-	    },
-	    "pages/myMembers.html": {
-	      "resources": [
-	        "pages/myMembersChild.html",
-	        "css/common/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/common/style.css",
-	        "css/myMembers.css",
-	        "js/common/mui.min.js",
-	        "js/common/common.js",
-	        "js/common/Extend.js",
-	        "js/common/share.js",
-	        "js/common/Request.js",
-	        "js/common/app.js",
-	        "js/myMembers.js"
-	      ],
-	      "refer": [
-	        "pages/myMembersChild.html"
-	      ],
-	      "priority": 0
-	    },
-	    "pages/taskList.html": {
-	      "resources": [
-	        "pages/taskListChild.html",
-	        "js/common/mui.min.js",
-	        "js/taskList.js",
-	        "css/common/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/common/style.css"
-	      ],
-	      "refer": [
-	        "pages/question.html",
-	        "pages/taskListChild.html"
-	      ],
-	      "priority": 0
-	    },
-	    "pages/draw.html": {
-	      "resources": [
-	        "css/common/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/common/style.css",
-	        "css/draw.css",
-	        "js/common/mui.min.js",
-	        "js/common/common.js",
-	        "js/common/Request.js",
-	        "js/common/apis.js",
-	        "js/common/app.js",
-	        "js/draw.js"
-	      ],
-	      "refer": [
-	        "pages/apply.html",
-	        "pages/drawLog.html"
-	      ],
-	      "priority": 0
-	    },
-	    "pages/extension.html": {
-	      "href": "pages/extension.html",
-	      "resources": [
-	        "images/mycode.png",
-	        "css/common/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/common/style.css",
-	        "js/common/mui.min.js",
-	        "js/common/qrcode.min.js",
-	        "js/common/common.js",
-	        "js/common/share.js",
-	        "js/common/Request.js",
-	        "js/common/app.js",
-	        "js/extension.js",
-	        "Icon-72.png"
-	      ],
-	      "priority": 0
-	    },
-	    "pages/user.html": {
-	      "href": "pages/user.html",
-	      "resources": [
-	        "css/common/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/common/style.css",
-	        "css/user.css",
-	        "js/common/mui.min.js",
-	        "js/common/common.js",
-	        "js/common/Extend.js",
-	        "js/common/Request.js",
-	        "js/common/apis.js",
-	        "js/common/app.js",
-	        "js/user.js"
-	      ],
-	      "priority": 1
-	    },
-	    "pages/myMembersChild.html": {
-	      "href": "pages/myMembersChild.html",
-	      "resources": [
-	        "css/common/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/common/style.css",
-	        "css/myMembers.css",
-	        "js/common/mui.min.js",
-	        "js/common/common.js",
-	        "js/common/Extend.js",
-	        "js/common/share.js",
-	        "js/common/Request.js",
-	        "js/common/app.js",
-	        "js/myMembersChild.js"
-	      ],
-	      "priority": 2
-	    },
-	    "pages/apply.html": {
-	      "href": "pages/apply.html",
-	      "resources": [
-	        "css/common/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/common/style.css",
-	        "css/apply.css",
-	        "js/common/mui.min.js",
-	        "js/common/qrcode.min.js",
-	        "js/common/clipboard.min.js",
-	        "js/common/Pattern.js",
-	        "js/common/common.js",
-	        "js/common/Request.js",
-	        "js/common/apis.js",
-	        "js/common/app.js",
-	        "js/apply.js"
-	      ],
-	      "priority": 3
-	    },
-	    "pages/drawLog.html": {
-	      "href": "pages/drawLog.html",
-	      "resources": [
-	        "css/common/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/common/style.css",
-	        "css/rechargeLog.css",
-	        "js/common/mui.min.js",
-	        "js/common/common.js",
-	        "js/common/Request.js",
-	        "js/common/apis.js",
-	        "js/common/app.js",
-	        "js/drawLog.js"
-	      ],
-	      "priority": 4
-	    },
-	    "pages/incomeDetails.html": {
-	      "href": "pages/incomeDetails.html",
-	      "resources": [
-	        "css/common/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/common/style.css",
-	        "css/incomeDetails.css",
-	        "js/common/mui.min.js",
-	        "js/common/common.js",
-	        "js/common/Request.js",
-	        "js/common/apis.js",
-	        "js/common/app.js",
-	        "js/incomeDetails.js"
-	      ],
-	      "priority": 4
-	    },
-	    "pages/newsDetails.html": {
-	      "href": "pages/newsDetails.html",
-	      "resources": [
-	        "css/common/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/common/style.css",
-	        "css/newsDetails.css",
-	        "js/common/mui.min.js",
-	        "js/common/common.js",
-	        "js/common/Request.js",
-	        "js/common/apis.js",
-	        "js/common/app.js",
-	        "js/newsDetails.js"
-	      ],
-	      "priority": 1
-	    },
-	    "pages/notOpen.html": {
-	      "href": "pages/notOpen.html",
-	      "resources": [
-	        "css/common/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/common/style.css",
-	        "css/notOpen.css",
-	        "js/common/mui.min.js",
-	        "images/404.jpeg"
-	      ],
-	      "priority": 2
-	    },
-	    "pages/question.html": {
-	      "href": "pages/question.html",
-	      "resources": [
-	        "css/common/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/common/style.css",
-	        "css/question.css",
-	        "js/common/mui.min.js",
-	        "js/common/common.js",
-	        "js/common/Request.js",
-	        "js/common/apis.js",
-	        "js/common/app.js",
-	        "js/question.js"
-	      ],
-	      "refer": [
-	        "pages/taskListChild.html"
-	      ],
-	      "priority": 3
-	    },
-	    "pages/taskListChild.html": {
-	      "href": "pages/taskListChild.html",
-	      "resources": [
-	        "css/common/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/common/style.css",
-	        "css/taskList.css",
-	        "js/common/mui.min.js",
-	        "js/common/common.js",
-	        "js/common/Request.js",
-	        "js/common/apis.js",
-	        "js/common/app.js",
-	        "js/taskListChild.js"
-	      ],
-	      "refer": [
-	        "pages/question.html"
-	      ],
-	      "priority": 3
-	    },
-	    "pages/flow.html": {
-	      "href": "pages/flow.html",
-	      "resources": [
-	        "css/common/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/common/style.css",
-	        "js/common/mui.min.js",
-	        "images/flow.png"
-	      ],
-	      "priority": 5
-	    },
-	    "pages/profit.html": {
-	      "href": "pages/profit.html",
-	      "resources": [
-	        "css/common/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/common/style.css",
-	        "js/common/mui.min.js",
-	        "images/profit.jpg"
-	      ],
-	      "priority": 6
-	    },
-	    "pages/plan.html": {
-	      "href": "pages/plan.html",
-	      "resources": [
-	        "css/common/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/common/style.css",
-	        "js/common/mui.min.js",
-	        "images/plan.jpg"
-	      ],
-	      "priority": 7
-	    },
-	    "pages/put.html": {
-	      "href": "pages/put.html",
-	      "resources": [
-	        "css/common/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/common/style.css",
-	        "css/put.css",
-	        "js/common/mui.min.js",
-	        "js/common/Pattern.js",
-	        "js/common/common.js",
-	        "js/common/Request.js",
-	        "js/common/apis.js",
-	        "js/common/app.js",
-	        "js/put.js",
-	        "images/userphoto.png",
-	        "images/company.png",
-	        "images/task.png",
-	        "images/contacts.png",
-	        "images/telphone.png"
-	      ],
-	      "priority": 8
-	    },
-	    "pages/mall.html": {
-	      "href": "pages/mall.html",
-	      "resources": [
-	        "css/common/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/common/style.css",
-	        "js/common/mui.min.js",
-	        "images/mall.jpg"
-	      ],
-	      "priority": 9
-	    },
-	    "forgetPwd.html": {
-	      "href": "forgetPwd.html",
-	      "resources": [
-	        "css/common/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/common/style.css",
-	        "css/forgetPwd.css",
-	        "js/common/mui.min.js",
-	        "js/common/md5.min.js",
-	        "js/common/common.js",
-	        "js/common/Pattern.js",
-	        "js/common/Request.js",
-	        "js/common/apis.js",
-	        "js/common/app.js",
-	        "js/forgetPwd.js"
-	      ],
-	      "priority": 2
-	    }
-	  },
-	  "idle": {
-	    "resources": [
-	      "pages/upLevel.html",
-	      "js/address.js",
-	      "js/bankList.js",
-	      "pages/submitthalls.html",
-	      "libs/easymob-webim-sdk/quickstart.md",
-	      "js/upLevel.js",
-	      "css/common/feedback-page.css",
-	      "pages/halls.html",
-	      "images/wxpay.png",
-	      "js/common/mui.js",
-	      "pages/pullrefresh.html",
-	      "images/guize.jpeg",
-	      "pages/bindbank.html",
-	      "images/6p.png",
-	      "js/bindbank.js",
-	      "pages/wallet.html",
-	      "README.md"
-	    ]
-	  }
+		"pages": {
+			"setting.html": {
+				"href": "setting.html",
+				"resources": [
+					"js/mui.min.js",
+					"js/mui.view.js",
+					"libs/easymob-webim-sdk/jquery-1.11.1.js",
+					"libs/easymob-webim-sdk/strophe-custom-2.0.0.js",
+					"libs/easymob-webim-sdk/json2.js",
+					"libs/easymob-webim-sdk/easemob.im-1.0.5.js",
+					"js/feedback.js",
+					"js/feedback-page.js",
+					"js/mui.locker.js",
+					"js/app.js",
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/feedback-page.css",
+					"images/iconfont-tianjia.png"
+				],
+				"refer": [
+					"login.html"
+				],
+				"priority": 1
+			},
+			"main.html": {
+				"href": "main.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"js/mui.min.js",
+					"js/app.js"
+				],
+				"refer": [
+					"setting.html"
+				],
+				"priority": 1
+			},
+			"unlock.html": {
+				"href": "unlock.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"js/mui.min.js",
+					"js/mui.locker.js",
+					"js/app.js"
+				],
+				"refer": [
+					"login.html",
+					"main.html"
+				],
+				"priority": 0
+			},
+			"forget_password.html": {
+				"href": "forget_password.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/style.css",
+					"js/mui.min.js",
+					"js/app.js"
+				],
+				"priority": 1
+			},
+			"reg.html": {
+				"href": "reg.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/style.css",
+					"js/mui.min.js",
+					"js/app.js",
+					"css/common/mui.min.css",
+					"css/common/style.css",
+					"css/reg.css",
+					"js/common/mui.min.js",
+					"js/common/md5.min.js",
+					"js/common/apis.js",
+					"js/common/Pattern.js",
+					"js/common/common.js",
+					"js/common/share.js",
+					"js/common/Request.js",
+					"js/common/app.js",
+					"js/reg.js"
+				],
+				"refer": [
+					"login.html"
+				],
+				"priority": 3
+			},
+			"login.html": {
+				"href": "login.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/style.css",
+					"js/mui.min.js",
+					"js/mui.enterfocus.js",
+					"js/app.js",
+					"images/qihoo.png",
+					"images/qq.png",
+					"images/sinaweibo.png",
+					"images/weixin.png",
+					"css/common/mui.min.css",
+					"css/common/style.css",
+					"css/login.css",
+					"js/common/mui.min.js",
+					"js/common/md5.min.js",
+					"js/common/Pattern.js",
+					"js/common/common.js",
+					"js/common/Request.js",
+					"js/common/apis.js",
+					"js/common/app.js",
+					"js/login.js"
+				],
+				"refer": [
+					"unlock.html",
+					"forget_password.html",
+					"main.html",
+					"reg.html",
+					"index.html",
+					"pages/userCenter.html",
+					"pages/home.html",
+					"forgetPwd.html"
+				],
+				"priority": 0
+			},
+			"index.html": {
+				"resources": [
+					"pages/home.html",
+					"css/common/mui.min.css",
+					"fonts/mui.ttf",
+					"css/common/style.css",
+					"css/index.css",
+					"images/home.png",
+					"images/user.png",
+					"images/home_a.png",
+					"images/user_a.png",
+					"js/common/mui.min.js",
+					"js/common/common.js",
+					"js/common/share.js",
+					"js/common/Request.js",
+					"js/common/app.js",
+					"js/index.js"
+				],
+				"refer": [
+					"pages/task.html",
+					"pages/my.html",
+					"pages/userCenter.html",
+					"pages/home.html"
+				],
+				"priority": 0
+			},
+			"pages/userCenter.html": {
+				"resources": [
+					"pages/userCenterChild.html",
+					"css/common/mui.min.css",
+					"fonts/mui.ttf",
+					"css/common/style.css",
+					"css/userCenter.css",
+					"images/userdata_bg.png",
+					"images/round_shadow.png",
+					"js/common/mui.min.js",
+					"js/common/qrcode.min.js",
+					"js/common/common.js",
+					"js/common/Request.js",
+					"js/common/apis.js",
+					"js/common/app.js",
+					"js/userCenter.js"
+				],
+				"refer": [
+					"pages/userCenterChild.html"
+				],
+				"priority": 0
+			},
+			"pages/home.html": {
+				"resources": [
+					"css/common/mui.min.css",
+					"fonts/mui.ttf",
+					"css/common/style.css",
+					"css/home.css",
+					"images/userdata_bg.png",
+					"images/search.png",
+					"js/common/mui.min.js",
+					"js/common/common.js",
+					"js/common/share.js",
+					"js/common/Animate.js",
+					"js/common/Request.js",
+					"js/common/apis.js",
+					"js/common/app.js",
+					"js/home.js",
+					"images/logo.png",
+					"images/sancode.png",
+					"images/banner.png",
+					"images/shop.png",
+					"images/lock.png",
+					"images/skill.png",
+					"images/media.png",
+					"images/read.png",
+					"images/register.png",
+					"images/download.png",
+					"images/game.png"
+				],
+				"refer": [
+					"pages/put.html",
+					"pages/plan.html",
+					"pages/notOpen.html",
+					"pages/taskList.html",
+					"pages/question.html",
+					"pages/flow.html",
+					"pages/mall.html",
+					"pages/newsDetails.html",
+					"pages/profit.html"
+				],
+				"priority": 0
+			},
+			"pages/userCenterChild.html": {
+				"resources": [
+					"css/common/mui.min.css",
+					"fonts/mui.ttf",
+					"css/common/style.css",
+					"css/userCenter.css",
+					"images/userdata_bg.png",
+					"images/round_shadow.png",
+					"js/common/mui.min.js",
+					"js/common/qrcode.min.js",
+					"js/common/common.js",
+					"js/common/Pattern.js",
+					"js/common/Extend.js",
+					"js/common/Request.js",
+					"js/common/apis.js",
+					"js/common/app.js",
+					"js/userCenterChild.js",
+					"images/userphoto.png",
+					"images/account.png",
+					"images/elite.png",
+					"images/data.png",
+					"images/team.png",
+					"images/bankcard.png",
+					"images/money.png",
+					"images/update.png",
+					"images/change.png",
+					"images/uplevel.png",
+					"images/quit.png"
+				],
+				"refer": [
+					"pages/myteam.html",
+					"pages/extension.html",
+					"pages/user.html",
+					"pages/draw.html",
+					"pages/incomeDetails.html"
+				],
+				"priority": 0
+			},
+			"pages/myteam.html": {
+				"resources": [
+					"css/common/mui.min.css",
+					"fonts/mui.ttf",
+					"css/common/style.css",
+					"css/myteam.css",
+					"js/common/mui.min.js",
+					"js/common/common.js",
+					"js/common/Request.js",
+					"js/common/apis.js",
+					"js/common/app.js",
+					"js/myteam.js"
+				],
+				"refer": [
+					"pages/members.html"
+				],
+				"priority": 0
+			},
+			"pages/members.html": {
+				"resources": [
+					"css/common/mui.min.css",
+					"fonts/mui.ttf",
+					"css/common/style.css",
+					"js/common/mui.min.js",
+					"js/common/common.js",
+					"js/common/Request.js",
+					"js/common/app.js",
+					"js/member.js"
+				],
+				"refer": [
+					"pages/myMembers.html"
+				],
+				"priority": 0
+			},
+			"pages/myMembers.html": {
+				"resources": [
+					"pages/myMembersChild.html",
+					"css/common/mui.min.css",
+					"fonts/mui.ttf",
+					"css/common/style.css",
+					"css/myMembers.css",
+					"js/common/mui.min.js",
+					"js/common/common.js",
+					"js/common/Extend.js",
+					"js/common/share.js",
+					"js/common/Request.js",
+					"js/common/app.js",
+					"js/myMembers.js"
+				],
+				"refer": [
+					"pages/myMembersChild.html"
+				],
+				"priority": 0
+			},
+			"pages/taskList.html": {
+				"resources": [
+					"pages/taskListChild.html",
+					"js/common/mui.min.js",
+					"js/taskList.js",
+					"css/common/mui.min.css",
+					"fonts/mui.ttf",
+					"css/common/style.css"
+				],
+				"refer": [
+					"pages/question.html",
+					"pages/taskListChild.html"
+				],
+				"priority": 0
+			},
+			"pages/draw.html": {
+				"resources": [
+					"css/common/mui.min.css",
+					"fonts/mui.ttf",
+					"css/common/style.css",
+					"css/draw.css",
+					"js/common/mui.min.js",
+					"js/common/common.js",
+					"js/common/Request.js",
+					"js/common/apis.js",
+					"js/common/app.js",
+					"js/draw.js"
+				],
+				"refer": [
+					"pages/apply.html",
+					"pages/drawLog.html"
+				],
+				"priority": 0
+			},
+			"pages/extension.html": {
+				"href": "pages/extension.html",
+				"resources": [
+					"images/mycode.png",
+					"css/common/mui.min.css",
+					"fonts/mui.ttf",
+					"css/common/style.css",
+					"js/common/mui.min.js",
+					"js/common/qrcode.min.js",
+					"js/common/common.js",
+					"js/common/share.js",
+					"js/common/Request.js",
+					"js/common/app.js",
+					"js/extension.js",
+					"Icon-72.png"
+				],
+				"priority": 0
+			},
+			"pages/user.html": {
+				"href": "pages/user.html",
+				"resources": [
+					"css/common/mui.min.css",
+					"fonts/mui.ttf",
+					"css/common/style.css",
+					"css/user.css",
+					"js/common/mui.min.js",
+					"js/common/common.js",
+					"js/common/Extend.js",
+					"js/common/Request.js",
+					"js/common/apis.js",
+					"js/common/app.js",
+					"js/user.js"
+				],
+				"priority": 1
+			},
+			"pages/myMembersChild.html": {
+				"href": "pages/myMembersChild.html",
+				"resources": [
+					"css/common/mui.min.css",
+					"fonts/mui.ttf",
+					"css/common/style.css",
+					"css/myMembers.css",
+					"js/common/mui.min.js",
+					"js/common/common.js",
+					"js/common/Extend.js",
+					"js/common/share.js",
+					"js/common/Request.js",
+					"js/common/app.js",
+					"js/myMembersChild.js"
+				],
+				"priority": 2
+			},
+			"pages/apply.html": {
+				"href": "pages/apply.html",
+				"resources": [
+					"css/common/mui.min.css",
+					"fonts/mui.ttf",
+					"css/common/style.css",
+					"css/apply.css",
+					"js/common/mui.min.js",
+					"js/common/qrcode.min.js",
+					"js/common/clipboard.min.js",
+					"js/common/Pattern.js",
+					"js/common/common.js",
+					"js/common/Request.js",
+					"js/common/apis.js",
+					"js/common/app.js",
+					"js/apply.js"
+				],
+				"priority": 3
+			},
+			"pages/drawLog.html": {
+				"href": "pages/drawLog.html",
+				"resources": [
+					"css/common/mui.min.css",
+					"fonts/mui.ttf",
+					"css/common/style.css",
+					"css/rechargeLog.css",
+					"js/common/mui.min.js",
+					"js/common/common.js",
+					"js/common/Request.js",
+					"js/common/apis.js",
+					"js/common/app.js",
+					"js/drawLog.js"
+				],
+				"priority": 4,
+				"refer": [
+					"pages/apply.html"
+				]
+			},
+			"pages/incomeDetails.html": {
+				"href": "pages/incomeDetails.html",
+				"resources": [
+					"css/common/mui.min.css",
+					"fonts/mui.ttf",
+					"css/common/style.css",
+					"css/incomeDetails.css",
+					"js/common/mui.min.js",
+					"js/common/common.js",
+					"js/common/Request.js",
+					"js/common/apis.js",
+					"js/common/app.js",
+					"js/incomeDetails.js"
+				],
+				"priority": 4
+			},
+			"pages/newsDetails.html": {
+				"href": "pages/newsDetails.html",
+				"resources": [
+					"css/common/mui.min.css",
+					"fonts/mui.ttf",
+					"css/common/style.css",
+					"css/newsDetails.css",
+					"js/common/mui.min.js",
+					"js/common/common.js",
+					"js/common/Request.js",
+					"js/common/apis.js",
+					"js/common/app.js",
+					"js/newsDetails.js"
+				],
+				"priority": 1
+			},
+			"pages/notOpen.html": {
+				"href": "pages/notOpen.html",
+				"resources": [
+					"css/common/mui.min.css",
+					"fonts/mui.ttf",
+					"css/common/style.css",
+					"css/notOpen.css",
+					"js/common/mui.min.js",
+					"images/404.jpeg"
+				],
+				"priority": 2
+			},
+			"pages/question.html": {
+				"href": "pages/question.html",
+				"resources": [
+					"css/common/mui.min.css",
+					"fonts/mui.ttf",
+					"css/common/style.css",
+					"css/question.css",
+					"js/common/mui.min.js",
+					"js/common/common.js",
+					"js/common/Request.js",
+					"js/common/apis.js",
+					"js/common/app.js",
+					"js/question.js"
+				],
+				"refer": [
+					"pages/taskListChild.html"
+				],
+				"priority": 3
+			},
+			"pages/taskListChild.html": {
+				"href": "pages/taskListChild.html",
+				"resources": [
+					"css/common/mui.min.css",
+					"fonts/mui.ttf",
+					"css/common/style.css",
+					"css/taskList.css",
+					"js/common/mui.min.js",
+					"js/common/common.js",
+					"js/common/Request.js",
+					"js/common/apis.js",
+					"js/common/app.js",
+					"js/taskListChild.js"
+				],
+				"refer": [
+					"pages/question.html"
+				],
+				"priority": 3
+			},
+			"pages/flow.html": {
+				"href": "pages/flow.html",
+				"resources": [
+					"css/common/mui.min.css",
+					"fonts/mui.ttf",
+					"css/common/style.css",
+					"js/common/mui.min.js",
+					"images/flow.png"
+				],
+				"priority": 5
+			},
+			"pages/profit.html": {
+				"href": "pages/profit.html",
+				"resources": [
+					"css/common/mui.min.css",
+					"fonts/mui.ttf",
+					"css/common/style.css",
+					"js/common/mui.min.js",
+					"images/profit.jpg"
+				],
+				"priority": 6
+			},
+			"pages/plan.html": {
+				"href": "pages/plan.html",
+				"resources": [
+					"css/common/mui.min.css",
+					"fonts/mui.ttf",
+					"css/common/style.css",
+					"js/common/mui.min.js",
+					"images/plan.jpg"
+				],
+				"priority": 7
+			},
+			"pages/put.html": {
+				"href": "pages/put.html",
+				"resources": [
+					"css/common/mui.min.css",
+					"fonts/mui.ttf",
+					"css/common/style.css",
+					"css/put.css",
+					"js/common/mui.min.js",
+					"js/common/Pattern.js",
+					"js/common/common.js",
+					"js/common/Request.js",
+					"js/common/apis.js",
+					"js/common/app.js",
+					"js/put.js",
+					"images/userphoto.png",
+					"images/company.png",
+					"images/task.png",
+					"images/contacts.png",
+					"images/telphone.png"
+				],
+				"priority": 8
+			},
+			"pages/mall.html": {
+				"href": "pages/mall.html",
+				"resources": [
+					"css/common/mui.min.css",
+					"fonts/mui.ttf",
+					"css/common/style.css",
+					"js/common/mui.min.js",
+					"images/mall.jpg"
+				],
+				"priority": 9
+			},
+			"forgetPwd.html": {
+				"href": "forgetPwd.html",
+				"resources": [
+					"css/common/mui.min.css",
+					"fonts/mui.ttf",
+					"css/common/style.css",
+					"css/forgetPwd.css",
+					"js/common/mui.min.js",
+					"js/common/md5.min.js",
+					"js/common/common.js",
+					"js/common/Pattern.js",
+					"js/common/Request.js",
+					"js/common/apis.js",
+					"js/common/app.js",
+					"js/forgetPwd.js"
+				],
+				"priority": 2
+			}
+		},
+		"idle": {
+			"resources": [
+				"pages/upLevel.html",
+				"js/address.js",
+				"js/bankList.js",
+				"pages/submitthalls.html",
+				"libs/easymob-webim-sdk/quickstart.md",
+				"js/upLevel.js",
+				"css/common/feedback-page.css",
+				"pages/halls.html",
+				"images/wxpay.png",
+				"js/common/mui.js",
+				"pages/pullrefresh.html",
+				"images/guize.jpeg",
+				"pages/bindbank.html",
+				"images/6p.png",
+				"js/bindbank.js",
+				"pages/wallet.html",
+				"README.md"
+			]
+		}
 	},
     "unpackage" : [
         "README.md",

@@ -26,19 +26,21 @@
 		<script type="text/javascript">
 			mui.init({}); 
 			mui.plusReady(function () {
-//					plus.runtime.launchApplication({ pname : "com.tencent.mm" , action :"weixin://scanqrcode" },function ( e ) {
-////			        		$.confirm('检测到您未安装"微信",是否前往下载?',"提示",function ( btn ) {
-////			        			if( btn.index == 1 ) {
-////			        				if( $.os.ios ) {
-////									plus.runtime.openURL("https://itunes.apple.com/cn/app/wei/id414478124");				        					
-////			        				} else {
-////									plus.runtime.openURL("http://android.myapp.com/myapp/detail.htm?apkName=com.tencent.mm");					        					
-////			        				}
-////			        			} else {
-////								$.toast("取消下载微信");
-////			        			}
-////			        		})
-//			        })
+			//var action = mui.os.ios ? "weixin://scanqrcode" : "weixin://dl/scan";
+			//plus.runtime.openURL( "weixin://dl/settings" );
+//			plus.runtime.launchApplication({ pname : "com.tencent.mm" , action :"weixin://dl/settings" },function ( e ) {
+//      		mui.confirm('检测到您未安装"微信",是否前往下载?',"提示",function ( btn ) {
+//      			if( btn.index == 1 ) {
+//      				if( mui.os.ios ) {
+//							plus.runtime.openURL("https://itunes.apple.com/cn/app/wei/id414478124");				       
+//      				} else {
+//							plus.runtime.openURL("http://android.myapp.com/myapp/detail.htm?apkName=com.tencent.mm");						
+//      				}
+//      			} else {
+//						mui.toast("取消下载微信");
+//      			}
+//      		})
+//	        })
 			})
 		</script>
 	</body>

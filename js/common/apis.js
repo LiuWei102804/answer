@@ -23,6 +23,7 @@
 		getPayUrl : "/api/v1/toPay" 	,				//获取充值 URL
 		getDailyHistory : "/api/v1/dailyHistory" , 		//今日收入&总收入
 		getSurveyHistory : "/api/v1/survey/surveyHistory" ,	//获取已答答卷
+		drawLogById : "/api/v1/dowithdraw" 				//查询单条提现记录
 	};
 	win.requestMsg = {
 		fail : "请求数据失败，请重试"

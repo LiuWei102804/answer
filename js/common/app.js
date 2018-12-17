@@ -77,11 +77,18 @@
 		var _data = data ? data : {};
 		return Post( ORIGIN + apis.drawApply , params , _data );
 	};
+	/**
+	 * 	查询单条提现记录
+	 * 
+	 */
+	owner.getDrawLogById = function ( params ) {
+		return Get( ORIGIN + apis.drawLogById , params );
+	};
 	/*
 	 	查询问卷
-	 * */
+	 * */ 
 	owner.getQuestions = function ( params ) {
-		return Get( ORIGIN + apis.getQuestion , params );
+		return Get( ORIGIN + apis.getQuestion , params ); 
 	};
 	/**
 	 * 	查询可答题次数

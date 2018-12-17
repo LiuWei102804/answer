@@ -290,7 +290,9 @@
       "js/common/app.js",
       "js/drawLog.js"
     ],
-    "refer": [],
+    "refer": [
+      "pages/apply.html"
+    ],
     "priority": 0
   },
   "pages/incomeDetails.html": {

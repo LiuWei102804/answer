@@ -121,7 +121,7 @@
 	/**
 	 * 	检查更新信息
 	 */
-	var checkUpdateUrl = "http://156.237.129.242:8081/checkUpdate.json";
+	var checkUpdateUrl = "http://156.237.129.242:8081/checkUpdate.json?_="+Date.parse(new Date());
 	function checkUpdate( ver ) {
 		plus.nativeUI.showWaiting("检查更新..");	
 		$.ajax({
@@ -152,7 +152,7 @@
 	/**
 	 *	下载更新 
 	 */
-	var wgtUrl = "http://156.237.129.242:8081/H5BE3FBA0.wgt";
+	var wgtUrl = "http://156.237.129.242:8081/H5BE3FBA0.wgt?_="+Date.parse(new Date());
 	function downWgt( updateInfo ){
 		plus.nativeUI.showWaiting("下载更新");
 		plus.downloader.createDownload( wgtUrl , {filename:"_doc/update/"}, function(d,status){
@@ -248,7 +248,7 @@
 				$(".totalwithdrawVip")[0].innerHTML = data.totalwithdrawVip || "0.00";	//总提现		（精英账户）
 				$(".userType")[0].innerHTML = "(" + userType + ")";
 
-				if( !qrCode ) {
+				if( !qrCode ) { 
 					qrCode = new QRCode( qr , { 
 						text : "http://www.78mx.cn/static/statics/index.html?code=" + data.memberinfo.invitionCode ,
 						width : 25 ,
