@@ -5,7 +5,7 @@
 		.head p{ color: #fff; } 
 		.head div:nth-child(2){ margin-left: 5px; flex: 3; -webkit-flex: 3; }
 		.head div:nth-child(2) p:first-child small{ color: #fdf573;  }
-#qrcode{ border: 2px solid #fff; }
+		#qrcode{ border: 2px solid #fff; width: 55px; height: 55px; }
 		.head #user-logo{ position: relative; width: 60px; height: 60px; overflow: hidden; }
 		.head #user-logo input[type=file]{ width: 100%; height: 100%; opacity: 0; position: absolute; top:0; left: 0; }
 		.head #user-logo img{ width: 60px; height: 60px; border-radius: 50%; }
@@ -26,4 +26,4 @@
 		.account-data div:last-child{ border-right: none; }
 		.account-type{ border-bottom: 1px solid #ddd; }
 		.account-type div{ border-right: none; }
-		#code{ position: absolute; top: 0px;  left: 0px;}
+		#code{ position: absolute; top: 0px;  left: 0px; }

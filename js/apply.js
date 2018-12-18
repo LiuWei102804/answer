@@ -38,11 +38,13 @@
 		app.checkDrawStatu().then(function ( res ) {
 			
 			if( res.hasOwnProperty("success") && res.success ) {
-				//console.log( JSON.stringify( res ) )
+				//console.log( JSON.stringify( res ) ) 
 				data = res.data;
+				data["commAvaible"] = Math.max( 0 , parseFloat( data["commAvaible"] ) );
+				data["vipAvaible"] = Math.max( 0 , parseFloat( data["vipAvaible"] ) );
 				$(".ordinary")[0].textContent = "余额:" + data["commAvaible"] + "元";
 				$(".elite")[0].textContent = "余额:" + data["vipAvaible"] + "元";
-
+				
 			} else {
 				$.toast( res.errorMessage );
 			}
@@ -100,8 +102,8 @@
 				return;
 			};
 			doc.activeElement.blur(); 
-			if( drawNum.value <= 1 ) {
-				$.toast("最低提现1元起");
+			if( drawNum.value <= 2 ) {
+				$.toast("提现金额不能小于2元");
 				return;
 			};
 			/**
@@ -135,6 +137,11 @@
 				if( res.hasOwnProperty("success") && res.success ) {
 					res.data.url += encodeURIComponent("&p=" + userInfo.memberinfo.phone); 
 					downAppOrToWechat( res.data.url );
+					if( amountType == 0 ) {
+						$(".ordinary")[0].textContent = "余额:" + ( parseFloat( data["commAvaible"] - parseFloat( drawNum.value ) ) ).toFixed(2) + "元";
+					} else {
+						$(".elite")[0].textContent = "余额:" + ( parseFloat( data["vipAvaible"] - parseFloat( drawNum.value ) ) ).toFixed(2) + "元";
+					}
 				} else {
 					$.toast( res.errorMessage );
 				}
@@ -160,7 +167,10 @@
 			}
 		});
 		
-		
+		/**
+		 * 显示二维码
+		 * @param {Object} url
+		 */
 		function downAppOrToWechat( url ) {
 			if( tip.classList.contains("mui-hidden") ) {
 				tip.classList.remove("mui-hidden")

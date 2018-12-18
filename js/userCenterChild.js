@@ -249,11 +249,7 @@
 				$(".userType")[0].innerHTML = "(" + userType + ")";
 
 				if( !qrCode ) { 
-					qrCode = new QRCode( qr , { 
-						text : "http://www.78mx.cn/static/statics/index.html?code=" + data.memberinfo.invitionCode ,
-						width : 25 ,
-						height : 25
-					})
+					qrCode = new QRCode( $("#qrcode")[0] , "http://www.78mx.cn/static/statics/index.html?code=" + data.memberinfo.invitionCode )
 				} else {
 					//qrCode.clear();
 					qrCode.makeCode( data.memberinfo.qrCode );
