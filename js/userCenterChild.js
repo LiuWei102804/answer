@@ -247,11 +247,12 @@
 				$(".totalVip")[0].innerHTML = data.totalVip || "0.00";										//总收入   （精英账户）
 				$(".totalwithdrawVip")[0].innerHTML = data.totalwithdrawVip || "0.00";	//总提现		（精英账户）
 				$(".userType")[0].innerHTML = "(" + userType + ")";
+				$(".commAvail")[0].innerHTML = "￥" + data["commAvail"] || "0.00"; 
+				$(".vipAvail")[0].innerHTML = "￥" + data["vipAvail"] || "0.00";
 
 				if( !qrCode ) { 
 					qrCode = new QRCode( $("#qrcode")[0] , "http://www.78mx.cn/static/statics/index.html?code=" + data.memberinfo.invitionCode )
 				} else {
-					//qrCode.clear();
 					qrCode.makeCode( data.memberinfo.qrCode );
 				}
 
