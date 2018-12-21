@@ -22,7 +22,7 @@
 		       		
 		    } ,
 		    down : {
-		    		callback: downToRefresh
+		    	callback: downToRefresh
 		    }
 		}
 	});
@@ -131,7 +131,6 @@
 			};
 
 			downRefresh = false;
-			
 			loading = true;
 		}).catch(function ( e ) {
 			console.log( e )

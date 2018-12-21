@@ -20,7 +20,6 @@
 		if( curr.wid ) { 
 			plus.nativeUI.showWaiting("加载中...");
 			app.getDrawLogById( { wid : curr.wid } ).then(function ( res ) {
-				//console.log( JSON.stringify( res ) ) 
 				if( res.hasOwnProperty("success") && res.success ) {
 					 res.data.url += encodeURIComponent("&p=" + userInfo.memberinfo.phone); 
 					downAppOrToWechat( res.data.url );
@@ -38,7 +37,6 @@
 		app.checkDrawStatu().then(function ( res ) {
 			
 			if( res.hasOwnProperty("success") && res.success ) {
-				//console.log( JSON.stringify( res ) ) 
 				data = res.data;
 				data["commAvaible"] = Math.max( 0 , parseFloat( data["commAvaible"] ) );
 				data["vipAvaible"] = Math.max( 0 , parseFloat( data["vipAvaible"] ) );
@@ -95,15 +93,20 @@
 			ev.stopPropagation();
 			return false;
 		});
-
+ 
 		$("#draw")[0].addEventListener("tap",function () {
+			if( userInfo.memberinfo.realName == "" ) {
+				doc.activeElement.blur();
+				$.alert("风险账号,请先绑定真实姓名");
+				return;
+			};
 			if( drawNum.value == "" ) {
 				$.toast("请输入提现金额");
 				return;
 			};
 			doc.activeElement.blur(); 
-			if( drawNum.value <= 2 ) {
-				$.toast("提现金额不能小于2元");
+			if( drawNum.value < 8 ) {
+				$.toast("提现金额不能小于8元");
 				return;
 			};
 			/**

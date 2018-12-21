@@ -19,7 +19,11 @@
 			if( title ) {
 				//console.log( this.dataset.walletType )
 				openPage( page , { title : title , walletType : this.dataset.walletType , flag : this.dataset.flag });
-			} else {
+			} else { 
+				if( page == "./draw.html" && userInfo.memberinfo.realName == "" ) {
+					$.alert("风险账号,请先绑定真实姓名");
+					return;
+				}
 				openPage( page );
 			}
 			
@@ -121,8 +125,9 @@
 	/**
 	 * 	检查更新信息
 	 */
-	var checkUpdateUrl = "http://156.237.129.242:8081/checkUpdate.json?_="+Date.parse(new Date());
+	
 	function checkUpdate( ver ) {
+		var checkUpdateUrl = "http://156.237.129.242:8081/checkUpdate.json?_="+Date.parse(new Date());
 		plus.nativeUI.showWaiting("检查更新..");	
 		$.ajax({
 			url : checkUpdateUrl ,
@@ -152,8 +157,9 @@
 	/**
 	 *	下载更新 
 	 */
-	var wgtUrl = "http://156.237.129.242:8081/H5BE3FBA0.wgt?_="+Date.parse(new Date());
+	
 	function downWgt( updateInfo ){
+		var wgtUrl = "http://156.237.129.242:8081/H5BE3FBA0.wgt?_="+Date.parse(new Date());
 		plus.nativeUI.showWaiting("下载更新");
 		plus.downloader.createDownload( wgtUrl , {filename:"_doc/update/"}, function(d,status){
 			if ( status == 200 ) { 
@@ -268,9 +274,16 @@
 			//console.log( $ )
 			$('#refreshContainer').pullRefresh().endPulldownToRefresh();
 			$.toast( requestMsg.fail );
-		})
+		});
+		
+		/**
+		 * 	监听修改资料
+		 */
+		doc.addEventListener("update",function ( event) {
+			plus.webview.currentWebview().reload();
+		}, false);
 
 
 
 	} 
-})( mui , document );
+})( mui , document ); 

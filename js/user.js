@@ -45,11 +45,10 @@
 		plus.nativeUI.showWaiting("加载中...");
 		app.updateInfo( {} , params ).then(function ( res ) {
 			if( res.hasOwnProperty("success") && res.success ) {
-				$.extend( true , userInfo.memberinfo , res.data );
-				plus.storage.setItem("userInfo",JSON.stringify(userInfo));
+				//$.extend( true , userInfo.memberinfo , res.data );
+				//plus.storage.setItem("userInfo",JSON.stringify(userInfo));
+				$.fire( plus.webview.getWebviewById("./userCenterChild.html") , "update" , params )
 				$.alert("保存成功");
-				//plus.webview.currentWebview().reload();
-				//$.back();
 			} else { 
 				$.toast( res.errorMessage );
 			}
