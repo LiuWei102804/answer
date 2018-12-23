@@ -9,6 +9,8 @@
 		//console.log( JSON.stringify( userInfo ) )
 		//plus.storage.clear();
 		w.ajax = function (url , data , method ) { 
+			userInfo = JSON.parse( plus.storage.getItem("userInfo") );
+			
 			var promise = new Promise(function (resolve,reject) {
 				if( !navigator.onLine ) {
 					if( !offLineTip ) {
@@ -25,10 +27,13 @@
 				};
 				if( userInfo && userInfo.hasOwnProperty("data") ) {
 					headers.token = userInfo.data;
+					//console.log( "查询历史记录: " ,  headers.token )
+					
 				};  
 				if( method == "post" ) {
 					headers["Content-Type"] = "application/json";
 				} 
+
 				$.ajax({
 					type: method ,
 					dataType:'json',				//服务器返回json格式数据
@@ -77,8 +82,8 @@
 			if( url.indexOf("/api/v1/authCode") == -1 ) {					//发送验证码
 				_data.phone = userInfo.phone;
 			}
-			console.log( url ); 
-			console.log( JSON.stringify( _data ) )
+			//console.log( url ); 
+			//console.log( JSON.stringify( _data ) )
 			return w.ajax( url , _data , "get" );
 		};
 		

@@ -79,10 +79,10 @@
 			//console.log( JSON.stringify( res ) )
 			if( res.hasOwnProperty("success") && res.success ) {
 				var data = res.data;
-				//console.log( JSON.stringify( data ) )
+				//console.log( "任务列表 : " , JSON.stringify( data ) )
 				dataList = dataList.concat( data ); 
 				if( data instanceof Array ) {
-					if( data.length ) { 
+					if( data.length > 0 ) { 
 						$.each( data , function ( index , item ) { 
 							//console.log( JSON.stringify( item ) )
 							html += "<li class=\"mui-table-view-cell newpage-div\" data-index=\""+ ($(".data-list")[0].children.length + index ) +"\"  data-survey-id=\""+ item.surveyId +"\"><span class=\"mui-pull-left\">"+ item.title +"</span></li>";
@@ -92,7 +92,7 @@
 
 
 						//if( !powerFlagList.length ) {
-							getQusPowerList( data );	
+						getQusPowerList( data );	
 						//} else {
 						//	setIdent( powerFlagList );
 						//}	
@@ -136,13 +136,14 @@
 			console.log( e )
 		})
 	};
-		/**
+	/**
 	 * 	获取已答列表
 	 */
 	function getQusPowerList() {
 		//plus.nativeUI.showWaiting("加载中...");
 		//$(".mui-title")[0].innerHTML = item.title;
 		app.getSurveyHistory().then(function ( res ) {
+			//console.log( JSON.parse( plus.storage.getItem("userInfo") ).data  )
 			if( res.hasOwnProperty("success") && res.success ) {
 				if( res.data instanceof Array ) { 
 					powerFlagList = res.data;

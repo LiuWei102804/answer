@@ -67,6 +67,7 @@
 					 app.login( params ).then(function ( res ) {
 						 if( res.hasOwnProperty("success") && res.success ) {
 						 		res.phone = account.value;
+						 		//console.log("登录时最新 token ： " , res.data )
 								plus.storage.setItem( "userInfo" , JSON.stringify( res ) );
 								openPage("./index.html");
 						 } else {

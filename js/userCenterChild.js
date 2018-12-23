@@ -219,10 +219,11 @@
 		},1000);
 
 		app.getUserInfo().then(function ( res ) {
+			
 			if( res.hasOwnProperty("success") && res.success ) {
 				var data = res.data;   
 				var userType = "";
-				console.log( JSON.stringify( data ) )
+				//console.log( JSON.stringify( data ) )
 				switch( Number( data.memberinfo.disUserType ) ) {
 //					case 0 :
 //						userType = "普通用户";
@@ -263,6 +264,7 @@
 				}
 
 				$.extend( true , userInfo , data );
+				//console.log( JSON.stringify( userInfo ) )
 				//清除旧数据
 				//plus.storage.clear();
 				plus.storage.setItem("userInfo",JSON.stringify( userInfo ));

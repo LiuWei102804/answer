@@ -8,7 +8,7 @@
 		qus = [],			//答卷列表
 		qusIndex = 0,		//问卷索引
 		typeIndex = 0,		//问卷类型索引
-		toDayMaxPartake = 2,//剩余答题次数
+		toDayMaxPartake = 0,//剩余答题次数
 		end = false,			//答题结束
 		isChoice = 0;		// 是否有选中
 	var content = null,		//问卷标题
@@ -208,18 +208,20 @@
 			if( res.hasOwnProperty("success") && res.success ) {
 				if( res.data instanceof Array ) {
 					if( res.data.indexOf( item.surveyId ) > -1 ) {
-						$.alert("今日已答过该答卷！","提示",function () {
+						$.alert("已答过该答卷！","提示",function () {
 							old_back();
 						});
 					} else {
-						//console.log( qusIndex )
+						//console.log( qusIndex ) 
 						if( item.question[qusIndex] ) {
 							setContent( item.question[qusIndex] );
+
 						};
 					}
 				} else {
 					$.toast( requestMsg.fail );	
 				}
+
 			} else {
 				$.toast( res.errorMessage );
 			}
@@ -245,17 +247,14 @@
 				/**
 				 * 	答卷标题 
 				 */
-
 				ansData.title = qus[0].title;
 				ansData.surveyId = Number( qus[0].surveyId );
-				/**
-				 * 	查询已答列表
-				 */
-				getQusPowerList( qus[0] );
+
 				/** 
 				 * 	查询剩余答题次数
 				*/
-				canPartake();
+				canPartake( qus[0] );
+
 			} else {
 				$.toast( requestMsg.fail )
 			} 
@@ -268,11 +267,20 @@
 	/**
 	 * 	查询可用答题次数 
 	 */ 
-	function canPartake() {
+	function canPartake( item ) {
 		app.canPartake().then(function ( res ) {
 			if( res.hasOwnProperty("success") && res.success ) {
 				toDayMaxPartake = res.data;
-				$(".over")[0].innerHTML = "剩余答题次数：" + toDayMaxPartake;				
+				$(".over")[0].innerHTML = "剩余答题次数：" + toDayMaxPartake;		
+				
+				/**
+				 * 	查询已答列表
+				 */
+				getQusPowerList( item );
+			} else {
+				$.alert( res.errorMessage ,function () {
+					old_back();
+				});
 			}
 		},function ( err ) { 
 			mui.toast( requestMsg.fail );
@@ -306,7 +314,7 @@
 	};
 	
 
-})( mui , document );
+})( mui , document ); 
 
 
 
