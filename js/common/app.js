@@ -110,6 +110,12 @@
 		return Get( ORIGIN + apis.getPayUrl );	
 	};
 	/**
+	 * 	升级合伙人 URL
+	 */
+	owner.getUpLevelUrl = function () { 
+		return Get( ORIGIN + apis.getUpLevelUrl );	
+	};
+	/**
 	 *	获取今日收入 
 	 */
 	owner.getDailyHistory = function ( params , data ) {

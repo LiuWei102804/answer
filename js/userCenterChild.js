@@ -43,19 +43,26 @@
 			changeAccount(func);
 		});
 		/*
-		 	退出APP
+		 	升级合伙人
 		 * */
 		$(".account-data").on("tap",".quit-btn",function () {
-			if( $.os.ios ) {
-				$.alert("此平台不支持直接退出应用，请手动切换","提示");
-			} else {
-				$.confirm("确认退出应用？","提示",function ( btn ) {
-					if( btn.index == 1 ) {
-						plus.runtime.quit();
-					}
-				})
-				
-			}
+			if( userInfo.memberinfo.disUserType >= 4 ) {
+				$.alert("无需升级！");
+				return;
+			};
+			plus.nativeUI.showWaiting("加载中...");
+			app.getUpLevelUrl().then(function ( res ) {
+				if( res.hasOwnProperty("success") && res.success ) {
+					var data = Pattern.isSpace( res.data , true );
+					plus.runtime.openWeb( data );
+				} else {
+					$.toast( res.errorMessage );
+				}
+				plus.nativeUI.closeWaiting();
+			},function ( err ) {
+				$.toast( requestMsg.fail );
+				plus.nativeUI.closeWaiting();
+			})
 		});
 		
 		$(".account-data").on("tap",".uplevel",function () {
@@ -94,9 +101,6 @@
 			$.toast( requestMsg.fail );
 			plus.nativeUI.closeWaiting();
 		})
-
-		//openPage("./upLevel.html");
-	
 	};
 	
 	/**
@@ -238,7 +242,7 @@
 						userType = "A级调查员";
 						break;
 					case 4 :
-						userType = "S级调查员";
+						userType = "调研小组长";
 						break;
 					default :
 						userType = "普通用户";  
