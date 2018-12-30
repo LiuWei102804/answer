@@ -190,7 +190,7 @@
 				/** 
 				 * 	查询剩余答题次数
 				*/
-				canPartake();
+				canPartake( qus[0] );
 			};
 
 		} else {
@@ -204,6 +204,7 @@
 	function getQusPowerList( item ) {
 		plus.nativeUI.showWaiting("加载中...");
 		$(".mui-title")[0].innerHTML = item.title;
+	
 		app.getSurveyHistory().then(function ( res ) {
 			if( res.hasOwnProperty("success") && res.success ) {
 				if( res.data instanceof Array ) {
@@ -212,7 +213,6 @@
 							old_back();
 						});
 					} else {
-						//console.log( qusIndex ) 
 						if( item.question[qusIndex] ) {
 							setContent( item.question[qusIndex] );
 
@@ -229,6 +229,8 @@
 		},function ( err ) {
 			plus.nativeUI.closeWaiting();
 			$.toast( requestMsg.fail );
+		}).catch(function ( e ) {
+			console.log( e )
 		});
 	};
 
@@ -237,8 +239,9 @@
 	 */
 	function getQus() {
 		plus.nativeUI.showWaiting("加载中...");
+		
 		app.getQuestions({ current : ( +typeIndex + 1 ) , size : 1 }).then(function ( res ) {
-			//console.log( JSON.stringify( res ) )
+			
 			if( res.hasOwnProperty("success") && res.success ) {
 				qus = res.data; 
 				if( qus[0].question[qusIndex] ) {

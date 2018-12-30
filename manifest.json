@@ -3,7 +3,7 @@
     "id" : "H5BE3FBA0", /*应用的标识，创建应用时自动生成，勿手动修改*/
     "name" : "趣任务", /*应用名称，程序桌面图标名称*/
     "version" : {
-        "name" : "1.0.68", /*应用版本名称*/
+        "name" : "1.0.69", /*应用版本名称*/
         "code" : "83"
     },
     "description" : "邀朋友一起趣任务，每天8元，更有无限红包等你来拿。", /*应用描述信息*/
@@ -39,7 +39,7 @@
         "splashscreen" : {
             "autoclose" : true, /*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
             "waiting" : true,
-            "delay" : "3000"
+            "delay" : "0"
         },
         "runmode" : "liberate", /*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
         "signature" : "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==", /*可选，保留给应用签名，暂不使用*/
@@ -144,11 +144,11 @@
                     },
                     "ipad" : {
                         "portrait" : "images/6p.png", /*iPad竖屏启动图片，分辨率：768x1004*/
-                        "portrait-retina" : "", /*iPad高分屏竖屏图片，分辨率：1536x2008*/
+                        "portrait-retina" : "/Users/q/Desktop/启动图片/6p.png", /*iPad高分屏竖屏图片，分辨率：1536x2008*/
                         "landscape" : "", /*iPad横屏启动图片，分辨率：1024x748*/
                         "landscape-retina" : "", /*iPad高分屏横屏启动图片，分辨率：2048x1496*/
-                        "portrait7" : "", /*iPad iOS7竖屏启动图片，分辨率：768x1024*/
-                        "portrait-retina7" : "", /*iPad iOS7高分屏竖屏图片，分辨率：1536x2048*/
+                        "portrait7" : "/Users/q/Desktop/启动图片/6p.png", /*iPad iOS7竖屏启动图片，分辨率：768x1024*/
+                        "portrait-retina7" : "/Users/q/Desktop/启动图片/6p.png", /*iPad iOS7高分屏竖屏图片，分辨率：1536x2048*/
                         "landscape7" : "", /*iPad iOS7横屏启动图片，分辨率：1024x768*/
                         "landscape-retina7" : ""
                     }
